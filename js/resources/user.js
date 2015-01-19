@@ -39,7 +39,7 @@
                 };
 
                 User.GetExpirationDate = function() {
-                    return $http.get('/user/expiration-date').then(
+                    return $http.get('/api/v1/user/expiration-date').then(
                         function(response) {
                             return response.data.expires;
                         }

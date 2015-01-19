@@ -126,7 +126,7 @@
                 };
 
                 Resource.FetchAll = function(name, createResource, populate, config) {
-                    var url = '/' + name,
+                    var url = '/api/v1/' + name,
                         promises = [],
                         deferred = $q.defer();
                     if (_mustGoToServer(name)) {
@@ -186,7 +186,7 @@
                         }
                         deferred.resolve(_cache[name][id]);
                     } else {
-                        url = '/' + name + '/' + id;
+                        url = '/api/v1/' + name + '/' + id;
                         if (!angular.isFunction(createResource)) {
                             createResource = function(data) {
                                 return new Resource(data);
@@ -206,7 +206,7 @@
                 };
 
                 Resource.Fetch = function(name, params, createResource, populate, config) {
-                    var i, j, key, url = '/' + name,
+                    var i, j, key, url = '/api/v1/' + name,
                         deferred = $q.defer();
                     if (angular.isArray(params)) {
                         for (i = 0; i < params.length; i++) {
@@ -261,7 +261,7 @@
                 };
 
                 Resource.Save = function(name, obj, createResource, populate, config) {
-                    var method = 'post', url = '/' + name,
+                    var method = 'post', url = '/api/v1/' + name,
                         deferred = $q.defer();
                     if (angular.isObject(obj)) {
                         if (angular.isString(obj._id)) {
@@ -290,7 +290,7 @@
                 };
 
                 Resource.Remove = function(name, id, config) {
-                    var url = '/' + name + '/' + id,
+                    var url = '/api/v1/' + name + '/' + id,
                         deferred = $q.defer();
                     $http['delete'](url, config).then(
                         function() {

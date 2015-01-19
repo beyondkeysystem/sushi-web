@@ -1,73 +1,135 @@
-body{
-	padding-top: 51px;
+body, html {
+	width: 100%;
+	height: 100%;
+	padding: 0;
+	margin: 0;
+	bottom: 0;
+	right: 0;
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: normal;
 }
 
 /* ng-cloak */
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng.ng-cloak {
-    display: none;
+	display: none;
 }
-ul{
-	list-style: none;
-}
-a{
-	color: #333;
-}
-a:hover{
-	cursor: pointer;
-}
-ul.simple-post-list .post-image {
-	float: left;
-	margin-right: 12px;
-}
-ul.simple-post-list {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-.callout-box{
-	background-color: #546489;
-	color: #fff;
-	padding: 10px 20px;
-}
-.body-title{
-	border: 1px solid #e3e3e3;
-	border-left: 5px solid #234383;
-	padding: 0 20px 20px;
-}
-.featured-box{
-	border: 1px solid #e3e3e3;
-	border-top: 5px solid #234383;
-	padding: 0 20px 20px;
-}
-.breadcrumbs {
-position: relative;
-border-bottom: 1px solid #E5E5E5;
-background-color: #F5F5F5;
-}
-.breadcrumb{
-	margin-bottom: 0;
-}
-.cart-btn{
-	border-radius:0;
-}
-.navbar {
-	border-radius: 0;
-	
-/*background: #438EB9;
-color: #fff;border: 0;*/
 
+/************ COLORS ************/
+/*
+orange: #fbc848;
+light-orange: #ffc938;
+dark-grey: #333333;
+*/
+
+/************ GENERAL ************/
+.app {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background-color: #fbc848;
 }
-/* Removed width:auto from navbar-collapse classs; */
-.navbar-collapse {
-border-top: 0;
-box-shadow: none;
+
+.center {
+	text-align: center;
+	vertical-align: middle;
 }
-.navbar .navbar-brand {
-/*color: #FFF;
-font-size: 24px;
-text-shadow: none;
-padding-bottom: 10px;*/
+
+.left {
+	text-align: left;
+	vertical-align: middle;
 }
-.form-group-addon{
-	padding-left: -20px;
+
+.right {
+	text-align: right;
+	vertical-align: middle;
+}
+
+.margin-small {
+	margin: 1em;
+}
+
+.margin-left-small {
+	margin-left: 1em;
+}
+
+.margin-right-small {
+	margin-right: 1em;
+}
+
+.margin-top-small {
+	margin-top: 1em;
+}
+.margin-bottom-small {
+	margin-bottom: 1em;
+}
+
+/************ INDEX ************/
+.index .header {
+	width: 100vw;
+	height: 30vh;
+	padding: 0;
+	margin: 0;
+	line-height: 30vh;
+}
+
+.index .footer {
+	width: 100vw;
+	height: 70vh;
+	padding: 0;
+	margin: 0;
+	background-color: #FFFFFF;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: bold;
+}
+
+.index .footer span {
+	display: inline-block;
+	padding: 1.5em;
+	margin: 1vh 0 7vh 0;
+	background: transparent url("/img/backgrounds/dot.png") repeat-x left bottom;
+}
+
+.index .footer img {
+	margin-bottom: 3vh;
+}
+
+/************ HOME ************/
+.public .header {
+	width: 100vw;
+	height: 12vh;
+	padding: 0;
+	margin: 0;
+	line-height: 12vh;
+}
+
+.public .header a {
+	font-size: 23px;
+	font-family: 'Montserrat', sans-serif;
+	color: #FFF;
+	text-decoration: none;
+}
+
+.public .body {
+	width: 100vw;
+	min-height: 65vh;
+	padding: 0;
+	margin: 0;
+	background-color: #FFFFFF;
+	border-bottom: 3px solid #ffc938;
+}
+
+.public .body .container {
+	min-height: 65vh;
+	background: transparent url("/img/backgrounds/body.png") repeat-x left bottom;
+}
+
+.public .footer {
+	width: 100vw;
+	height: 23vh;
+	padding: 0;
+	margin: 0;
+	background: #333333 url("/img/backgrounds/footer.jpg") left top;
 }

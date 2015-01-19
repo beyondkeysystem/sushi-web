@@ -1,11 +1,10 @@
 <?php
 
-$app->get('/customer/session', function() use($app, $db){
-	Security::RestictedAccess();
+$app->get('/user/session', function() use($app, $db){
 	echoResponse(200, Security::GetSession());
 });
 
-$app->post('/customer/session',function() use($app, $db){
+$app->post('/user/session',function() use($app, $db){
 	$params = $app->request->post();
 	$queryValues = array(
 		'email'=>$params['email'],
@@ -15,13 +14,14 @@ $app->post('/customer/session',function() use($app, $db){
 	$dbquery->execute($queryValues);
 	$data = $dbquery->fetchAll(PDO::FETCH_ASSOC);
 	if(empty($data)){
-		echoResponse(401, '', array('message' => 'Invalid email or password'));
+		echoResponse(200);
 	} else {
 		$session = Security::Login($data[0]);
 		echoResponse(200, $session);
 	}
 });
 
-$app->delete('/customer/session',function() use($app, $db){
+$app->delete('/user/session',function() use($app, $db){
+	Security::RestictedAccess();
 	$session = Security::Logout();
 });
