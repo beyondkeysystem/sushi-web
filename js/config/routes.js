@@ -58,15 +58,9 @@
 			},
 			/* ***************** User ***************** */
 			{
-				'url': '/users',
-				'template': '/partials/pages/users.html',
-				'controller': 'Users',
-				'roles': accessLevels['user']
-			},
-			{
-				'url': '/profile/:userId',
-				'template': '/partials/pages/profile.html',
-				'controller': 'Profile',
+				'url': '/pedidos',
+				'template': '/partials/pages/order.html',
+				'controller': 'order',
 				'roles': accessLevels['user']
 			},
 			{

@@ -103,6 +103,14 @@
                     );
                 };
 
+                var _login = function(email, pass) {
+                    return User.Login(email, pass).then(
+                        function(data) {
+                            console.log(data);
+                        }
+                    );
+                };
+
                 _reset();
 
                 return {
@@ -111,6 +119,9 @@
                     },
                     reset: function() {
                         return _reset();
+                    },
+                    login: function(email, pass) {
+                        return _login(email, pass);
                     },
                     logout: function() {
                         return _logout();

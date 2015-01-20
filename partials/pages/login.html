@@ -1,13 +1,89 @@
-<div class="login">
-	<div class="row">
-		<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-			<div class="h2"><a href="/auth/facebook" class="btn btn-primary btn-block"><i class="fa fa-facebook margin-right-small"></i><span>Sign In with Facebook</span></a></div>
-			<div class="h2"><a href="/auth/twitter" class="btn btn-warning btn-block"><i class="fa fa-twitter margin-right-small"></i><span>Sign In with Twitter</span></a></div>
-			<div class="h2"><a href="/auth/google" class="btn btn-success btn-block"><i class="fa fa-google margin-right-small"></i><span>Sign In with Google</span></a></div>
+<div class="public">
+	<div class="header">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-7 left">
+					<img src="/img/logos/page.png">
+				</div>
+				<div class="hidden-xs col-sm-5 right">
+					<a href="#" target="_blank" class="margin-left-small">
+						<img src="/img/icons/facebook.png" alt="Facebook">
+					</a>
+					<a href="#" target="_blank">
+						<img src="/img/icons/twitter.png" alt="Twitter">
+					</a>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div class="description">
-		<div class="h2">Site under development</div>
-		<p class="font-italic"><a mailto="dcurras@deviget.com">dcurras@deviget.com</a></p>
+	<div class="body">
+		<div class="container">
+			<div class="auth">
+				<div class="row signin top-rounded">
+					<div class="col-xs-12 col-sm-6 right">
+						<h1>INGRESAR</h1>
+						<div class="form-input">
+							<label for="user-login">Usuario: </label>
+							<input type="email" name="user-login" placeholder="mi-mail@ejemplo.com" ng-model="user.login.email" ng-trim="true">
+						</div>
+						<div class="form-input">
+							<label for="password-login">Contrase&ntilde;a: </label>
+							<input type="password" name="password-login" type="text" ng-model="user.login.password">
+						</div>
+						<div class="form-input">
+							<button class="btn btn-default" ng-click="signIn()">Enviar</button>
+						</div>
+					</div>
+					<div class="hidden-xs col-sm-6 center">
+						<img src="/img/icons/signin.png">
+					</div>
+				</div>
+				<div class="row signup bottom-rounded">
+					<div class="hidden-xs col-sm-5 center">
+						<img src="/img/icons/signup.png">
+					</div>
+					<div class="col-xs-12 col-sm-6 right">
+						<h1>REGISTRAR</h1>
+						<div class="form-input">
+							<label for="user-name">Nombre: </label>
+							<input type="text" name="user-name" placeholder="" ng-model="user.register.firstName" ng-trim="true">
+						</div>
+						<div class="form-input">
+							<label for="user-surname">Apellido: </label>
+							<input type="text" name="user-surname" placeholder="" ng-model="user.register.lastName" ng-trim="true">
+						</div>
+						<div class="form-input">
+							<label for="user-phone">Tel&eacute;fono: </label>
+							<input type="text" name="user-phone" placeholder="" ng-model="user.register.phone" ng-trim="true">
+						</div>
+						<div class="form-input">
+							<label for="user-address">Domicilio: </label>
+							<input type="text" name="user-address" placeholder="" ng-model="user.register.address" ng-trim="true">
+						</div>
+						<div class="form-input">
+							<label for="user-email">Usuario: </label>
+							<input type="email" name="user-email" placeholder="mi-mail@ejemplo.com" ng-model="user.register.email" ng-trim="true">
+						</div>
+						<div class="form-input">
+							<label for="user-password">Contrase&ntilde;a: </label>
+							<input type="password" name="user-password" type="text" ng-model="user.register.password">
+						</div>
+						<div class="form-input">
+							<label for="user-password-repeat">Repetir contrase&ntilde;a: </label>
+							<input type="password" name="user-password-repeat" type="text" ng-model="user.register.passwordRepeat">
+						</div>
+						<div class="form-input">
+							<button class="btn btn-default" ng-click="signUp()">Enviar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+			</div>
+		</div>
 	</div>
 </div>
