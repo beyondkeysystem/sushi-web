@@ -37,32 +37,33 @@ $app->post('/user',function() use($app, $db){
 	Security::RestictedAccess();
 	$params = $app->request->post();
 	$queryValues = array(
-		'first_name'=>$params['first_name'],
-		'last_name'=>$params['last_name'],
+		'firstName'=>$params['firstName'],
+		'lastName'=>$params['lastName'],
 		'email'=>$params['email'],
 		'address'=>$params['address'],
 		'phone'=>$params['phone'],
 		'password'=>$params['password'],
-		'is_admin'=>$params['is_admin']
+		'isAdmin'=>$params['isAdmin']
 	);
-	$dbquery = $db->prepare('INSERT INTO customers(name, email, phone, password, address) VALUES(:name, :email, :phone, :password, :address,)');
+	$dbquery = $db->prepare('INSERT INTO customers(firstName, lastName, email, address, phone, password, isAdmin) VALUES (:firstName, :lastName, :email, :address, :phone, :password, :isAdmin)');
 	$dbquery->execute($queryValues);
-	echoResponse(200, array('success'=>true));
+	$session = Security::Login($queryValues);
+	echoResponse(200, $session);
 });
 
 $app->put('/user/:id',function($id) use($app, $db){
 	Security::RestictedAccess();
 	$params = $app->request->put();
 	$queryValues = array(
-		'first_name'=>$params['first_name'],
-		'last_name'=>$params['last_name'],
+		'firstName'=>$params['firstName'],
+		'lastName'=>$params['lastName'],
 		'email'=>$params['email'],
 		'address'=>$params['address'],
 		'phone'=>$params['phone'],
 		'password'=>$params['password'],
-		'is_admin'=>$params['is_admin']
+		'isAdmin'=>$params['isAdmin']
 	);
-	$dbquery = $db->prepare('UPDATE customers SET name=:name, email=:email, phone=:phone, password=:password, address=:address, city=:city where id=:id');
+	$dbquery = $db->prepare('UPDATE customers SET firstName=:firstName, lastName:=lastName, email=:email, address=:address, phone=:phone, password=:password, isAdmin=:isAdmin where id=:id');
 	$dbquery->execute($queryValues);
 	echoResponse(200, array('success'=>true));
 });

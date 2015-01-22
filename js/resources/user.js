@@ -19,7 +19,7 @@
 
 			var User = function(config) {
 				var defaultProperties = {
-					_id: null,
+					id: null,
 					name: null,
 					email: null,
 					photo: null,
@@ -39,9 +39,9 @@
 			};
 
 			User.GetExpirationDate = function() {
-				return $http.get('/api/v1/user/expiration-date').then(
+				return $http.get('/api/v1/user/session/expiration').then(
 					function(response) {
-						return response.data.expires;
+						return response.data;
 					}
 				);
 			};
@@ -52,7 +52,7 @@
 
 			User.Login = function(email, pass) {
 				var params = {email: email, password: pass};
-				return Resource.Save('user/session', params).then(
+				return $http.post('/api/v1/user/session', params).then(
 					function(response) {
 						return response.data;
 					}

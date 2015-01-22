@@ -31,11 +31,25 @@
 			};
 
 			$scope.signIn = function(){
-				AuthService.login($scope.user.login.email, $scope.user.login.password);
+				//TODO: validate sign in form inputs
+				AuthService.login($scope.user.login.email, $scope.user.login.password).then(function(user) {
+					if(angular.isString(user.id) && user.id.length){
+						$location.path('/pedidos');	
+					} else {
+						console.log('show signin error');
+					}
+				});
 			};
 
 			$scope.signUp = function(){
-				AuthService.register($scope.user.register);
+				//TODO: validate sign up form inputs
+				AuthService.register($scope.user.register).then(function(user) {
+					if(angular.isString(user.id) && user.id.length){
+						$location.path('/pedidos');	
+					}  else {
+						console.log('show signup error');
+					}
+				});
 			};
 		}
 	]);

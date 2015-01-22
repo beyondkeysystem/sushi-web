@@ -4,6 +4,11 @@ $app->get('/user/session', function() use($app, $db){
 	echoResponse(200, Security::GetSession());
 });
 
+$app->get('/user/session/expiration', function() use($app, $db){
+	Security::RestictedAccess();
+	echoResponse(200, Security::GetSession()['expires']);
+});
+
 $app->post('/user/session',function() use($app, $db){
 	$params = $app->request->post();
 	$queryValues = array(

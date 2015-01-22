@@ -9,6 +9,7 @@ require_once('utils/security.php');
 \Slim\Slim::registerAutoloader();
 $app = new \Slim\Slim();
 $db = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8', DB_USERNAME, DB_PASSWORD);
+Security::SaveLastAccess();
 
 require_once('routes/session.php');
 require_once('routes/user.php');

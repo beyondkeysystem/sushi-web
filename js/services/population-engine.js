@@ -167,14 +167,14 @@
         result = [];
 
         _.each(obj[name], function(item) {
-            return result.push(item._id);
+            return result.push(item.id);
         });
 
         obj[name] = result;
     };
 
     PopulationEngine.prototype._exportPlainField = function(name, obj) {
-        obj[name] = obj[name]._id;
+        obj[name] = obj[name].id;
     };
 
 })();

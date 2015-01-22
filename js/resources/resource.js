@@ -27,7 +27,7 @@
                 };
 
                 var _updateCache = function(name, obj) {
-                    var key, id = obj._id;
+                    var key, id = obj.id;
                     _checkCacheEmpty(name);
                     if (angular.isObject(_cache[name][id])) {
                         for (key in obj) {
@@ -240,7 +240,7 @@
                                 for (i = 0; i < response.data.length; i++) {
                                     newResource = createResource(response.data[i]);
                                     _updateCachePromise(name, newResource, populate);
-                                    result[newResource._id] = newResource;
+                                    result[newResource.id] = newResource;
                                 }
                             } else {
                                 newResource = createResource(response.data);
@@ -264,9 +264,9 @@
                     var method = 'post', url = '/api/v1/' + name,
                         deferred = $q.defer();
                     if (angular.isObject(obj)) {
-                        if (angular.isString(obj._id)) {
+                        if (angular.isString(obj.id)) {
                             method = 'put';
-                            url += '/' + obj._id;
+                            url += '/' + obj.id;
                         }
                         if (!angular.isFunction(createResource)) {
                             createResource = function(data) {

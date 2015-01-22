@@ -12,18 +12,14 @@
 		'controllers.logout',
 		'services.auth',
 		'services.error',
-		'directives.navbar',
-		'chieffancypants.loadingBar'
+		'directives.navbar'
 	]).config([
 		'$routeProvider',
 		'$httpProvider',
 		'RoutesProvider',
-		'cfpLoadingBarProvider',
-		function($routeProvider, $httpProvider, RoutesProvider, cfpLoadingBarProvider) {
-			var routes = RoutesProvider.getRoutes(),
-			expires = 0;
-			cfpLoadingBarProvider.includeSpinner = true;
-			cfpLoadingBarProvider.includeBar = true;
+		function($routeProvider, $httpProvider, RoutesProvider) {
+			var routes = RoutesProvider.getRoutes(), 
+				expires = 0;
 			angular.forEach(routes, function(route) {
 				var resolve = route.hasOwnProperty('resolve') ? route.resolve : {};
 				$routeProvider.when(route.url, {
@@ -58,6 +54,47 @@
 					}
 				}
 			]);
+			/**
+			 * Setting default http headers for post requests with angulars $http provider
+			 */
+			 $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+
+			/**
+			* The workhorse; converts an object to x-www-form-urlencoded serialization.
+			* @param {Object} obj
+			* @return {String}
+			*/ 
+			var param = function(obj) {
+				var query = '', name, value, fullSubName, subName, subValue, innerObj, i;
+				for(name in obj) {
+					value = obj[name];
+					if(value instanceof Array) {
+						for(i=0; i<value.length; ++i) {
+							subValue = value[i];
+							fullSubName = name + '[' + i + ']';
+							innerObj = {};
+							innerObj[fullSubName] = subValue;
+							query += param(innerObj) + '&';
+						}
+					} else if(value instanceof Object) {
+						for(subName in value) {
+							subValue = value[subName];
+							fullSubName = name + '[' + subName + ']';
+							innerObj = {};
+							innerObj[fullSubName] = subValue;
+							query += param(innerObj) + '&';
+						}
+					} else if(value !== undefined && value !== null) {
+						query += encodeURIComponent(name) + '=' + encodeURIComponent(value) + '&';
+					}
+				}
+				return query.length ? query.substr(0, query.length - 1) : query;
+			};
+
+			// Override $http service's default transformRequest
+			$httpProvider.defaults.transformRequest = [function(data) {
+				return angular.isObject(data) && String(data) !== '[object File]' ? param(data) : data;
+			}];
 		}
 	]).run([
 		'$rootScope',

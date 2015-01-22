@@ -34,22 +34,22 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
-  `is_admin` tinyint(1) NOT NULL DEFAULT '0',
+  `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
   `address` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
   `comments` varchar(255) NOT NULL,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
+  `firstName` varchar(255) NOT NULL,
+  `lastName` varchar(255) NOT NULL,
   `active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`),
-  FULLTEXT KEY `apellido_cli` (`last_name`)
+  FULLTEXT KEY `apellido_cli` (`lastName`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8956;
 
 --
 -- Dumping data for table `customers`
 --
 
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (1, 'ControlZ', '2947amarDeliv', 1, '', '', '', '', '', 0),
 (2, 'jev2000@hotmail.com', '1234', 0, 'Garibaldi 196', '03461-454154', '', 'Joaquin (PRUEBA)', 'Espinosa Viale', 0),
 (3, 'titoypelusa@hotmail.com', '321', 0, 'Por ahi 123', '03461-458458', '', 'Fernando', 'Rolandelli', 0),
@@ -498,7 +498,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (462, 'mgarbuglia@hotmail.com', 'aleja1000', 0, 'MONDOZA 822', '4247069', '', 'MARIA ALEJANDRA', 'GARBUGLIA', 0),
 (463, 'cele_tg@hotmail.com', '1234', 0, 'Pueyrredón 30', '4354052', '', 'Celeste', 'Vera', 0),
 (464, 'agusarichu@hotmail.com', 'alcibar82', 0, 'Urquiza 1808 6B', '4261351', '', 'Agustina', 'Arichuluaga', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (465, 'nadianazer@hotmail.com', 'lola1213', 0, 'Alvear 1160 piso 6 dpto 2', '155442330', '', 'Nadia', 'Nazer', 0),
 (466, 'poliya_ar@hotmail.com', '28771305', 0, 'Rioja 529 9 piso', '155457782', '', 'Santiago', 'Carreras', 0),
 (467, 'gregoriokillinger@hotmail.com', 'grego', 0, 'Juan Manuel de Rosas 1272 7A', '03461-15382105', '', 'Gregorio', 'Killinger', 0),
@@ -947,7 +947,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (910, 'inti_dance@hotmail.com', 'tutita', 0, 'Italia 1330 Dpto 2', '0341 - 156620364', '', 'inti', 'peirone', 0),
 (911, 'nacho.dr@live.com.ar', 'x38135813x', 0, 'Juan Manuel de Rosas 2210', '4811295', '', 'Ignacio', 'del Rio', 0),
 (912, 'nadia_arf@hotmail.com', 'aneley', 0, 'Laprida 572 11 A', '341-156470164', '', 'Nadia', 'Ribeca', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (913, 'mlbarison@gmail.com', 'angelito2009', 0, 'San Luis 635 3B', '153 41 73 06', '', 'Maria Laura ', 'Barison', 0),
 (914, 'Nicactis@gmail.com', 'dorrego90', 0, 'Dorrego90 2a', '156289747', '', 'Nicolas', 'Actis', 0),
 (915, 'LUCIANABILLORDO@HOTMAIL.COM', 'FONOLULI', 0, '1 MAYO 1322 6 B', '4481900', '', 'LUCIANA', 'BILLORDO', 0),
@@ -1390,7 +1390,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (1352, 'pilarcarreras75@hotmail.com', 'eponine94', 0, 'CORDOBA 1895 7MO B', '155825466', '', 'PILAR ', 'CARRERAS', 0),
 (1353, 'valugiuliano@hotmail.com', 'youmakeupp_2010', 0, 'Pellegrini 379 7° B', '03467 15412265', '', 'Valentina', 'Giuliano', 0),
 (1354, 'sabriss@hotmail.com', '327863844', 0, 'Pasaje A Storni 757 piso 13', '4230184', '', 'Sabrina', 'Rosillo', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (1355, 'andreacaribaux@gmail.com', '52365', 0, 'GUEMES 2063 PISO 7 DEPTO B', '4450600', '', 'GUILLERMO', 'MACCARINI', 0),
 (1356, 'julirey89@hotmail.com', '2530', 0, 'pellegrini 1387 7 b', '4818619', '', 'julia', 'rey', 0),
 (1357, 'cabec@hotmail.com', 'sabelo', 0, 'la paz 733 1 ro 1 ro', '3413254313', '', 'gonzalo ariel ', 'martinez', 0),
@@ -1828,7 +1828,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (1789, 'gleidhold@gmail.com', '448844', 0, 'Buenos Aires 1652 7ºA', '4475043', '', 'Gustavo', 'Leidhold', 0),
 (1790, 'sol381@hotmail.com', 'pantro', 0, 'Pje Guido 1226', '4595610', '', 'sol', 'garcia arquiola', 0),
 (1791, 'ssanchez@hssullair.com.ar', 'nokia99', 0, 'Paraguay 166 Piso 15', '155426875', '', 'Sofia', 'Sanchez', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (1792, 'nicoberlusconi@hotmail.com', '1466', 0, 'JUJUY 1466 3ER PISO', '3415798632', '', 'Nicolas ', 'bERLUSCONI', 0),
 (1793, 'marcela.delcampo@standardbank.com.ar', 'Manu1404', 0, 'Urquiza 869 piso 5', '4211199', '', 'Marcela', 'del Campo', 0),
 (1794, 'damianborer@hotmail.com', '1978', 0, 'GUEMES 2047 PISO 14', '4268719', '', 'DAMIAN', 'BORER', 0),
@@ -2266,7 +2266,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (2226, 'delfinadiseno@hotmail.com', 'encantos1', 0, 'jujuy 2743', '4308158', '', 'Delfina', 'Carballada', 0),
 (2227, 'cami_lorente14@hotmail.com', '37715356cami', 0, 'jujuy 1551', '4405671', '', 'Camila', 'Lorente', 0),
 (2228, 'clarabaltzer@hotmail.com', 'claru37450554', 0, 'Laprida 1024', '4406073', '', 'Clara', 'Baltzer', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (2229, 'rna78@live.com.ar', 'chinchulin', 0, 'MORENO 78  2A', '341-3-454935', '', 'FERNANDO', 'SARDELLA', 0),
 (2230, 'valeriasancevich@hotmail.com', 'vale1234', 0, 'bv oroño 17', '155987607', '', 'Valeria', 'Sancevich', 0),
 (2231, 'julietamaino@hotmail.com', 'catamarca', 0, 'balcarce 175 2do a', '155700448', '', 'julieta', 'maino', 0),
@@ -2704,7 +2704,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (2663, 'franco.chesini@hotmail.com.ar', 'francochesini', 0, 'Dorrego 2031', '0345 154105149', '', 'Franco', 'Chesini', 0),
 (2664, 'dahianayricer@hotmail.com', 'odontologia2009', 0, 'montevideo 1834', '3415491318', '', 'dahiana', 'ricer', 0),
 (2665, 'guillermobenzzo@hotmail.com', 'tasmania', 0, 'Entre Rios 1781 6 B', '4814718', '', 'Guillermo', 'Benzzo', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (2666, 'maurocolucci@gmail.com', '2970', 0, 'gral. lopez 2235', '3415409310', '', 'mauro', 'colucci', 0),
 (2667, 'gber@tower.com.ar', 'imhotep', 0, 'Paraguay', '156919680', '', 'Gustavo', 'Berasategui', 0),
 (2668, 'more.pardo@gmail.com', 'Johnyabby.1', 0, 'Presidente Roca 58 2ºA', '543414494977', '', 'Morena', 'Pardo', 0),
@@ -3146,7 +3146,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (3102, 'florentinacarino@hotmail.com', '26102002', 0, 'URQUIZA', '4267758', '', 'FLORENTINA', 'CARINO', 0),
 (3103, 'julietavictoriano@hotmail.com', 'emma2008', 0, 'salta 2141 2piso f', '543414477992', '', 'Julieta', 'Victoriano', 0),
 (3104, 'flachu21@hotmail.com', '6434177', 0, 'buenos aires 1429 3 ero A', '4475887', '', 'flavia', 'marano', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (3105, 'jamillemacedo18@gmail.com', '270291love', 0, 'rioja 1637  2piso departamento b', '153573698', '', 'jamille', 'macedo', 0),
 (3106, 'lautaro.jacobo@gmail.com', 'lobo', 0, 'españa 1010 7a', '4265933', '', 'lautaro', 'jacobo', 0),
 (3107, 'jorgehaurigot@icloud.com', 'BARTOLA', 0, 'San Juan 2428 11 b', '341 6068495', '', 'jorge', 'Haurigot', 0),
@@ -3585,7 +3585,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (3542, 'cassineriojulieta@hotmail.com', 'sushi', 0, 'san lorenzo 2123 4to', '4241315', '', 'Julieta', 'Cassinerio', 0),
 (3543, 'estefi_p@hotmail.com', 'hola', 0, '27 de febrero 1874', '4825792', '', 'Estefanìa', 'Psomotragos', 0),
 (3544, 'constanzadrovetta@hotmail.com', 'ezequiel', 0, 'laprida 1134 4B', '155471286', '', 'constanza', 'drovetta', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (3545, 'shocron.nadia@gmail.com', 'nadia', 0, 'Country Carlos Pellegrini', '156 299416', '', 'Nadia', 'Shocron', 0),
 (3546, 'luverduna@hotmail.com', 'luliverduna', 0, 'italia 1838', '4822355', '', 'lucia', 'verduna', 0),
 (3547, 'sofiacampisi@hotmail.com', 'ALLSECONVULSA.5', 0, '´p roca 782', '153128096', '', 'sofia', 'campisi', 0),
@@ -4023,7 +4023,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (3979, 'estebanav@gmail.com', 'palacios2k', 0, 'San Martin 519 Piso 11 Depto 3', '0341 4450053', '', 'Julio Esteban', 'Acosta Villafañe', 0),
 (3980, 'javier.prendes@hotmail.com', 'Impsat2013!', 0, 'Guemes 2019 piso 4 a', '156930947', '', 'Javier', 'Prendes', 0),
 (3981, 'boxsterrosario@gmail.com', 'ivana', 0, 'suipacha 38', '155461312', '', 'Cristian', 'Noviello', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (3982, 'martasuro@yahoo.com.ar', '1943', 0, '1º de Mayo 1068  6º ', '155 314242', '', 'Marta', 'Rodriguez', 0),
 (3983, 'pirivilla@hotmail.com', 'pirincha', 0, 'Còrdoba 565', '4485132', '', 'Alejandra', 'Villavicencio', 0),
 (3984, 'lulumarel@hotmail.com', 'anaicul', 0, '1423 9381', '4510498', '', 'luciana', 'marelli', 0),
@@ -4460,7 +4460,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (4412, 'fedebattija_19@hotmail.com', '686299', 0, 'Paraguay2071 1 B', '3416144203', '', 'Federico', 'Battija', 0),
 (4413, 'sofiascenna@hotmail.com', 'estadosunidos', 0, 'paraguay 327 11 B', '03401 15418526', '', 'sofia', 'scenna', 0),
 (4414, 'moripaky@hotmail.com.ar', 'laboratorio', 0, 'Sarmiento 438 cuerpo 4 2piso 1 dpto', '153622044', '', 'Maria Laura', 'Mori', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (4415, 'gil_diego@hotmail.com', 'junipa1', 0, 'Brown 2903 6° 1', '156 198511', '', 'Diego', 'Gil', 0),
 (4416, 'mabusaniche@arnet.com.ar', '15071703', 0, 'Corrientes 1555 Piso 1', '4260574', '', 'Miriam', 'Busaniche', 0),
 (4417, 'pepeklatt@hotmail.com', 'duty361molt184', 0, 'callao 946 ', '0341 156146434', '', 'daniela', 'klatt', 0),
@@ -4899,7 +4899,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (4849, 'evicario@latinmail.com', 'Fundacion1976', 0, 'Laprida 1246 - Dpto A', '0341-4476282', '', 'Esteban', 'Vicario', 0),
 (4850, 'Maluganew@hotmail.com', '2000', 0, 'Oroño 338 6C', '3413141848', '', 'Luly', 'Gamboa', 0),
 (4851, 'mabelolivera@hotmail.com', 'mabel', 0, 'balcarce 1239 1ero C', '4265528', '', 'mabel', 'olivera', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (4852, 'vanesamazzetti@hotmail.com', 'juanitas', 0, 'jujuy 1690 2 b', '155598947', '', 'vanesa', 'mazzetti', 0),
 (4853, 'oscarjcalvet@hotmail.com', 'ceirano', 0, 'jujuy 2177 2 do piso', '0342155322360', '', 'oscar', 'calvet', 0),
 (4854, 'milagros_farioli@hotmail.com', 'urbano', 0, 'mitre 403 1A', '0342155030109', '', 'milagros', 'farioli', 0),
@@ -5337,7 +5337,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (5286, 'vaneb81@hotmaill.com', 'juani', 0, '9 de Julio 639 2do E', '6790002', '', 'Vanesa', 'Banfi', 0),
 (5287, 'luciana.moreno@neuralsoft.com', '123456', 0, 'san martin 2189', '153390556', '', 'luciana', 'moreno', 0),
 (5288, 'guligu24@hotmail.com', 'tanatana', 0, 'Ayacucho 1718', '4816594', '', 'Natalia', 'Gulías', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (5289, 'analia_dd@yahoo.com.ar', 'felipe', 0, 'Maipu 1162 1º piso', '2995049082', '', 'Analia', 'Duymovich', 0),
 (5290, 'cpcarolinasist@gmail.com', 'carito2010', 0, 'rivadavia 2137 piso 17', '0341-156029970', '', 'carolina', 'sist', 0),
 (5291, 'mflopezchamba@hotmail.com', 'pericles1128', 0, '3 de febrero 1128', '3416021384', '', 'Florencia', 'lopez', 0),
@@ -5776,7 +5776,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (5726, 'analia_rc@hotmail.com', 'grassano', 0, 'san luis 1188 piso 3 dpto a', '153471210', '', 'analia', 'cristiani', 0),
 (5727, 'bellota_2002_@hotmail.com', 'alvaro2005', 0, 'agrelo 1276', '155461289', '', 'mariana aielen', 'gabellini', 0),
 (5728, 'Salvador.vende@yahoo.com.ar', 'Piturro', 0, 'Riobamba 346', '4824473', '', 'Gustavo', 'Salvador', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (5729, 'cevoras@hotnail.com', 'cuquito', 0, 'Ovidio Lagos 155 A', '155636546', '', 'Claudia', 'Voras', 0),
 (5730, 'polliana.veras@yahoo.com', 'parfois', 0, 'Rioja,1823,6B', '341152160024', '', 'Polliana', 'Veras', 0),
 (5731, 'cara_correa@hotmail.com', 'cara1985', 0, 'italia 1209 6 a', '153024089', '', 'javier', 'bucciarelli', 0),
@@ -6217,7 +6217,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (6164, 'danatameron@hotmail.com', 'airbag34', 0, 'catamarca 1753', '4933636', '', 'Dana', 'Tameron', 0),
 (6165, 'ceciliadelmatti22@hotmail.com', 'rosario2000', 0, 'Montevideo305 1A', '4257937', '', 'Cecilia', 'Del Matti', 0),
 (6166, 'juli_four27@hotmail.com', 'romeo2013', 0, 'España 1172  5to b', '03464 15559955', '', 'julieta ', 'Fourcade', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (6167, 'ecsa2009@gmail.com', 'sushihome', 0, 'ALEM 1054 piso 2', '155140512', '', 'rodolfo ariel', 'arce', 0),
 (6168, 'valedambrosio@hotmail.com', 'vale1525', 0, 'San Martín 453. 7B', '4214984', '', 'Valeria', 'D''Ambrosio', 0),
 (6169, 'fuentesnati@hotmail.com', 'sushi', 0, 'Laprida  1035 p12 d5', '156418901', '', 'Natalia', 'Fuentes', 0),
@@ -6657,7 +6657,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (6607, 'yaninamana@hotmail.com', 'yani2526', 0, 'Cordoba955-13 E', '4213041', '', 'Yanina', 'Mana', 0),
 (6608, 'rdb_198@hotmail.com', 'hermes1989gris', 0, 'Balcarce 1259 4°B', '3471527476', '', 'Robertino', 'Dalla Benetta', 0),
 (6609, 'yaninamana@hotmail.com', 'yani2526', 0, 'Cordoba955-13 E', '4213041', '', 'Yanina', 'Mana', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (6610, 'antoallovatti@hotmail.com', 'mismanos2', 0, 'paraguay 1761 10mo a', '156253500', '', 'Antonela', 'allovatti', 0),
 (6611, 'federico@aliasonline.com.ar', 'picante123', 0, 'jujuy1719 1 piso', '3416379032', '', 'Federico', 'Nusynkier', 0),
 (6612, 'ingrid.longhin@yahoo.com.br', 'onofri86', 0, '3 de febrero 315 piso 8', '341 5616813', '', 'ingrid', 'onofri ', 0),
@@ -7098,7 +7098,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (7047, 'guadalupeosnaghi@hotmail.com', 'felipe', 0, 'rivadavia 2229 piso 8', '341 4382457', '', 'guadalupe', 'osnaghi', 0),
 (7048, 'lilianabottegal@hotmail.com', 'FeliyHele', 0, 'italia 770 piso 2', '4400632', '', 'liliana', 'bottegal', 0),
 (7049, 'mdcoirini@yahoo.com.ar', 'Emilia2004', 0, 'Corrientes 2138 piso 4', '4827211', '', 'MARCELO', 'COIRINI', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (7050, 'paulasantivega@hotmail.com', '1234', 0, 'suipacha 153', '5493416520576', '', 'Paula', 'Santillán', 0),
 (7051, 'negrabettini@yahoo.co.ar', 'sushi', 0, '9 de julio 1309 2c', '4484566', '', 'cecilia', 'bettini', 0),
 (7052, 'guadamanzi@hotmail.com', 'barbybuscaken', 0, '3 de febrero 818 3 C', '341 152531124', '', 'guadalupe', 'manzi', 0),
@@ -7537,7 +7537,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (7484, 'cynthiamoretta@hotmail.com', 'julia', 0, 'zeballos 2940', '156928628', '', 'cynthia', 'moretta', 0),
 (7485, 'eliana_dimartino@hotmail.com', 'elis086', 0, 'DORREGO 737 DPTO 10', '156970393', '', 'ELIANA', 'DI MARTINO', 0),
 (7486, 'cynthiamoretta@hotmail.com', 'julia', 0, 'zeballos 2940', '156928628', '', 'cynthia', 'moretta', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (7487, 'Luliavellino@hotmail.com', 'nacho1982', 0, 'Pasco 301 piso3 dpto a', '155 971509', '', 'Lucía', 'Avellino', 0),
 (7488, 'pablosantiagonav@gmail.com', '35437277', 0, 'Tucuman 2690 1° 2', '156591051', '', 'Pablo', 'Navajas', 0),
 (7489, 'agus_norman@hotmail.com', 'justinita', 0, '9 DE JULIO 957, PISO 13 DPTO 6', '0342-156147793', '', 'AGUSTINA', 'NORMAN', 0),
@@ -7976,7 +7976,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (7922, 'malemontero@hotmail.com', 'Rafa1602', 0, 'Brown 1862 9 A', '4217959', '', 'Maria Jesus', 'Montero', 0),
 (7923, 'agustinagatius@hotmail.com', 'sushisushi', 0, 'Balcarce 324 7 b', '3416372880', '', 'Agustina', 'Gatius', 0),
 (7924, 'mariel_bigot@hotmail.com', 'yosoymorocha2424', 0, 'san juan 1577 1 A', '4494584', '', 'mariel', 'bigot', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (7925, 'nabila_pezz@hotmail.com', 'sushihome', 0, 'Zeballos 1520 1ro A', '0342 154470796', '', 'Nabila', 'Nur', 0),
 (7926, 'lulialongi@gmail.com', 'scombro_19', 0, 'buenos aires 630', '4262040', '', 'lucia', 'alongi', 0),
 (7927, 'eliana_la_fuente@hotmail.com', 'eli2405', 0, 'Pellegrini 1730, piso 10, dto 2', '0336154594913', '', 'Eliana', 'La Fuente ', 0),
@@ -8412,7 +8412,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (8355, 'mariaeugenia.bergia@gmail.com', 'cuenta4014', 0, 'Jujuy 1909 Piso 5 Dpto. 3', '155599958', '', 'María Eugenia', 'Bergia', 0),
 (8356, 'pedrolaborde@Yahoo.com.ar ', '1234', 0, 'colon 2161 dto 5', '4817719 ', '', 'pedro', 'laborde', 0),
 (8357, 'phisonomiahotmail.com', 'augusto1999', 0, 'guemes2064 2a', '153252814', '', 'augusto', 'aparicio', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (8358, 'phisonomia@hotmail.com', 'augusto1999', 0, 'guemes2064 2a', '153252814', '', 'augusto', 'aparicio', 0),
 (8359, 'inti_dance@hotmail.com', 'queteimporta', 0, 'italia 1330 dpto 2', '156620364', '', 'inti', 'peirone', 0),
 (8360, 'claragobbo@gmail.com', 'Deut0311', 0, 'Juan Manuel de Rosas 1847 piso 2', '156 540597', '', 'Clara ', 'Gobbo', 0),
@@ -8851,7 +8851,7 @@ INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phon
 (8796, 'Romizingale@icloud.com', '31263511', 0, 'Ac Carballo 230 torre 10 subsuelo2 dptow', '3416399899', '', 'Romina', 'Zingale ', 0),
 (8797, 'candepietropaolo@hotmail.com', 'p2703/1', 0, 'rioja 1935 2 b', '156614054', '', 'candela', 'Pietropaolo', 0),
 (8798, 'renzo.corrado@gmail.com', '4643569re', 0, 'Necochea 1659 Piso 3 Dpto 2', '+543416378734', '', 'renzo', 'Corrado', 0);
-INSERT INTO `customers` (`id`, `email`, `password`, `is_admin`, `address`, `phone`, `comments`, `first_name`, `last_name`, `active`) VALUES
+INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (8799, 'agusgaldi@hotmail.com', '34456640', 0, 'SANTIAGO 231 ', '0351153095216', '', 'AGUSTINA', 'GALDI', 0),
 (8800, 'lara_paladini90@hotmail.com', 'ghiagnacovee', 0, 'santa fe 2746 Piso 5 Dpto 3', '03329-15532676', '', 'Paladini', 'Lara', 0),
 (8801, 'alterartes@gmail.com', 'mantecado', 0, 'Ovidio Lagos 1422, 9no A', '2432672', '', 'Marisa', 'Gallo', 0),
