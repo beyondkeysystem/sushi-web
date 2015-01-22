@@ -35,7 +35,7 @@
 			};
 
 			$scope.signUp = function(){
-
+				AuthService.register($scope.user.register);
 			};
 		}
 	]);

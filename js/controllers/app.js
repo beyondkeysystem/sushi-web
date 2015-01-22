@@ -7,6 +7,7 @@
 		'config.routes',
 		'controllers.error',
 		'controllers.index',
+		'controllers.order',
 		'controllers.login',
 		'controllers.logout',
 		'services.auth',

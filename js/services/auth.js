@@ -105,8 +105,16 @@
 
                 var _login = function(email, pass) {
                     return User.Login(email, pass).then(
-                        function(data) {
-                            console.log(data);
+                        function(response) {
+                            console.log(response);
+                        }
+                    );
+                };
+
+                var _register = function(data) {
+                    return User.Register(data).then(
+                        function(response) {
+                            console.log(response);
                         }
                     );
                 };
@@ -122,6 +130,9 @@
                     },
                     login: function(email, pass) {
                         return _login(email, pass);
+                    },
+                    register: function(data) {
+                        return _register(data);
                     },
                     logout: function() {
                         return _logout();

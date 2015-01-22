@@ -46,10 +46,13 @@
 				);
 			};
 
+			User.Register = function(data) {
+				return User.Save(data, false);
+			};
+
 			User.Login = function(email, pass) {
 				var params = {email: email, password: pass};
-				console.log(params);
-				return $http.post('/api/v1/user/session', params).then(
+				return Resource.Save('user/session', params).then(
 					function(response) {
 						return response.data;
 					}
