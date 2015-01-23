@@ -6,13 +6,21 @@
 		'ngRoute',
 		'services.auth'
 	]).controller('LogoutController', [
+		'$scope',
 		'$location',
+		'$routeParams',
 		'AuthService',
-		function($location, AuthService) {
+		function($scope, $location, $routeParams, AuthService) {
+			var _branches = ['funes', 'rosario'];
+			if(_branches.indexOf($routeParams.branch) >= 0){
+				$scope.branch = $routeParams.branch;
+			} else {
+				$location.path('/error/404');
+			}
 			if (AuthService.isOnline()) {
 				AuthService.reset();
 			}
-			$location.path('/login');
+			$location.path('/'+$scope.branch+'/login');
 		}
 	]);
 })();

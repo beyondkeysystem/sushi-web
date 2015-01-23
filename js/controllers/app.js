@@ -34,15 +34,21 @@
 			$httpProvider.interceptors.push([
 				'$q',
 				'$location',
+				'$routeParams',
 				'ErrorService',
-				function($q, $location, ErrorService) {
+				function($q, $location, $routeParams, ErrorService) {
 					return {
 						'responseError': function(response) {
+							var _branches = ['funes', 'rosario'];
+							var branch = '';
+							if(_branches.indexOf($routeParams.branch) >= 0){
+								branch = $routeParams.branch;
+							}
 							var redirect = ErrorService.parse($location.path(), response);
 							switch (redirect) {
 								case 401:
-									if($location.path() !== '/login'){
-										$location.path('/logout');
+									if($location.path().indexOf('/login') < 0){
+										$location.path('/'+branch+'/logout');
 									}
 									break;
 								case 403:
@@ -117,7 +123,7 @@
 						if (AuthService.isPrivatePage(next.access)) {
 							if (!AuthService.isOnline()) {
 								console.warn('Redirecting from "' + next.controller + '" to "login"');
-								$location.path('/login');
+								$location.path('/'+next.params.branch+'/login');
 							}
 						}
 					}

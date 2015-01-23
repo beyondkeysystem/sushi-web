@@ -8,10 +8,17 @@
 	]).controller('LoginController', [
 		'$scope',
 		'$location',
+		'$routeParams',
 		'AuthService',
-		function($scope, $location, AuthService) {
+		function($scope, $location, $routeParams, AuthService) {
+			var _branches = ['funes', 'rosario'];
+			if(_branches.indexOf($routeParams.branch) >= 0){
+				$scope.branch = $routeParams.branch;
+			} else {
+				$location.path('/error/404');
+			}
 			if (AuthService.isOnline()) {
-				$location.path('/pedidos');
+				$location.path('/'+$scope.branch+'/pedidos');
 			}
 
 			$scope.user = {
@@ -34,7 +41,7 @@
 				//TODO: validate sign in form inputs
 				AuthService.login($scope.user.login.email, $scope.user.login.password).then(function(user) {
 					if(angular.isString(user.id) && user.id.length){
-						$location.path('/pedidos');	
+						$location.path('/'+$scope.branch+'/pedidos');
 					} else {
 						console.log('show signin error');
 					}
@@ -45,7 +52,7 @@
 				//TODO: validate sign up form inputs
 				AuthService.register($scope.user.register).then(function(user) {
 					if(angular.isString(user.id) && user.id.length){
-						$location.path('/pedidos');	
+						$location.path('/'+$scope.branch+'/pedidos');
 					}  else {
 						console.log('show signup error');
 					}

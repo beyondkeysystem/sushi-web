@@ -15,33 +15,33 @@
 			var routes = [
 				/* ***************** Public ***************** */
 				{
-					'url': '/error/:error',
-					'template': '/partials/pages/error.html',
-					'controller': 'Error',
-					'roles': accessLevels['public']
-				},
-				{
-					'url': '/login',
-					'template': '/partials/pages/login.html',
-					'controller': 'Login',
-					'roles': accessLevels['public']
-				},
-				{
-					'url': '/logout',
-					'template': '/partials/pages/logout.html',
-					'controller': 'Logout',
-					'roles': accessLevels['public']
-				},
-				{
 					'url': '/',
 					'template': '/partials/pages/index.html',
 					'controller': 'Index',
 					'roles': accessLevels['public']
 				},
 				{
+					'url': '/error/:error',
+					'template': '/partials/pages/error.html',
+					'controller': 'Error',
+					'roles': accessLevels['public']
+				},
+				{
 					'url': '/:branch',
 					'template': '/partials/pages/home.html',
 					'controller': 'Home',
+					'roles': accessLevels['public']
+				},
+				{
+					'url': '/:branch/login',
+					'template': '/partials/pages/login.html',
+					'controller': 'Login',
+					'roles': accessLevels['public']
+				},
+				{
+					'url': '/:branch/logout',
+					'template': '/partials/pages/logout.html',
+					'controller': 'Logout',
 					'roles': accessLevels['public']
 				},
 				{
