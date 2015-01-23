@@ -72,8 +72,12 @@ class Security {
 	/**
 	 *  Gets the current session if exists
 	 */
-	public static function RestictedAccess(){
+	public static function RestictedAccess($level=false){
 		if (!isset($_SESSION['isLogged']) || !$_SESSION['isLogged']){
+			echoResponse(401);
+		}
+		//TODO: change hardcoded level name
+		if($level === 'admin' && !$_SESSION['isAdmin']){
 			echoResponse(401);
 		}
 	}

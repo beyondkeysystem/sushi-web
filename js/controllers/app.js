@@ -7,6 +7,7 @@
 		'config.routes',
 		'controllers.error',
 		'controllers.index',
+		'controllers.home',
 		'controllers.order',
 		'controllers.login',
 		'controllers.logout',
@@ -40,14 +41,16 @@
 							var redirect = ErrorService.parse($location.path(), response);
 							switch (redirect) {
 								case 401:
-								$location.path('/logout');
-								break;
+									if($location.path() !== '/login'){
+										$location.path('/logout');
+									}
+									break;
 								case 403:
-								$location.path('/error/403');
-								break;
+									$location.path('/error/403');
+									break;
 								case 404:
-								$location.path('/error/404');
-								break;
+									$location.path('/error/404');
+									break;
 							}
 							return $q.reject(response);
 						}

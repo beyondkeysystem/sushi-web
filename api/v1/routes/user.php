@@ -2,7 +2,7 @@
 
 $app->get('/user', function() use($app, $db){
 	Security::RestictedAccess();
-	$dbquery = $db->prepare("select * from customers");
+	$dbquery = $db->prepare("select * from customers where active=1");
 	$dbquery->execute();
 	$data = $dbquery->fetchAll(PDO::FETCH_ASSOC);
 	echoResponse(200, $data);
@@ -10,7 +10,7 @@ $app->get('/user', function() use($app, $db){
 
 $app->get('/user/:id',function($id) use($db){
 	Security::RestictedAccess();
-	$dbquery = $db->prepare("select * from customers where id=:id");
+	$dbquery = $db->prepare("select * from customers where id=:id AND active=1");
 	$dbquery->execute(array('id'=>$id));
 	$data = $dbquery->fetchAll(PDO::FETCH_ASSOC);
 	if(empty($data)){
@@ -22,7 +22,7 @@ $app->get('/user/:id',function($id) use($db){
 
 $app->get('/user/:param/:value',function($param, $id) use($db){
 	Security::RestictedAccess();
-	$sql = sprintf('select * from customers where %s="%s"', $param, $id);
+	$sql = sprintf('select * from customers where %s="%s" AND active=1', $param, $id);
 	$dbquery = $db->prepare($sql);
 	$dbquery->execute();
 	$data = $dbquery->fetchAll(PDO::FETCH_ASSOC);
@@ -52,7 +52,7 @@ $app->post('/user',function() use($app, $db){
 });
 
 $app->put('/user/:id',function($id) use($app, $db){
-	Security::RestictedAccess();
+	Security::RestictedAccess('admin');
 	$params = $app->request->put();
 	$queryValues = array(
 		'firstName'=>$params['firstName'],
@@ -64,13 +64,13 @@ $app->put('/user/:id',function($id) use($app, $db){
 		'isAdmin'=>$params['isAdmin']
 	);
 	$dbquery = $db->prepare('UPDATE customers SET firstName=:firstName, lastName:=lastName, email=:email, address=:address, phone=:phone, password=:password, isAdmin=:isAdmin where id=:id');
-	$dbquery->execute($queryValues);
-	echoResponse(200, array('success'=>true));
+	$success = $dbquery->execute($queryValues);
+	echoResponse(200, array('success'=>$success));
 });
 
 $app->delete('/user/:id',function($id) use($app, $db){
-	Security::RestictedAccess();
-	$dbquery = $db->prepare('DELETE FROM customers WHERE id=:id');
+	Security::RestictedAccess('admin');
+	$dbquery = $db->prepare('UPDATE customers SET active=0 WHERE id=:id');
 	$dbquery->execute(array('id'=>$id));
 	echoResponse(200, array('success'=>true));
 });

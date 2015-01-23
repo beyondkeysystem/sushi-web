@@ -16,8 +16,8 @@
 				$scope.error.shown = true;
 			} else {
 				$scope.error = {
-					title: 'Not Found',
-					description: 'The requested page does not exist',
+					title: 'Página no encontrada',
+					description: 'La página solicitada no existe',
 					shown: true
 				};
 			}

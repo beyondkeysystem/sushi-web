@@ -13,13 +13,6 @@
 			};
 
 			var routes = [
-				/* ***************** User ***************** */
-				{
-					'url': '/pedidos',
-					'template': '/partials/pages/order.html',
-					'controller': 'Order',
-					'roles': accessLevels['user']
-				},
 				/* ***************** Public ***************** */
 				{
 					'url': '/error/:error',
@@ -48,26 +41,33 @@
 				{
 					'url': '/:branch',
 					'template': '/partials/pages/home.html',
-					'controller': 'Index',
+					'controller': 'Home',
 					'roles': accessLevels['public']
 				},
 				{
 					'url': '/:branch/mapa',
 					'template': '/partials/pages/map.html',
-					'controller': 'Index',
+					'controller': 'Home',
 					'roles': accessLevels['public']
 				},
 				{
 					'url': '/:branch/franquicias',
 					'template': '/partials/pages/franchises.html',
-					'controller': 'Index',
+					'controller': 'Home',
 					'roles': accessLevels['public']
 				},
 				{
 					'url': '/:branch/contacto',
 					'template': '/partials/pages/contact.html',
-					'controller': 'Index',
+					'controller': 'Home',
 					'roles': accessLevels['public']
+				},
+				/* ***************** User ***************** */
+				{
+					'url': '/:branch/pedidos',
+					'template': '/partials/pages/order.html',
+					'controller': 'Order',
+					'roles': accessLevels['user']
 				}
 			];
 

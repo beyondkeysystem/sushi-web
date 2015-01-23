@@ -166,12 +166,57 @@ almost-white: #eeeeee;
 
 .public .footer {
 	width: 100vw;
-	height: 23vh;
-	padding: 0;
+	padding: 4ex 0 6ex 0;
 	margin: 0;
 	background: #333333 url("/img/backgrounds/footer.jpg") left top;
 }
 
+.public .footer h2, .public .footer .h2 {
+	font: 700 20px 'Montserrat', sans-serif;
+	color: #f5a900;
+	margin: 0 0 1ex 0;
+}
+
+.public .footer p {
+	font: 400 13px 'Montserrat', sans-serif;
+	color: #FFF;
+	line-height: 20px;
+}
+
+.public .footer a.email {
+	font: 700 21px 'Montserrat', sans-serif;
+	color: #FFF;
+}
+
+.public .footer a.email:hover {
+	text-decoration: underline;
+}
+
+.public .footer .contact {
+	text-align: right;
+}
+
+.public .footer .contact h2 {
+	margin-top: 1ex;
+}
+
+.public .footer .copyright p{
+	margin-top: 3ex;
+	line-height: 20px;
+	text-align: center;
+	font: 10px Arial, Helvetica, sans-serif;
+	color: #8e8e8e;
+}
+
+.public .footer .copyright p a{
+	font: 10px Arial, Helvetica, sans-serif;
+	color: #8e8e8e;
+	text-decoration: none;
+}
+
+.public .footer .copyright p a:hover{
+	text-decoration: underline;
+}
 
 /************ LOGIN ************/
 .auth {
@@ -232,7 +277,7 @@ almost-white: #eeeeee;
 	border: 1px solid #999999;
 	border-top: none;
 	color: #000000;
-	text-shadow: 1px 2px 0 #999999;
+	text-shadow: 1px 1px 0 #999999;
 	padding-bottom: 1em;
 }
 

@@ -13,6 +13,7 @@ Security::SaveLastAccess();
 
 require_once('routes/session.php');
 require_once('routes/user.php');
+require_once('routes/category.php');
 require_once('routes/product.php');
 
 $app->run();
