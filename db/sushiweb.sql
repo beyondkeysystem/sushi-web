@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 17, 2015 at 10:43 PM
+-- Generation Time: Jan 23, 2015 at 03:30 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -16,13 +16,50 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-CREATE DATABASE IF NOT EXISTS sushiweb
-	CHARACTER SET utf8
-	DEFAULT CHARACTER SET utf8
-	COLLATE utf8_general_ci
-	DEFAULT COLLATE utf8_general_ci;
+--
+-- Database: `sushiweb`
+--
 
-USE sushiweb;
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE IF NOT EXISTS `categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `parent` int(11) DEFAULT NULL,
+  `description` text,
+  `order` int(11) DEFAULT '0',
+  `active` tinyint(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `parent`, `description`, `order`, `active`) VALUES
+(1, 'Bocaditos', 0, NULL, 0, 1),
+(2, 'Ensaladas', 0, '', 1, 1),
+(3, 'Wok & Pasta', 0, NULL, 2, 1),
+(4, 'Rolls & Makis', 0, NULL, 3, 1),
+(5, 'Niguiris & Sashimis', 0, NULL, 4, 1),
+(6, 'Combos', 0, '', 5, 1),
+(7, 'Adicionales', 0, '12 unidades', 6, 1),
+(8, 'Postres & Bebidas', 0, NULL, 7, 1),
+(9, 'Wok', 3, NULL, 0, 1),
+(10, 'Pasta', 3, NULL, 1, 1),
+(11, 'Rolls', 4, '9 unidades', 0, 1),
+(12, 'Makis', 4, '9 unidades', 1, 1),
+(13, 'Niguiris', 5, '5 unidades', 0, 1),
+(14, 'Sashimis', 5, '5 unidades', 1, 1),
+(15, 'Postres', 8, NULL, 0, 1),
+(16, 'Bebidas', 8, NULL, 1, 1),
+(17, 'Combinados', 6, NULL, 0, 1),
+(18, 'Combos con bebidas', 6, '', 1, 1),
+(19, 'Costo Envio', -1, NULL, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -40,10 +77,10 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `comments` varchar(255) NOT NULL,
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
-  `active` tinyint(1) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   FULLTEXT KEY `apellido_cli` (`lastName`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8956;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8956 ;
 
 --
 -- Dumping data for table `customers`
@@ -9009,6 +9046,177 @@ INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone
 (8953, 'pablo.davila81@gmail.com', '123456789', 0, 'JM Rosas 1847 2p', '3416479466', '', 'Clara', 'Gobbo', 0),
 (8954, 'm.lauram@hotmail.com', 'veintitres', 0, 'Sarmiento 561 1º 3º', '3416644406', '', 'María Laura', 'Manes', 0),
 (8955, 'sol_lp@hotmail.com', 'a433532', 0, 'Urquiza 1808 2A', '3415053065', '', 'Agostina', 'Bianco', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE IF NOT EXISTS `products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `categoryId` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `img` varchar(255) CHARACTER SET utf8 NOT NULL,
+  `price` float NOT NULL DEFAULT '0',
+  `active` tinyint(4) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=155 ;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `categoryId`, `name`, `description`, `img`, `price`, `active`) VALUES
+(2, 9, 'Green Box', 'Vegetales salteados con arroz y salsa teriyaki.', 'green.png', 55, 1),
+(3, 15, 'Roll de coco y dulce de leche', '', 'A - SUSHI.jpg', 14, 1),
+(4, 2, 'Huerta SH', 'Hojas verdes frescas, zanahoria, huevo, cubos de queso, cubos de tomate.', 'A - SUSHI.jpg', 34, 1),
+(5, 2, 'Tuna Salad+ GASEOSA 500cc.', 'Arroz blanco, atún al natural, pimientos, choclo y arvejas.', 'A - SUSHI.jpg', 32, 1),
+(6, 2, 'Fresh+ GASEOSA 500cc.', 'Rucula, repollo colorado, hongos frecos, granos de choclo y cubos de tomate.', 'A - SUSHI.jpg', 27, 1),
+(7, 2, 'Home Caesar', 'Hojas frescas, laminas de pollo, parmesano, crutones y aderezo Caesar.', 'A - SUSHI.jpg', 57, 1),
+(8, 2, 'Fancy Salad+ GASEOSA 500cc.', 'Zanahoria, brotes de soja, palta, manzana verde, nueces, aderezo cremoso.', 'A - SUSHI.jpg', 30, 1),
+(9, 2, 'California Salad', 'Hojas verdes frescas, palmitos, chauchas, MINI ROLLS CALIFORNIA, sesamo rubio.', 'A - SUSHI.jpg', 57, 1),
+(10, 2, 'demo7', 'asmhdb amhsbd asdf.', '', 16.8, 1),
+(11, 10, 'Red China Box', 'Fideos de trigo, cebolla colorada, tomate, carne y salsa clasica.', 'red.png', 62, 1),
+(12, 10, 'Dumplings de Salmï¿½n', 'Fina pasta china, rellena de salmï¿½n y jengibre, con salsa de camarones.', 'dumpli.png', 73, 1),
+(13, 2, 'demo8', 'dsfsjdf sdk.', '', 12.36, 1),
+(14, 2, 'demo9', 'ljksdf aksjdf kjafds jgdsahfvyt djhabsd jhabshd.', '', 123.99, 1),
+(15, 16, 'Coca Cola 1 litro', 'Gaseosa Coca Cola, envase no retornable.', 'A - SUSHI.jpg', 10, 1),
+(16, 16, 'Cerveza Quilmes 355cc.', '', 'A - SUSHI.jpg', 21, 1),
+(17, 16, 'Cerveza Quilmes Stout 355cc.', '', 'A - SUSHI.jpg', 15, 1),
+(18, 16, 'Cerveza Quilmes Bock 355cc..', 'Cerveza negra.', 'A - SUSHI.jpg', 21, 1),
+(19, 15, 'Browni ', 'Delicioso bizcochuelo de chocolate con nueces.', '982974_80209961.jpg', 18, 1),
+(20, 0, '', '', '', 0, 1),
+(21, 16, 'Sprite 1 litro.', '', 'A - SUSHI.jpg', 10, 1),
+(22, 15, 'Browni chocolate', 'Delicioso bizcochuelo de chocolate con nueces.', '877671_32157775.jpg', 18, 1),
+(23, 7, 'Salsa de soja.', 'El aderezo especial para todo sushi.', 'salsa2.png', 8, 1),
+(24, 17, '12 u. AMAZONAS', 'Shitake Roll,\r\nGolden,\r\nShi Roll,\r\nCalifornia Roll,\r\nTei Salmï¿½n,\r\nAzteka Roll.\r\n', 'DSC_0187.png', 77, 1),
+(25, 14, 'Sashimi de Salmon', '', 'sashimi salmon.png', 53, 1),
+(26, 13, 'Niguiris de Salmï¿½n', '', 'niguiri salmon.png', 49, 1),
+(27, 12, 'Maki de Salmï¿½n ', 'Salmï¿½n fresco, pepino, wasabi', 'maki salmon.png', 49, 1),
+(28, 11, 'California Roll', 'Surimi, palta, pepino, sï¿½samo.', 'california roll.png', 45, 1),
+(29, 1, 'Salmï¿½n boom ', 'Croquetas fritas de salmï¿½n, bechamel y muzzarella', 'boom.png', 48, 1),
+(30, 1, 'Langostinos Crocantes', 'Langostinos Crocantes con salsa BBQ.', 'langcroc2.png', 49, 1),
+(31, 1, 'Empanaditas Primavera (3 UNIDADES)', 'De carne y cebolla.', '', 35, 1),
+(32, 9, 'Yellow Box', 'Arroz koshikari, vegetales salteados, pollo y salsa crema de curry.', 'yellow.png', 61, 1),
+(33, 11, 'New York Roll', 'Salmon fresco, palta, pepino, sï¿½samo', 'new york roll.png', 50, 1),
+(34, 11, 'Philadelphia Roll', 'Salmï¿½n fresco, palta, queso philadelphia, sï¿½samo', 'phila roll.png', 58, 1),
+(35, 11, 'Sunny California', 'Surimi, hojas verdes, queso philadelphia, sésamo', 'sunny california.png', 28, 1),
+(36, 11, 'Tuna Roll', 'Atún al natural, tomate, queso philadelphia, cibulete, sésamo', 'sh roll.png', 35, 1),
+(37, 11, 'Tei Salmon Roll', 'Delicada mousse de salmï¿½n cocido, queso y cibulete', 'tei salmon copia.png', 51, 1),
+(38, 11, 'Hot Home Roll - 8u.', 'Langostinos crocantes, honey moustard, cobulete, sï¿½samo', 'hot home roll.png', 67, 1),
+(39, 11, 'SH Roll', 'Langostinos, salmï¿½n, queso phila, palta, sï¿½samo', 'sh roll.png', 59, 1),
+(40, 12, 'Maki Philadelphia', 'Salmï¿½n fresco, palta, queso phila ', 'maki philadelphia.png', 59, 1),
+(41, 12, 'Sunny Maki', 'Surimi, hojas verdes, queso phila, sésamo', 'sunny maki.png', 28, 1),
+(42, 12, 'Humo Maki', 'Salmón ahumado, pepino, queso phila', 'humo maki.png', 37, 1),
+(43, 12, 'Veggie', 'Tomate, zanahoria blanqueda, palmito y palta', 'veggiee copia.png', 50, 1),
+(44, 12, 'SH Maki', 'Langostinos, rúcula, queso phila', 'sh maki.png', 36, 1),
+(45, 13, 'Niguiris de Langostinos', '', 'niguiri langostino.png', 64, 1),
+(46, 13, 'Niguiris de Tamago', '', 'niguiri tamago.png', 36, 1),
+(47, 14, 'Sashimi de Langostinos', '', 'sashimi langostino.png', 62, 1),
+(48, 17, '24 u. AMAZONAS', 'Shitake Roll,\r\nGolden,\r\nShi Roll,\r\nCalifornia Roll,\r\nTei Salmï¿½n,\r\nAzteka Roll.', 'DSC_0187.png', 151, 1),
+(49, 17, '36 u. TAMESIS', 'Humo Roll,\r\nDragon Roll,\r\nCapresse,\r\nSunny Roll,\r\nChicken,\r\nVeggie,\r\nSashimi de Tamago', 'DSC_0210.png', 225, 1),
+(50, 17, '12 u. HOME SPECCIALS', 'Tuna Roll,\r\nSH Roll,\r\nPhiladelphia Roll,\r\nHumo Maki,\r\nMaki de Salmón,\r\nFutomaki vegetariano', 'A - SUSHI.jpg', 45, 1),
+(51, 17, '24 u. HOME SPECCIALS', 'Tuna Roll,\r\nSH Roll,\r\nPhiladelphia Roll,\r\nHumo Maki,\r\nMaki de Salmón,\r\nFutomaki vegetariano', 'A - SUSHI.jpg', 89, 1),
+(52, 17, '36 u. HOME SPECCIALS', 'Tuna Roll,\r\nSH Roll,\r\nPhiladelphia Roll,\r\nHumo Maki,\r\nMaki de Salmón,\r\nFutomaki vegetariano', 'A - SUSHI.jpg', 130, 1),
+(53, 17, '12 u. VOLGA', 'Philadelphia Roll,\r\nNew York Roll,\r\nMaki Salmï¿½n,\r\nMaki Philadelphia,\r\nNiguiris de Salmï¿½n,\r\nSashimi de Salmï¿½n', 'DSC_0164.png', 89, 1),
+(54, 17, '24 u. VOLGA', 'Philadelphia Roll,\r\nNew York Roll,\r\nMaki Salmï¿½n,\r\nMaki Philadelphia,\r\nNiguiris de Salmï¿½n,\r\nSashimi de Salmï¿½n', 'DSC_0164.png', 174, 1),
+(55, 17, '´Home´s Salmón', 'Philadelphia Roll\r\nNew York Roll\r\nMaki Salmón\r\nMaki Philadelphia\r\nNiguiris de Salmón\r\nSashimi de Salmón', '', 84, 1),
+(56, 17, '36 u. VOLGA', 'Philadelphia Roll,\r\nNew York Roll,\r\nMaki Salmï¿½n,\r\nMaki Philadelphia,\r\nNiguiris de Salmï¿½n,\r\nSashimi de Salmï¿½n', 'DSC_0164.png', 259, 1),
+(57, 7, 'Wasabi y Genjibre.', '', 'A - SUSHI.jpg', 13, 1),
+(58, 7, 'Salsa Teriyaki', '', 'salsa5.png', 8, 1),
+(59, 7, 'Sweet Spicy', 'Soja, miel y ajo picante', 'A - SUSHI.jpg', 4, 1),
+(60, 7, 'Honey Mustard', 'Soja, mostaza y miel', 'salsa1.png', 8, 1),
+(61, 7, 'Smoked', 'Soja ahumada y verdeo', 'salsa3.png', 8, 1),
+(62, 18, 'Combo Classic - 12 piezas + Gaseosa de 500cc.', 'California Roll\r\nNew York Roll\r\nPhiladelphia Roll\r\nHome Salmón Roll\r\nMaki de Salmón\r\nMaki Phila\r\nGaseosa 500cc.', 'A - SUSHI.jpg', 40, 1),
+(63, 18, 'Combo Special - 12 piezas + Gaseosa 500cc.', 'Tuna Roll\r\nSH Roll\r\nPhila Roll\r\nHumo Maki\r\nMaki de Salmón\r\nFutomaki vegetariano\r\nGaseosa 500 cc.', 'A - SUSHI.jpg', 42, 1),
+(64, 18, 'Combo Salmón - 12 piezas + Gaseosa 500 cc.', 'Phila Roll\r\nNew York Roll\r\nMaki de Salmón\r\nMaki Phila\r\nNiguiris de Salmón\r\nSashimi de Salmón\r\nGaseosa 500cc.', 'A - SUSHI.jpg', 43, 1),
+(65, 15, 'Cheese Cake', '', 'f-rojos.png', 16, 1),
+(66, 15, 'Cheesecake de Maracuya.', 'Cheesecake de maracuya.', '', 25, 1),
+(67, 15, 'Chocotorta ', '', '', 25, 1),
+(68, 15, 'Roll de Nutella y nuez', '', 'A - SUSHI.jpg', 14, 1),
+(73, 1, 'joaquin', '', 'imagesCAGBGO5Q.jpg', 1.2, 1),
+(74, 16, 'Coca Cola 1,5 litros.', '', 'A - SUSHI.jpg', 27, 1),
+(75, 16, 'Coca Cola Zero 1,5 litros.', '', 'A - SUSHI.jpg', 27, 1),
+(76, 16, 'Fanta 1,5 litros.', '', 'A - SUSHI.jpg', 27, 1),
+(77, 16, 'Coca Cola Zero 500cc.', '', 'A - SUSHI.jpg', 16, 1),
+(78, 16, 'Fanta 500cc.', '', 'A - SUSHI.jpg', 16, 1),
+(79, 16, 'Agua Mineral Eco de los Andes SIN GAS', '', 'A - SUSHI.jpg', 16, 1),
+(80, 16, 'Agua Mineral Eco de los Andes CON GAS', '', 'A - SUSHI.jpg', 16, 1),
+(81, 16, 'H2O Citrus 500 cc', '', 'A - SUSHI.jpg', 16, 1),
+(82, 16, 'Cerveza Iguana 1 litro', '', 'A - SUSHI.jpg', 40, 1),
+(83, 16, 'Cerveza Quilmes Lieber 500cc. ', '', 'A - SUSHI.jpg', 11, 1),
+(84, 15, 'Chocotorta SH', '', 'choco.png', 16, 1),
+(85, 16, 'Patagonia Amber Lager', '', '', 51, 1),
+(86, 16, 'Patagonia Bohemian Pilsener', '', '', 51, 1),
+(87, 16, 'Patagonia Weisse', '', '', 37, 1),
+(89, 19, 'Costo de envio', '', '', 9, 1),
+(90, 16, 'Sprite Zero 1,5 litros.', '', '', 27, 1),
+(91, 16, 'Sprite 1,5 litros.', '', '', 27, 1),
+(92, 16, 'Fanta Zero 1,5 litros.', '', '', 27, 1),
+(93, 13, 'Niguiri de Salmon Ahumado', '', 'niguiri salmon ahumado.png', 59, 1),
+(94, 7, 'Salsa de Soja Sakura 150 cc.', '', '', 23, 1),
+(95, 7, 'wasabi pouch', '', '', 8, 1),
+(96, 15, 'Brownie DELICIA TENTISS', '', 'brownie.png', 7, 1),
+(97, 15, 'Tarta Toffie DELICIA TENTISS', '', '', 7, 1),
+(98, 15, 'Tarta de Dulce de Leche y Coco DELICIA TENTISS', '', '', 7, 1),
+(99, 9, 'Blue Box', 'Arroz koshikari, champignones, pescado blanco, camarones y salsa de ostras.', 'blue.png', 75, 1),
+(100, 17, 'MENU EJECUTIVO CLASSICS', 'Home Classi´s 12 + Gaseosa 237cc. + Delicia Tentiss', '', 38, 1),
+(101, 17, 'MENU EJECUTIVO SALMON', 'Home Salmon 12 + Gaseosa 237cc. + Delicia Tentiss', '', 41, 1),
+(102, 17, 'MENU EJECUTIVO SPECCIAL´S', 'Home Special´s 12 + Gaseosa 237cc. + Delicia Tentiss', '', 40, 1),
+(103, 17, 'MENU EJECUTIVO CEASAR SALAD', 'Ceasar Salad + Gaseosa 237cc. + Delicia Tentiss', '', 30, 1),
+(104, 17, 'MENU EJECUTIVO FRESH SALAD', 'Fresh Salad + Gaseosa 237cc. + Delicia Tentiss', '', 25, 1),
+(105, 17, 'MENU EJECUTIVO HUERTA SALAD', 'Huerta Salad + Gaseosa 237cc. + Delicia Tentiss', '', 25, 1),
+(106, 7, 'Guacamole', 'Consultar disponibilidad', '', 14, 1),
+(107, 11, 'Home Tempura Roll', 'Salmon tempurizado, queso philadelphia, sésamo', 'tempura home.png', 34, 1),
+(108, 11, 'CHICKEN ROLL', 'pollo, queso philadelphia saborizado con hierbas, sï¿½samo', 'chicken.png', 55, 1),
+(109, 16, 'Quilmes Bock 355 cc.', '', '', 10.5, 1),
+(110, 17, '48 u. TAMESIS', 'Humo Roll,\r\nDragon Roll,\r\nCapresse,\r\nSunny Roll,\r\nChicken,\r\nVeggie,\r\nSashimi de Tamago', 'DSC_0210.png', 297, 1),
+(111, 17, '48 u. HOME SPECCIALS', 'Tuna Roll,\r\nSH Roll,\r\nPhiladelphia Roll,\r\nHumo Maki,\r\nMaki de Salmón,\r\nFutomaki vegetariano', '', 175, 1),
+(112, 17, '48 u. VOLGA', 'Philadelphia Roll,\r\nNew York Roll,\r\nMaki Salmï¿½n,\r\nMaki Philadelphia,\r\nNiguiris de Salmï¿½n,\r\nSashimi de Salmï¿½n', 'DSC_0164.png', 347, 1),
+(113, 17, '12 u. MISSISSIPPI', 'California Roll,\r\nPhiladelphia Roll,\r\nNew York Roll,\r\nTei Roll,\r\nMaki Philadelphia,\r\nNiguiri de Salmon', 'DSC_0235.png', 81, 1),
+(114, 17, '24 u. MISSISSIPI', 'California Roll,\r\nPhiladelphia Roll,\r\nNew York Roll,\r\nHome Salmon Roll,\r\nMaki Philadelphia,\r\nNiguiri de Salmon', 'DSC_0235.png', 161, 1),
+(115, 17, '36 u. MISSISSIPI', 'California Roll,\r\nPhiladelphia Roll,\r\nNew York Roll,\r\nHome Salmon Roll,\r\nMaki Philadelphia,\r\nNiguiri de Salmon', 'DSC_0235.png', 239, 1),
+(116, 17, '48 u. MISSISSIPI', 'California Roll,\r\nPhiladelphia Roll,\r\nNew York Roll,\r\nHome Salmon Roll,\r\nMaki Philadelphia,\r\nNiguiri de Salmon', 'DSC_0235.png', 313, 1),
+(117, 17, '.8 u. NILO', 'Niguiri de Salmon,\r\nNiguiri de Langostinos,\r\nNiguiri de Salmon Ahumado,\r\nNiguiri de Tamago\r\n', '', 67, 1),
+(118, 17, '.16 u. HOME NIGUIRI', 'Niguiri de Salmon,\r\nNiguiri de Langostinos,\r\nNiguiri de Salmon Ahumado,\r\nNiguiri de Tamago\r\n\r\n', '', 79, 1),
+(119, 17, '12 u. TAMESIS', 'Humo Roll,\r\nDragon Roll,\r\nCapresse,\r\nSunny Roll,\r\nChicken,\r\nVeggie, Sashimi de Tamago', 'DSC_0210.png', 76, 1),
+(120, 16, 'Champagne Sta Julia ONE', '187cc.', '', 27, 1),
+(121, 16, 'Vino Monteconejo Sauvignon Blanc', '', '', 29, 1),
+(122, 16, 'Vino Monteconejo Malbec', '', '', 32, 1),
+(123, 16, 'Vino Dos Vientos Blend Tinto', '', '', 90, 1),
+(124, 16, 'Vino Dos Vientos Chardonay', '', '', 90, 1),
+(125, 16, 'Champagne Montcunill', '', '', 47, 1),
+(126, 11, 'Shitake Roll', 'Shitake, teriyaki, espinaca, zanahoria, queso philadelphia', 'shiitake roll.png', 56, 1),
+(127, 11, 'Shi Roll', 'Queso philadelphia, palta, palmito, cubierto con salmon fresco. Acompaï¿½ado con batatas fritas y salsa de maracuya.', 'shi.png', 67, 1),
+(128, 1, 'demo', '', 'p1.png', 1, 1),
+(129, 17, '24 u. TAMESIS', 'Humo Roll,\r\nDragon Roll,\r\nCapresse,\r\nSunny Roll, \r\nChicken,\r\nVeggie,\r\nSashimi de Tamago', 'DSC_0210.png', 150, 1),
+(130, 17, '36 u. AMAZONAS', 'Shitake Roll,\r\nGolden,\r\nShi Roll,\r\nCalifornia Roll,\r\nTei Salmï¿½n,\r\nAzteka Roll.', 'DSC_0187.png', 226, 1),
+(131, 17, '48 u. AMAZONAS', 'Shitake Roll,\r\nGolden,\r\nShi Roll,\r\nCalifornia Roll,\r\nTei Salmï¿½n,\r\nAzteka Roll', 'DSC_0187.png', 298, 1),
+(132, 11, 'Dragon Roll', 'Langostinos rebozos, salsa tabasco y concase de tomate', 'dragon copia.png', 61, 1),
+(133, 11, 'Humo Roll', 'Salmï¿½n Ahumado, palta y queso philadelphia', 'humo copia.png', 73, 1),
+(134, 11, 'Sunny Roll', 'Tamago, salmï¿½n y cebolla de verdeo', 'sunny roll copia.png', 58, 1),
+(135, 11, 'Golden (8 UNIDADES)', 'Tamago, salmon, queso philadelphia y cebolla de verdeo (SIN ALGA Y SIN ARROZ)', 'golden copia.png', 56, 1),
+(136, 11, 'Azteka Roll', 'Salmon, queso philadelphia y espuma de guacamole', 'azteka.png', 61, 1),
+(137, 12, 'Capresse', 'Queso philadelphia, aceituna negras, tomate y rï¿½cula', 'capresse.png', 54, 1),
+(138, 11, 'Italian (3 UNIDADES)', 'Salmï¿½n ahumado y muzarella acompaï¿½ado con un aciete de albaca (Roll rebozado)', 'italian copia.png', 73, 1),
+(139, 11, 'Cheddar (3 UNIDADES)', 'Salmï¿½n tostado, queso chedar y muzarella rebozado acompaï¿½ado con salsa tomanesa ', 'cheddar.png', 75, 1),
+(140, 1, 'Bastoncitos Marinos', 'Bastones de calamares fritos.', 'bastonc.png', 39, 1),
+(141, 14, 'Sashimi de Tamago', '', 'DSC_3195 copia.png', 39, 1),
+(142, 17, 'PROMO SAN VALENTIN AMAZONAS', '30 PIEZAS AMAZONAS, CHAMPAGNE 750CC.', '', 220, 1),
+(143, 17, 'PROMO SAN VALENTIN MISSISSIPPI', '30 PIEZAS MISSISSIPPI, CHAMPAGNE 750CC.', '', 230, 1),
+(144, 17, '30 PIEZAS AMAZONAS', '30 PIEZAS AMAZONAS', '', 170, 1),
+(145, 17, '30 PIEZAS MISSISSIPPI', '30 PIEZAS MISSISSIPPI', '', 180, 1),
+(146, 17, '15 PIEZAS MISSISSIPPI', '15 PIEZAS MISSISSIPPI', '', 90, 1),
+(147, 17, '15 PIEZAS AMAZONAS', '15 PIEZAS AMAZONAS', '', 85, 1),
+(148, 11, 'Deli Roll', 'Philadelphia Roll rebozado con salsa de ostras.', 'deli-web.jpg', 68, 1),
+(149, 7, 'Genjibre', 'raiz de genjibre en conserva', '', 8, 1),
+(150, 16, 'Fanta Zero 500cc.', '', '', 16, 1),
+(151, 16, 'Stella Artois 1 lts', 'descarteble - no se precisa envase', '', 41, 1),
+(152, 11, 'Tei Hot Roll', 'Mousse de salmon, queso philadelphia y jengibre, rebozado en panko y frito con miel.', 'tei-hot.jpg', 61, 1),
+(153, 10, 'Red China (carne y arroz)', '', '', 60, 1),
+(154, 1, 'Arrolladitos Vegetarianos. (3 UNIDADES).', '', '', 35, 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

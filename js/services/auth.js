@@ -59,7 +59,7 @@
 						_user.lastExpirationCheck = Date.now();
 						_isConnected = true;
 					}
-					return _isConnected;
+					return _user;
 				};
 
 				var _connect = function() {
