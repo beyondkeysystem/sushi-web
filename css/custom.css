@@ -130,10 +130,10 @@ almost-white: #eeeeee;
 /************ PUBLIC ************/
 .public .header {
 	width: 100vw;
-	height: 12vh;
+	height: 15vh;
 	padding: 0;
 	margin: 0;
-	line-height: 12vh;
+	line-height: 15vh;
 }
 
 
@@ -156,6 +156,41 @@ almost-white: #eeeeee;
 	margin: 0;
 	background-color: #FFFFFF;
 	border-bottom: 3px solid #ffc938;
+}
+
+.public .body .nav-bar {
+	width: 100%;
+	height: 8vh;
+	line-height: 4vh;
+	margin-top: 2vh;
+	background: transparent url("/img/backgrounds/dot.png") repeat-x left bottom;
+	text-align: center;
+}
+
+.public .body .nav-bar div {
+	border-left: 2px solid #999999; 
+}
+
+.public .body .nav-bar div:first-child {
+	border-left: none; 
+}
+
+.public .body .nav-bar a {
+	color: #767676;
+	text-decoration: none;
+	font-family: Montserrat, sans-serif;
+	font-size: 16px;
+}
+
+.public .body .nav-bar span {
+	color: #ffa200;
+	font-family: Montserrat, sans-serif;
+	font-size: 16px;
+}
+
+.public .body .nav-bar a {
+	color: #767676;
+	text-decoration: none;
 }
 
 .public .body .container {
