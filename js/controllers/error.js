@@ -7,15 +7,10 @@
 		'services.error'
 	]).controller('ErrorController', [
 		'$scope',
+		'$location',
 		'$routeParams',
 		'ErrorService',
-		function($scope, $routeParams, ErrorService) {
-			var _branches = ['funes', 'rosario'];
-			if(_branches.indexOf($routeParams.branch) >= 0){
-				$scope.branch = $routeParams.branch;
-			} else {
-				$location.path('/error/404');
-			}
+		function($scope, $location, $routeParams, ErrorService) {
 			$scope.code = $routeParams.error;
 			$scope.error = ErrorService.getCurrent();
 			if (angular.isObject($scope.error) && !$scope.error.shown) {

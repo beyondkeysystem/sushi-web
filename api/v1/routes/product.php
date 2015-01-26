@@ -37,10 +37,11 @@ $app->post('/product',function() use($app, $db){
 		'categoryId'=>$params['categoryId'],
 		'name'=>$params['name'],
 		'description'=>$params['description'],
-		'img'=>$params['img'],
+		'image'=>$params['image'],
+		'amount'=>$params['amount'],
 		'price'=>$params['price']
 	);
-	$dbquery = $db->prepare('INSERT INTO products(categoryId, name, description, img, price) VALUES (:categoryId, :name, :description, :img, :price)');
+	$dbquery = $db->prepare('INSERT INTO products(categoryId, name, description, image, amount, price) VALUES (:categoryId, :name, :description, :image, :amount, :price)');
 	$success = $dbquery->execute($queryValues);
 	echoResponse(200, array('success'=>$success));
 });
@@ -52,10 +53,11 @@ $app->put('/product/:id',function($id) use($app, $db){
 		'categoryId'=>$params['categoryId'],
 		'name'=>$params['name'],
 		'description'=>$params['description'],
-		'img'=>$params['img'],
+		'image'=>$params['image'],
+		'amount'=>$params['amount'],
 		'price'=>$params['price']
 	);
-	$dbquery = $db->prepare('UPDATE products SET categoryId=:categoryId, name:=name, description=:description, img=:img, price=:price where id=:id');
+	$dbquery = $db->prepare('UPDATE products SET categoryId=:categoryId, name:=name, description=:description, image=:image, amount:=amount, price=:price where id=:id');
 	$dbquery->execute($queryValues);
 	echoResponse(200, array('success'=>$success));
 });

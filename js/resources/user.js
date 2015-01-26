@@ -41,7 +41,7 @@
 			User.GetExpirationDate = function() {
 				return $http.get('/api/v1/user/session/expiration').then(
 					function(response) {
-						return response.data;
+						return response;
 					}
 				);
 			};
@@ -54,7 +54,7 @@
 				var params = {email: email, password: pass};
 				return $http.post('/api/v1/user/session', params).then(
 					function(response) {
-						return response.data;
+						return response;
 					}
 				);
 			};
@@ -62,7 +62,7 @@
 			User.Logout = function() {
 				return $http['delete']('/api/v1/user/session').then(
 					function(response) {
-						return response.data;
+						return response;
 					}
 				);
 			};

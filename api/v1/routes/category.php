@@ -35,11 +35,11 @@ $app->post('/category',function() use($app, $db){
 	$params = $app->request->post();
 	$queryValues = array(
 		'name'=>$params['name'],
-		'parent'=>$params['parent'],
+		'image'=>$params['image'],
 		'description'=>$params['description'],
 		'order'=>$params['order']
 	);
-	$dbquery = $db->prepare('INSERT INTO categories(name, parent, description, order) VALUES (:name, :parent, :description, :order)');
+	$dbquery = $db->prepare('INSERT INTO categories(name, image, description, order) VALUES (:name, :image, :description, :order)');
 	$dbquery->execute($queryValues);
 	echoResponse(200, array('success'=>$success));
 });
@@ -49,11 +49,11 @@ $app->put('/category/:id',function($id) use($app, $db){
 	$params = $app->request->put();
 	$queryValues = array(
 		'name'=>$params['name'],
-		'parent'=>$params['parent'],
+		'image'=>$params['image'],
 		'description'=>$params['description'],
 		'order'=>$params['order']
 	);
-	$dbquery = $db->prepare('UPDATE categories SET name:=name, parent=:parent, description=:description, order=:order where id=:id');
+	$dbquery = $db->prepare('UPDATE categories SET name:=name, image=:image, description=:description, order=:order where id=:id');
 	$dbquery->execute($queryValues);
 	echoResponse(200, array('success'=>$success));
 });

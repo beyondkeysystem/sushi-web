@@ -1,20 +1,14 @@
 <?php
 
 function echoResponse($code=200, $data=null, $error=null){
-	$response = array(
-		'status' => $code,
-		'error' => $error
-	);
 	if ($code == 401) {
 		header("HTTP/1.1 401 Unauthorized");
-		$response['data'] = null;
+		$data = $error;
 	} elseif ($code == 404) {
 		header("HTTP/1.1 404 Not Found");
-		$response['data'] = null;
-	} else {
-		$response['data'] = $data;
+		$data = $error;
 	}
 	header('Content-Type: application/json; charset=utf-8');
-	echo json_encode($response);
+	echo json_encode($data);
 	exit;
 };

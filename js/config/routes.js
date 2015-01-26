@@ -62,13 +62,13 @@
 					'controller': 'Home',
 					'roles': accessLevels['public']
 				},
-				/* ***************** User ***************** */
 				{
 					'url': '/:branch/pedidos',
 					'template': '/partials/pages/order.html',
 					'controller': 'Order',
-					'roles': accessLevels['user']
+					'roles': accessLevels['public']
 				}
+				/* ***************** User ***************** */
 			];
 
 			this.getRoutes = function() {
