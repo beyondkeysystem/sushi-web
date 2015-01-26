@@ -67,6 +67,12 @@
 					'template': '/partials/pages/order.html',
 					'controller': 'Order',
 					'roles': accessLevels['public']
+				},
+				{
+					'url': '/:branch/pedidos/categoria/:category',
+					'template': '/partials/pages/order.html',
+					'controller': 'Order',
+					'roles': accessLevels['public']
 				}
 				/* ***************** User ***************** */
 			];

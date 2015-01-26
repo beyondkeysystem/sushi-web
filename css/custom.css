@@ -351,4 +351,56 @@ almost-white: #eeeeee;
 	height: 20vh;
 }
 
+/************ PRODUCTS ************/
+.categories {
+	width: 100%;
+	height: 20vh;
+	background: transparent url("/img/backgrounds/dot.png") repeat-x left bottom;
+	text-align: center;
+}
+
+.categories .category {
+	width: 8%;
+	height: 20vh;
+	margin: 0 1% 0 1%;
+	float: left;
+	text-align: center;
+	opacity: 0.5;
+}
+
+.categories .category.long {
+	width: 13%;
+}
+
+.categories .category.active, .categories .category:hover {
+	opacity: 1;
+}
+
+.categories .category img {
+	display: block;
+	padding: 3vh 0 1vh 0;
+	height: 11vh;
+	max-width: 8vw;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.categories .category a {
+	color: #f5a900;
+	text-transform: uppercase;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.categories .category a:hover {
+	text-decoration: none;
+}
+
+.categories .category.active a, .categories .category:hover a {
+	color: #888888;
+	border-bottom: 2px solid #ff0000;
+}
+
 /* background-size: cover; */

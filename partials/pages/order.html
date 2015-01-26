@@ -20,8 +20,8 @@
 		</div>
 	</div>
 	<div class="body">
-		<div class="container">
-			<div class="nav-bar row hidden-xs hidden-sm">
+		<div ng-if="!isMobile" class="container hidden-xs hidden-sm">
+			<div class="nav-bar row">
 				<div class="col-md-1 col-md-offset-1">
 					<a ng-href="/#/{{branch}}">INICIO</a>
 				</div>
@@ -38,8 +38,18 @@
 					<span>0800 444 7655</span>
 				</div>
 			</div>
-			<div class="row">
-				Pedidos
+			<div class="row categories">
+				<div class="col-md-12">
+					<div ng-repeat="category in categories" class="category" ng-class="{'long': category.isLong, 'active': category.active}">
+						<img ng-src="{{category.image}}">
+						<a ng-href="/#/{{branch}}/pedidos/categoria/{{category.id}}">{{category.name}}</a>
+					</div>
+					<div class="category" ng-class="{'active': isCombos}">
+						<img src="/img/icons/products/combos.png">
+						<a ng-href="/#/{{branch}}/pedidos/categoria/combos">Combos</a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
 			</div>
 		</div>
 	</div>
