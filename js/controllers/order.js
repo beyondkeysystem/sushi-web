@@ -52,8 +52,19 @@
 						}
 						$scope.results[row].push($scope.products[i]);
 					}
-					console.log($scope.results);
 				});
+			};
+
+			var _calculateTotal = function() {
+				var key, sum = 0;
+				for(key in $scope.myOrder.products) {
+					sum += $scope.myOrder.products[key].price * $scope.myOrder.products[key].count;
+				}
+				if($scope.myOrder.delivery){
+					sum += 6; //TODO: use service value
+				}
+				$scope.myOrder.total = sum;
+				console.log(sum);
 			};
 
 			$scope.categories = [];
@@ -65,9 +76,26 @@
 			$scope.category = 1;
 			$scope.page = 1;
 			$scope.results = [];
+			$scope.myOrder = {
+				products: {},
+				delivery: false,
+				total: 0
+			};
 
 			$scope.goToCategory = function(categoryId){
 				$location.path('/'+$scope.branch+'/pedidos/categoria/'+categoryId);
+			};
+
+			$scope.addToOrder = function(product) {
+				if(angular.isObject($scope.myOrder.products[product.id])){
+					++$scope.myOrder.products[product.id].count;
+				} else {
+					$scope.myOrder.products[product.id] = {
+						count: 1,
+						price: product.price
+					};
+				}
+				_calculateTotal();
 			};
 
 			if(_branches.indexOf($routeParams.branch) >= 0){
