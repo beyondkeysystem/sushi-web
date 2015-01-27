@@ -366,6 +366,7 @@ almost-white: #eeeeee;
 	float: left;
 	text-align: center;
 	opacity: 0.5;
+	cursor: pointer;
 }
 
 .categories .category.long {
@@ -400,7 +401,38 @@ almost-white: #eeeeee;
 
 .categories .category.active a, .categories .category:hover a {
 	color: #888888;
+}
+
+.categories .category.active a {
 	border-bottom: 2px solid #ff0000;
+}
+
+.products .product-list {
+	text-align: center;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #f5a900;
+}
+
+.products .product-list .product .image img {
+	margin-top: 1vh;
+}
+
+.products .product-list .product .image img {
+	max-width: 20vw;
+	height: 20vh;
+}
+
+.products .product-list .product .details span.name {
+	text-transform: uppercase;
+	margin-right: 5px;
+}
+
+.products .product-list .product .details span.price {
+	font: 700 16px 'Montserrat', sans-serif;
+	color: #666666;
+	margin-right: 5px;
 }
 
 /* background-size: cover; */

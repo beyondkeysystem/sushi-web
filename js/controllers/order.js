@@ -19,18 +19,19 @@
 			var _category = $routeParams.category;
 
 			var _load = function() {
-				var pCategory = Category.FetchAll(true).then(function(categories) {
-					$scope.categories = categories;
-				});
-				var pProduct = Product.FetchAll(true).then(function(products) {
-					$scope.products = products;
-				});
-				var pCombo = Combo.FetchAll(true).then(function(combos) {
-					$scope.combos = combos;
-				});
-				$q.all([pCategory, pProduct, pCombo]).then(function() {
+				var pCategory, pProduct, pCombo;
+				pCategory = Category.FetchAll();
+				if($scope.isCombos){
+					pProduct = Combo.FetchAll();
+				} else {
+					pProduct = Product.FindBy('categoryId', $scope.category);
+				}
+				$q.all([pCategory, pProduct]).then(function(results) {
+					$scope.categories = results[0];
+					$scope.products = results[1];
+					var i, j, first, count, row, max = 6, columns = 2;
 					$scope.loaded = true;
-					for (var i = $scope.categories.length - 1; i >= 0; i--) {
+					for (i = $scope.categories.length - 1; i >= 0; i--) {
 						if($scope.categories[i].name.indexOf(' ') >= 0 || $scope.categories[i].name.length >= 10) {
 							$scope.categories[i].isLong = true;
 						} else {
@@ -42,6 +43,16 @@
 							$scope.categories[i].active = false;
 						}
 					};
+					first = ($scope.page - 1) * max;
+					count = 0;
+					for (i = first; (i < $scope.products.length) && (count < max); i++, count++) {
+						row = Math.floor(count/columns);
+						if(!angular.isArray($scope.results[row])){
+							$scope.results[row] = [];
+						}
+						$scope.results[row].push($scope.products[i]);
+					}
+					console.log($scope.results);
 				});
 			};
 
@@ -51,6 +62,13 @@
 			$scope.isMobile = angular.isMobile();
 			$scope.branch = '';
 			$scope.isCombos = false;
+			$scope.category = 1;
+			$scope.page = 1;
+			$scope.results = [];
+
+			$scope.goToCategory = function(categoryId){
+				$location.path('/'+$scope.branch+'/pedidos/categoria/'+categoryId);
+			};
 
 			if(_branches.indexOf($routeParams.branch) >= 0){
 				$scope.branch = $routeParams.branch;
@@ -64,6 +82,15 @@
 				$scope.category = _category;
 			} else {
 				$scope.category = 1;
+			}
+			if(!$scope.isCombos && (parseInt(_category) < 1 || parseInt(_category) > 8)) {
+				$scope.goToCategory(1);
+			}
+
+			if(!isNaN($routeParams.page)) {
+				$scope.page = parseInt($routeParams.page);
+			} else {
+				$scope.goToCategory($scope.category);
 			}
 
 			_load();

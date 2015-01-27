@@ -322,25 +322,33 @@
 						return data;
 					};
 
+					var getArray = function (data) {
+						var key, results = [];
+						for(key in data){
+							results.push(data[key]);
+						}
+						return results;
+					};
+
 					//TODO: createResource used two times, must use just once
 					child.FetchAll = function(populate, config) {
-						return Resource.FetchAll(name.toPascalCase(), createResource, populate, config).then(createResource);
+						return Resource.FetchAll(name.toPascalCase(), createResource, populate, config).then(getArray);
 					};
 
 					child.FindById = function(id, populate, config) {
-						return Resource.FindById(name.toPascalCase(), id, createResource, populate, config).then(createResource);
+						return Resource.FindById(name.toPascalCase(), id, createResource, populate, config);
 					};
 
 					child.Fetch = function(params, populate, config) {
-						return Resource.Fetch(name.toPascalCase(), params, createResource, populate, config).then(createResource);
+						return Resource.Fetch(name.toPascalCase(), params, createResource, populate, config).then(getArray);
 					};
 
 					child.FindBy = function(property, value, populate, config) {
-						return Resource.FindBy(name.toPascalCase(), property, value, createResource, populate, config).then(createResource);
+						return Resource.FindBy(name.toPascalCase(), property, value, createResource, populate, config).then(getArray);
 					};
 
 					child.Save = function(data, populate, config) {
-						return Resource.Save(name.toPascalCase(), data, createResource, populate, config).then(createResource);
+						return Resource.Save(name.toPascalCase(), data, createResource, populate, config);
 					};
 
 					child.Remove = function(id, config) {

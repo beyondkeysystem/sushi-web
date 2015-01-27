@@ -40,15 +40,35 @@
 			</div>
 			<div class="row categories">
 				<div class="col-md-12">
-					<div ng-repeat="category in categories" class="category" ng-class="{'long': category.isLong, 'active': category.active}">
+					<div ng-repeat="category in categories" ng-click="goToCategory(category.id)" class="category" ng-class="{'long': category.isLong, 'active': category.active}">
 						<img ng-src="{{category.image}}">
 						<a ng-href="/#/{{branch}}/pedidos/categoria/{{category.id}}">{{category.name}}</a>
 					</div>
-					<div class="category" ng-class="{'active': isCombos}">
+					<div class="category" ng-click="goToCategory('combos')" ng-class="{'active': isCombos}">
 						<img src="/img/icons/products/combos.png">
 						<a ng-href="/#/{{branch}}/pedidos/categoria/combos">Combos</a>
 					</div>
 					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="row products" ng-if="!isCombos">
+				<div class="col-md-8 product-list">
+					<div ng-repeat="row in results" class="row">
+						<div ng-repeat="product in row" class="col-md-6 product">
+							<p class="image">
+								<img ng-src="{{product.image}}">
+							</p>
+							<p class="details">
+								<span class="name">{{product.name}}</span>
+								<span class="price">{{product.amount}} u.</span>
+								<span class="price">${{product.price}}</span>
+								<img src="/img/icons/buy.png">
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-4 order-details">
+
 				</div>
 			</div>
 		</div>
