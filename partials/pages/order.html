@@ -52,23 +52,55 @@
 				</div>
 			</div>
 			<div class="row products" ng-if="!isCombos">
-				<div class="col-md-8 product-list">
+				<div class="col-md-7 product-list">
 					<div ng-repeat="row in results" class="row">
 						<div ng-repeat="product in row" class="col-md-6 product">
 							<p class="image">
 								<img ng-src="{{product.image}}">
 							</p>
-							<p class="details">
-								<span class="name">{{product.name}}</span>
-								<span class="price">{{product.amount}} u.</span>
-								<span class="price">${{product.price}}</span>
-								<img src="/img/icons/buy.png" ng-click="addToOrder(product)">
-							</p>
+							<div class="details">
+								<div class="row">
+									<div class="col-md-7">
+										<span class="name">{{product.name}}</span>
+									</div>
+									<div class="col-md-5">
+										<span class="price">{{product.amount}} u.</span>
+										<span class="price">${{product.price}}</span>
+										<img src="/img/icons/buy.png" ng-click="addToOrder(product)">
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 order-details">
-
+				<div class="col-md-5">
+					<div class="order-details">
+						<h2>TU PEDIDO</h2>
+						<div class="order-box">
+							<p class="user-name" ng-if="user.id">{{user.firstName}} {{user.lastName}}</p>
+							<p class="empty-order" ng-if="!myOrder.count">No hay elementos seleccionados</p>
+							<div class="row product" ng-if="myOrder.count" ng-repeat="product in myOrder.products">
+								<div class="col-md-7">
+									<span>{{product.name}}</span>
+								</div>
+								<div class="col-md-5">
+									<input type="number" ng-model="product.count" min="0" max="999" ng-change="calculateTotal()">
+									<img src="/img/icons/remove.png" alt="X" ng-click="removeFromOrder(product.id)">
+									<span>${{product.price}}</span>
+								</div>
+							</div>
+							<div class="row total">
+								<div class="col-md-6">
+									<span>Envio a domicilio</span>
+									<input type="checkbox" id="checkbx" ng-model="myOrder.delivery" ng-change="calculateTotal()">
+									<label for="checkbx"></label>
+								</div>
+								<div class="col-md-6 text-right">
+									<span>TOTAL ${{myOrder.total}}</span>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

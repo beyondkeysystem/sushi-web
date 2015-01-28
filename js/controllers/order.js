@@ -3,6 +3,7 @@
 	'use strict';
 	angular.module('controllers.order', [
 		'ngRoute',
+		'services.auth',
 		'resources.category',
 		'resources.product',
 		'resources.combo'
@@ -11,10 +12,11 @@
 		'$scope',
 		'$location',
 		'$routeParams',
+		'AuthService',
 		'Category',
 		'Product',
 		'Combo',
-		function($q, $scope, $location, $routeParams, Category, Product, Combo) {
+		function($q, $scope, $location, $routeParams, AuthService, Category, Product, Combo) {
 			var _branches = ['funes', 'rosario'];
 			var _category = $routeParams.category;
 
@@ -55,18 +57,7 @@
 				});
 			};
 
-			var _calculateTotal = function() {
-				var key, sum = 0;
-				for(key in $scope.myOrder.products) {
-					sum += $scope.myOrder.products[key].price * $scope.myOrder.products[key].count;
-				}
-				if($scope.myOrder.delivery){
-					sum += 6; //TODO: use service value
-				}
-				$scope.myOrder.total = sum;
-				console.log(sum);
-			};
-
+			$scope.user = AuthService.getUser();
 			$scope.categories = [];
 			$scope.products = [];
 			$scope.combos = [];
@@ -79,23 +70,54 @@
 			$scope.myOrder = {
 				products: {},
 				delivery: false,
-				total: 0
+				count: 0,
+				total: '0.00'
 			};
 
-			$scope.goToCategory = function(categoryId){
+			$scope.goToLogin = function() {
+				$location.path('/'+$scope.branch+'/login');
+			};
+
+			$scope.goToCategory = function(categoryId) {
 				$location.path('/'+$scope.branch+'/pedidos/categoria/'+categoryId);
 			};
 
 			$scope.addToOrder = function(product) {
+				if(!AuthService.isOnline()) {
+					$scope.goToLogin();
+				}
 				if(angular.isObject($scope.myOrder.products[product.id])){
 					++$scope.myOrder.products[product.id].count;
 				} else {
 					$scope.myOrder.products[product.id] = {
+						id: product.id,
 						count: 1,
-						price: product.price
+						price: product.price,
+						name: product.name
 					};
+					if($scope.myOrder.products[product.id].name.length > 15) {
+						$scope.myOrder.products[product.id].name = $scope.myOrder.products[product.id].name.substr(0, 12) + '...';
+					}
 				}
-				_calculateTotal();
+				$scope.calculateTotal();
+			};
+
+			$scope.removeFromOrder = function(productId) {
+				$scope.myOrder.products[productId] = undefined;
+				delete $scope.myOrder.products[productId];
+				$scope.calculateTotal();
+			};
+
+			$scope.calculateTotal = function() {
+				var key, sum = 0;
+				for(key in $scope.myOrder.products) {
+					sum += $scope.myOrder.products[key].price * $scope.myOrder.products[key].count;
+				}
+				if($scope.myOrder.delivery){
+					sum += 6; //TODO: use service value
+				}
+				$scope.myOrder.total = sum.toFixed(2);
+				$scope.myOrder.count = Object.keys($scope.myOrder.products).length;
 			};
 
 			if(_branches.indexOf($routeParams.branch) >= 0){
