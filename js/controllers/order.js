@@ -95,8 +95,8 @@
 						price: product.price,
 						name: product.name
 					};
-					if($scope.myOrder.products[product.id].name.length > 15) {
-						$scope.myOrder.products[product.id].name = $scope.myOrder.products[product.id].name.substr(0, 12) + '...';
+					if($scope.myOrder.products[product.id].name.length > 23) {
+						$scope.myOrder.products[product.id].name = $scope.myOrder.products[product.id].name.substr(0, 20) + '...';
 					}
 				}
 				$scope.calculateTotal();
@@ -118,6 +118,19 @@
 				}
 				$scope.myOrder.total = sum.toFixed(2);
 				$scope.myOrder.count = Object.keys($scope.myOrder.products).length;
+			};
+
+			$scope.clear = function() {
+				$scope.myOrder = {
+					products: {},
+					delivery: false,
+					count: 0,
+					total: '0.00'
+				};
+			};
+
+			$scope.send = function() {
+				console.log($scope.myOrder);
 			};
 
 			if(_branches.indexOf($routeParams.branch) >= 0){

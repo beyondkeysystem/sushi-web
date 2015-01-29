@@ -97,6 +97,17 @@ almost-white: #eeeeee;
 	border-bottom-right-radius: 10px;
 }
 
+.btn-primary {
+	background-color: #ff9c00;
+	border-color: #ff9c00;
+}
+
+.btn-primary:hover {
+	background-color: #ff9c00;
+	border-color: #ff9c00;
+	opacity: 0.8;
+}
+
 /************ INDEX ************/
 .index .header {
 	width: 100vw;
@@ -557,5 +568,11 @@ almost-white: #eeeeee;
 	opacity: 1;
 }
 
+.products .order-details .order-box .buttons {
+	padding-top: 4ex;
+	font: 400 13px 'Montserrat', sans-serif;
+	color: #000;
+	text-transform: uppercase;
+}
 
 /* background-size: cover; */

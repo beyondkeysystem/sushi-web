@@ -11,4 +11,4 @@ define('DB_NAME', 'sushiweb');
 /**
  * Session
  */
-define('TIMEOUT', 10 * 60); //2 minutes
+define('TIMEOUT', 10 * 60); //10 minutes
