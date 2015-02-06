@@ -3,22 +3,19 @@
 	'use strict';
 	angular.module('controllers.home', [
 		'ngRoute',
+		'services.global',
 		'ui.bootstrap'
 	]).controller('HomeController', [
 		'$scope',
 		'$location',
 		'$routeParams',
-		function($scope, $location, $routeParams) {
-			var _branches = ['funes', 'rosario'];
-			if(_branches.indexOf($routeParams.branch) >= 0){
-				$scope.branch = $routeParams.branch;
-			} else {
-				$location.path('/error/404');
-			}
+		'GlobalService',
+		function($scope, $location, $routeParams, GlobalService) {
+			$scope.branch = GlobalService.Branch($routeParams.branch, true);
 			if(angular.isMobile()){
 				$location.path('/'+$scope.branch+'/pedidos');
 			}
-			$scope.page = $location.path().substr($location.path().lastIndexOf('/')+1);
+			$scope.page = GlobalService.Page();
 		}
 	]);
 })();

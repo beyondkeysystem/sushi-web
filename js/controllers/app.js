@@ -12,6 +12,7 @@
 		'controllers.login',
 		'controllers.logout',
 		'services.auth',
+		'services.global',
 		'services.error',
 		'directives.header',
 		'directives.navbar',
@@ -37,15 +38,12 @@
 				'$q',
 				'$location',
 				'$routeParams',
+				'GlobalService',
 				'ErrorService',
-				function($q, $location, $routeParams, ErrorService) {
+				function($q, $location, $routeParams, GlobalService, ErrorService) {
 					return {
 						'responseError': function(response) {
-							var _branches = ['funes', 'rosario'];
-							var branch = '';
-							if(_branches.indexOf($routeParams.branch) >= 0){
-								branch = $routeParams.branch;
-							}
+							var branch = GlobalService.Branch($routeParams.branch, false);
 							var redirect = ErrorService.parse($location.path(), response);
 							switch (redirect) {
 								case 401:

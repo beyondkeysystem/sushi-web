@@ -75,7 +75,7 @@
 					'roles': accessLevels['public']
 				},
 				{
-					'url': '/:branch/pedidos/categoria/:category/page/:page',
+					'url': '/:branch/pedidos/categoria/:category/p/:page',
 					'template': '/partials/pages/order.html',
 					'controller': 'Order',
 					'roles': accessLevels['public']

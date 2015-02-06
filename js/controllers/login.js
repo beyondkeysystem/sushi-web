@@ -4,19 +4,16 @@
 
 	angular.module('controllers.login', [
 		'ngRoute',
+		'services.global',
 		'services.auth'
 	]).controller('LoginController', [
 		'$scope',
 		'$location',
 		'$routeParams',
+		'GlobalService',
 		'AuthService',
-		function($scope, $location, $routeParams, AuthService) {
-			var _branches = ['funes', 'rosario'];
-			if(_branches.indexOf($routeParams.branch) >= 0){
-				$scope.branch = $routeParams.branch;
-			} else {
-				$location.path('/error/404');
-			}
+		function($scope, $location, $routeParams, GlobalService, AuthService) {
+			$scope.branch = GlobalService.Branch($routeParams.branch, true);
 			if (AuthService.isOnline()) {
 				$location.path('/'+$scope.branch+'/pedidos');
 			}
