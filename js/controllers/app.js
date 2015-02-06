@@ -13,7 +13,9 @@
 		'controllers.logout',
 		'services.auth',
 		'services.error',
-		'directives.navbar'
+		'directives.header',
+		'directives.navbar',
+		'directives.footer'
 	]).config([
 		'$routeProvider',
 		'$httpProvider',

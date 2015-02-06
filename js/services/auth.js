@@ -35,6 +35,7 @@
 					_user.phone = undefined;
 					_user.address = undefined;
 					_user.isAdmin = undefined;
+					_user.currentPage = undefined;
 					_user.expires = undefined;
 					_user.lastExpirationCheck = 0;
 					_isConnected = false;
