@@ -34,6 +34,10 @@
 							OrderService.Remove(productId);
 						};
 
+						$scope.calculateTotal = function() {
+							OrderService.CalculateTotal();
+						};
+
 						$scope.clear = function() {
 							OrderService.Clear();
 						};

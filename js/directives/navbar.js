@@ -19,7 +19,6 @@
 					'GlobalService',
 					function($scope, GlobalService) {
 						$scope.branch = GlobalService.Branch();
-						console.log(GlobalService.Page());
 					}
 				]
 			};

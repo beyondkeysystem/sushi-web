@@ -25,7 +25,7 @@
 						lastExpirationCheck: 0
 					},
 					_isConnected = false,
-					_timeout = 60 * 1000;
+					_timeout = 10 * 60 * 1000; //TODO: load this value from server
 
 				var _reset = function() {
 					_user.id = undefined;
@@ -47,7 +47,6 @@
 					var isValid = angular.isObject(data) &&
 						angular.isString(data.id) && data.id.length > 0 &&
 						angular.isString(data.firstName) && data.firstName.length > 0;
-						console.log(isValid, data);
 					if (isValid) {
 						_user.id = data.id;
 						_user.firstName = data.firstName;

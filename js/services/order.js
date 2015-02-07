@@ -38,6 +38,7 @@
 			var _add = function(product) {
 				if(!AuthService.isOnline()) {
 					_goToLogin();
+					return;
 				}
 				if(angular.isObject(_order.products[product.id])){
 					++_order.products[product.id].count;
@@ -62,12 +63,10 @@
 			};
 
 			var _clear = function() {
-				_order = {
-					products: {},
-					delivery: false,
-					count: 0,
-					total: '0.00'
-				};
+				_order.products = {};
+				_order.delivery = false;
+				_order.count = 0;
+				_order.total = '0.00';
 			};
 
 			var _send = function() {
@@ -77,6 +76,9 @@
 			return {
 				GetOrder: function () {
 					return _order;
+				},
+				CalculateTotal: function () {
+					_calculateTotal();
 				},
 				Add: function (product) {
 					_add(product);
