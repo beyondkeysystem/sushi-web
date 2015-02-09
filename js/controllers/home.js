@@ -4,7 +4,7 @@
 	angular.module('controllers.home', [
 		'ngRoute',
 		'services.global',
-		'ui.bootstrap'
+		'directives.home-slider'
 	]).controller('HomeController', [
 		'$scope',
 		'$location',

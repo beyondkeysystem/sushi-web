@@ -3,7 +3,6 @@
 	'use strict';
 
 	angular.module('directives.order', [
-		'ui.bootstrap',
 		'services.global',
 		'services.auth',
 		'services.order'

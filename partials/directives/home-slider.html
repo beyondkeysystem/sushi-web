@@ -1,0 +1,13 @@
+<div id="home-slider">
+	<carousel interval="interval">
+		<slide ng-repeat="article in news" active="article.active">
+			<img data-ng-src="{{article.image.src}}" alt="{{article.image.alt}}" data-ng-click="next()">
+		</slide>
+		<div class="carousel-controls">
+			<div data-ng-repeat="article in news" class="control" data-ng-class="{active: article.active}">
+				<h3>{{article.title}}</h3>
+				<p>{{article.description}}</p>
+			</div>
+		</div>
+	</carousel>
+</div>

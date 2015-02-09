@@ -3,7 +3,6 @@
 	'use strict';
 
 	angular.module('directives.navbar', [
-		'ui.bootstrap',
 		'services.global',
 	])
 	.directive('navbar', [

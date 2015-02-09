@@ -3,7 +3,6 @@
 	'use strict';
 
 	angular.module('directives.categories', [
-		'ui.bootstrap',
 		'services.global',
 		'services.categories',
 	])

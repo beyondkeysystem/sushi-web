@@ -3,7 +3,6 @@
 	'use strict';
 
 	angular.module('directives.footer', [
-			'ui.bootstrap'
 		])
 		.directive('footer', [
 			function() {

@@ -3,8 +3,7 @@
 	'use strict';
 
 	angular.module('directives.header', [
-		'services.global',
-		'ui.bootstrap'
+		'services.global'
 	])
 	.directive('header', [
 		function() {

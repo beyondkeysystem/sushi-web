@@ -264,6 +264,29 @@ almost-white: #eeeeee;
 	text-decoration: underline;
 }
 
+/************ HOME ************/
+
+.carousel {
+	background-color: transparent;
+}
+
+#home-slider {
+	width: 100%;
+	padding: 2ex 0 2ex 0;
+}
+
+#home-slider .carousel-inner {
+	padding-bottom: 2ex;
+}
+
+#home-slider .carousel-inner .item {
+	text-align: center;
+}
+
+#home-slider .carousel-inner .item img{
+	margin: 0 auto;
+}
+
 /************ LOGIN ************/
 .auth {
 	width: 90%;
