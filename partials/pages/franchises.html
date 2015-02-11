@@ -4,7 +4,62 @@
 		<div class="container">
 			<div data-navbar=""></div>
 			<div class="row">
-				{{page}}
+				<div class="col-xs-12 franchises">
+					<h1>TU PROPIO LOCAL DE DELIMALL</h1>
+					<div class="wrapper">
+						<div class="row">
+							<div class="col-xs-8">
+								<p>
+									Si pens&aacute;s en emprender un negocio, quiz&aacute;s es hora de que abras tu propio DELIMALL.
+									Un sabroso negocio lleno de posibilidades. S&oacute;lo necesit&aacute;s un poco de iniciativa. 
+									DELIMALL est&aacute; a tu alcance.
+									Para dar el primer paso complet&aacute; con tus datos y el departamento de franquicias DELIMALL 
+									se contactar&aacute; con vos para acompa&ntilde;arte en el proceso.
+								</p>
+							</div>
+							<div class="col-xs-4 text-center">
+								<img src="/img/logos/franchises.png" alt="">
+							</div>
+						</div>
+						<div class="row text-right franchises-form">
+							<div class="col-xs-5">
+								<div class="form-input">
+									<label for="contact-firstname">Nombre: </label>
+									<input type="text" name="contact-firstname" ng-model="contact.firstName" ng-trim="true">
+								</div>
+								<div class="form-input">
+									<label for="contact-lastname">Apellido: </label>
+									<input type="text" name="contact-lastname" ng-model="contact.lastName" ng-trim="true">
+								</div>
+								<div class="form-input">
+									<label for="contact-email">E-mail: </label>
+									<input type="email" name="contact-email" ng-model="contact.email" ng-trim="true">
+								</div>
+								<div class="form-input">
+									<label for="contact-phone">Tel&eacute;fono: </label>
+									<input type="text" name="contact-phone" ng-model="contact.phone" ng-trim="true">
+								</div>
+								<div class="form-input">
+									<label for="contact-city">Ciudad: </label>
+									<input type="text" name="contact-city" ng-model="contact.city" ng-trim="true">
+								</div>
+								<div class="form-input">
+									<label for="contact-country">Pa&iacute;s: </label>
+									<input type="text" name="contact-country" ng-model="contact.country" ng-trim="true">
+								</div>
+							</div>
+							<div class="col-xs-7">
+								<div class="form-input">
+									<label for="contact-message">Mensaje: </label>
+									<textarea name="contact-message" ng-model="contact.message" ng-trim="true"></textarea>
+								</div>
+								<div class="form-input">
+									<button class="btn btn-primary" ng-click="send()">Enviar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

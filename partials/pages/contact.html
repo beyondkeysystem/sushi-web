@@ -3,8 +3,45 @@
 	<div class="body">
 		<div class="container">
 			<div data-navbar=""></div>
-			<div class="row">
-				{{page}}
+			<div class="row contact">
+				<div class="col-xs-6">
+					<h1>POD&Eacute;S DEJARNOS UN MENSAJE, UNA SUGERENCIA, O SIMPLEMENTE UN SALUDO</h1>
+				</div>
+				<div class="col-xs-6 text-right">
+					<div class="form-input">
+						<input type="text" name="contact-firstname" placeholder="Nombre *" ng-model="contact.firstName" ng-trim="true">
+					</div>
+					<div class="form-input">
+						<input type="email" name="contact-email" placeholder="E-mail *" ng-model="contact.email" ng-trim="true">
+					</div>
+					<div class="form-input">
+						<input type="text" name="contact-phone" placeholder="Tel&eacute;fono *" ng-model="contact.phone" ng-trim="true">
+					</div>
+					<div class="form-input">
+						<textarea name="contact-message" placeholder="Por favor, escribi un mensaje" ng-model="contact.message" ng-trim="true"></textarea>
+					</div>
+					<div class="form-input">
+						<button class="btn btn-primary" ng-click="send()">Enviar</button>
+					</div>
+				</div>
+			</div>
+			<div class="row resume">
+				<div class="col-xs-4">
+					<img src="/img/logos/chef.png" alt="">
+				</div>
+				<div class="col-xs-8 cv">
+					<div class="wrapper">
+						<h1>&iexcl;TRABAJ&Aacute; CON NOSOTROS!</h1>
+						<p>
+							Buscamos lograr el mejor clima laboral, donde el respeto y la dignidad fortalecezcan los equipos
+							de trabajo y nuestra relaci&oacute;n con nuestros clientes y la comunidad.
+						</p>
+						<p>
+						&iexcl;Vos tambi&eacute;n pod&eacute;s ser parte de DELIMALL!
+						</p>
+						<a href="#">¡POSTULATE AQUÍ!</a>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

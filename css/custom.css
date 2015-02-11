@@ -26,6 +26,7 @@ almost-white: #eeeeee;
 */
 
 /************ GENERAL ************/
+
 .app {
 	position: fixed;
 	top: 0;
@@ -97,9 +98,24 @@ almost-white: #eeeeee;
 	border-bottom-right-radius: 10px;
 }
 
+.btn-default {
+	border-color: #666666;
+	background-color: #aaaaaa;
+	color: #FFFFFF;
+	opacity: 1;
+}
+
+.btn-default:hover {
+	border-color: #666666;
+	background-color: #aaaaaa;
+	opacity: 0.8;
+}
+
 .btn-primary {
 	background-color: #ff9c00;
 	border-color: #ff9c00;
+	color: #FFFFFF;
+	opacity: 1;
 }
 
 .btn-primary:hover {
@@ -108,7 +124,27 @@ almost-white: #eeeeee;
 	opacity: 0.8;
 }
 
+.form-input{
+	padding-top: 1ex;
+}
+
+.form-input label{
+	font-weight: 600;
+	vertical-align: top;
+}
+
+.form-input input, .form-input textarea {
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border: 1px solid #d3d3d3;
+	width: 55%;
+	margin-left: 1em;
+	color: #000000;
+}
+
 /************ INDEX ************/
+
 .index .header {
 	width: 100vw;
 	height: 30vh;
@@ -139,6 +175,7 @@ almost-white: #eeeeee;
 }
 
 /************ PUBLIC ************/
+
 .public .header {
 	width: 100vw;
 	height: 15vh;
@@ -170,7 +207,6 @@ almost-white: #eeeeee;
 }
 
 .public .body .nav-bar {
-	width: 100%;
 	height: 6vh;
 	line-height: 4vh;
 	margin-top: 2vh;
@@ -266,13 +302,13 @@ almost-white: #eeeeee;
 
 /************ HOME ************/
 
-.carousel {
-	background-color: transparent;
-}
-
 #home-slider {
 	width: 100%;
 	padding: 2ex 0 2ex 0;
+}
+
+#home-slider .carousel-control {
+	display: none;
 }
 
 #home-slider .carousel-inner {
@@ -284,7 +320,218 @@ almost-white: #eeeeee;
 }
 
 #home-slider .carousel-inner .item img{
+	width: 100%;
 	margin: 0 auto;
+}
+
+#home-slider .slide-control {
+	position: relative;
+	cursor: pointer;
+}
+
+#home-slider .slide-control .active-indicator {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
+#home-slider .slide-control .active-indicator img {
+	margin-top: 0.2ex;
+	height: 2ex;
+}
+
+#home-slider .slide-control h3 {
+	margin-top: 2.5ex;
+	margin-bottom: 8px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	font-weight: 700;
+	line-height: 26px;
+	color: #999;
+}
+
+#home-slider .slide-control.active h3 {
+	color: #f5a900;
+}
+
+#home-slider .slide-control p {
+	font-family: 'Montserrat', sans-serif;
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #999;
+	padding-bottom: 1ex;
+	border-bottom: none;
+}
+
+#home-slider .slide-control.active p {
+	color: #000;
+	border-bottom: 5px solid #f5a900;
+}
+
+/************ MAP ************/
+
+.public .body .map .map-image {
+	margin-top: 3ex;
+}
+
+.public .body .map .map-image img {
+	max-width: 100%;
+}
+
+.public .body .map p.branches-info {
+	font: 400 15px 'Montserrat', sans-serif;
+	color: #464646;
+	margin: 3ex 0 3ex 1ex;
+}
+
+.public .body .map .logo {
+	text-align: center;
+	margin-top: 3ex;
+}
+
+.public .body .map .logo img {
+	max-width: 90%;
+}
+
+.public .body .map p.time-info {
+	text-align: right;
+	font: 400 32px 'Montserrat', sans-serif;
+	color: #464646;
+	margin: 1.5ex;
+
+}
+
+.public .body .map p.time-info span,
+.public .body .map p.time-info strong {
+	display: block;
+	margin: 0.3ex 0 0.3ex 0;
+}
+
+.public .body .map p.time-info strong.phone{
+	color: #f5a900;
+}
+
+/************ FRANCHISES ************/
+
+.public .body .franchises {
+	margin-top: 3ex;
+	margin-bottom: 3ex;
+	background: transparent url(/img/backgrounds/ribbon-left.png) no-repeat top left;
+}
+
+.public .body .franchises h1 {
+	background-color: #ffab00;
+	font: 700 28px 'Montserrat', sans-serif;
+	color: #FFF;
+	line-height: 35px;
+	margin-top: 0;
+	padding-left: 30px;
+	z-index: 11;
+}
+
+.public .body .franchises .wrapper {
+	background: transparent url(/img/backgrounds/left-shadow.png) no-repeat top left;
+	padding: 25px 30px 30px 45px;
+	margin-top: -10px;
+	margin-left: -15px;
+	z-index: 10;
+}
+
+.public .body .franchises .wrapper p {
+	font: 400 18px 'Montserrat', sans-serif;
+	line-height: 28px;
+	color: #6a6a6a;
+}
+
+.public .body .franchises .wrapper .franchises-form {
+	margin-top: 3ex;
+	padding-top: 3ex;
+	border-top: 1px solid #ffab00;
+}
+
+.public .body .franchises .wrapper .form-input label {
+	font: 400 14px 'Open Sans', sans-serif;
+	color: #ff7b00;
+}
+
+.public .body .franchises .wrapper .form-input input,
+.public .body .franchises .wrapper .form-input textarea {
+	width: 75%;
+}
+
+.public .body .franchises .wrapper .form-input textarea {
+	height: 17ex;
+}
+
+/************ CONTACT ************/
+
+.public .body .contact {
+	margin-top: 5ex;
+}
+
+.public .body .contact h1 {
+	font-family: Montserrat, sans-serif;
+	font-size: 45px;
+	font-weight: bold;
+	color: #666;
+	margin: 0;
+}
+
+.public .body .contact .form-input input,
+.public .body .contact .form-input textarea {
+	width: 100%;
+	height: 30px;
+	padding-left: 1.5ex;
+	margin-bottom: 2ex;
+	font: 400 15px 'Montserrat', sans-serif;
+	color: #686868;
+}
+
+.public .body .contact .form-input textarea {
+	height: 15ex;
+}
+
+.public .body .resume {
+	margin-top: 2ex;
+	margin-bottom: 4ex;
+	padding-top: 5ex;
+	background: transparent url(/img/backgrounds/dot.png) repeat-x top left;
+}
+
+.public .body .resume img {
+	max-width: 90%;
+}
+
+.public .body .resume .cv {
+	background: transparent url(/img/backgrounds/ribbon-left.png) no-repeat top left;
+}
+
+.public .body .resume .cv .wrapper {
+	background: transparent url(/img/backgrounds/left-shadow.png) no-repeat top left;
+	margin-left: -15px;
+	padding-left: 30px;
+	min-height: 185px;
+}
+
+.public .body .resume .cv .wrapper h1 {
+	background-color: #ffab00;
+	font: 700 28px 'Montserrat', sans-serif;
+	color: #FFF;
+	line-height: 35px;
+	margin-top: 0;
+}
+
+.public .body .resume .cv .wrapper p {
+	font-family: Montserrat, sans-serif;
+	font-size: 13px;
+}
+
+.public .body .resume .cv .wrapper a {
+	display: inline-block;
+	font: 700 18px 'Montserrat', sans-serif;
+	color: #f1a521;
 }
 
 /************ LOGIN ************/
@@ -313,28 +560,6 @@ almost-white: #eeeeee;
 	margin: 1em 0 0 0;
 }
 
-.auth .signin .form-input{
-	padding-top: 1em;
-}
-
-.auth .signin .form-input label{
-	font-weight: 600;
-}
-
-.auth .signin .form-input input{
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	width: 55%;
-	margin-left: 1em;
-	color: #000000;
-}
-
-.auth .signin .form-input button{
-	background-color: #999999;
-	color: #FFFFFF;
-}
-
 .auth .signin img {
 	margin-top: 5ex;
 	height: 20vh;
@@ -357,28 +582,6 @@ almost-white: #eeeeee;
 	padding: 0;
 	margin: 0.5em 0 0 0;
 	color: #fbc848;
-}
-
-.auth .signup .form-input{
-	padding-top: 0.5em;
-}
-
-.auth .signup .form-input label{
-	font-weight: 600;
-}
-
-.auth .signup .form-input input{
-	-webkit-border-radius: 3px;
-	-moz-border-radius: 3px;
-	border-radius: 3px;
-	width: 55%;
-	margin-left: 1em;
-	color: #000000;
-}
-
-.auth .signup .form-input button{
-	background-color: #fab300;
-	color: #FFFFFF;
 }
 
 .auth .signup img {
@@ -442,7 +645,7 @@ almost-white: #eeeeee;
 }
 
 .products {
-	background: url("/img/backgrounds/order.png") no-repeat top right;
+	background: url("/img/backgrounds/ribbon-right.png") no-repeat top right;
 }
 
 .products .product-list {

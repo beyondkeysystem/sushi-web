@@ -1,8 +1,8 @@
 <div class="col-md-5">
 	<div class="order-details">
 		<h2>TU PEDIDO</h2>
-		<div class="order-box">
-			<p class="user-name" ng-if="user.id">{{user.firstName}} {{user.lastName}}</p>
+		<div class="order-box" data-ng-if="user.id">
+			<p class="user-name">{{user.firstName}} {{user.lastName}}</p>
 			<p class="empty-order" ng-if="!myOrder.count">No hay elementos seleccionados</p>
 			<div class="row product" ng-if="myOrder.count" ng-repeat="product in myOrder.products">
 				<div class="col-md-7">
@@ -32,6 +32,9 @@
 					<button class="btn btn-primary" ng-click="send()">ENVIAR</button>
 				</div>
 			</div>
+		</div>
+		<div class="login-box text-center" data-ng-if="!user.id">
+			<a class="btn btn-primary" data-ng-href="/#/{{branch}}/login">LOGIN</a>
 		</div>
 	</div>
 </div>
