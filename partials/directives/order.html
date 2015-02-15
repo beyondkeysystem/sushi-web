@@ -1,34 +1,34 @@
-<div class="col-md-5">
+<div class="col-sm-5">
 	<div class="order-details">
 		<h2>TU PEDIDO</h2>
 		<div class="order-box" data-ng-if="user.id">
 			<p class="user-name">{{user.firstName}} {{user.lastName}}</p>
 			<p class="empty-order" ng-if="!myOrder.count">No hay elementos seleccionados</p>
 			<div class="row product" ng-if="myOrder.count" ng-repeat="product in myOrder.products">
-				<div class="col-md-7">
+				<div class="col-sm-7">
 					<span>{{product.name}}</span>
 				</div>
-				<div class="col-md-5">
+				<div class="col-sm-5">
 					<input type="number" ng-model="product.count" min="0" max="999" ng-change="calculateTotal()">
 					<img src="/img/icons/remove.png" alt="X" ng-click="removeFromOrder(product.id)">
 					<span>${{product.price}}</span>
 				</div>
 			</div>
 			<div class="row total">
-				<div class="col-md-6">
+				<div class="col-sm-6">
 					<span>Envio a domicilio</span>
 					<input type="checkbox" id="checkbx" ng-model="myOrder.delivery" ng-change="calculateTotal()">
 					<label for="checkbx"></label>
 				</div>
-				<div class="col-md-6 text-right">
+				<div class="col-sm-6 text-right">
 					<span>TOTAL ${{myOrder.total}}</span>
 				</div>
 			</div>
 			<div class="row buttons">
-				<div class="col-md-6 text-right">
+				<div class="col-sm-6 text-right">
 					<button class="btn btn-default" ng-click="clear()">VACIAR CARRO</button>
 				</div>
-				<div class="col-md-6 text-left">
+				<div class="col-sm-6 text-left">
 					<button class="btn btn-primary" ng-click="send()">ENVIAR</button>
 				</div>
 			</div>

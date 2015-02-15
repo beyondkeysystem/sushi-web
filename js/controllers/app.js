@@ -9,6 +9,7 @@
 		'controllers.index',
 		'controllers.home',
 		'controllers.order',
+		'controllers.admin',
 		'controllers.login',
 		'controllers.logout',
 		'services.auth',
@@ -111,7 +112,7 @@
 		'$http',
 		'AuthService',
 		function($rootScope, $location, $http, AuthService) {
-			$rootScope.$on("$routeChangeStart", function(event, next) {
+			$rootScope.$on("$routeChangeStart", function(event, next, current) {
 				var user = AuthService.getUser();
 				if (angular.isString(next.controller) && next.controller.length > 0) {
 					user.currentPage = next.controller.substr(0, next.controller.indexOf("Controller")).toLowerCase();
@@ -120,10 +121,14 @@
 				}
 				AuthService.connect().then(
 					function() {
+						var branch = next.params.branch;
+						if(next.controller === 'AdminController' && angular.isUndefined(branch)) {
+							branch = 'rosario';
+						}
 						if (AuthService.isPrivatePage(next.access)) {
 							if (!AuthService.isOnline()) {
 								console.warn('Redirecting from "' + next.controller + '" to "login"');
-								$location.path('/'+next.params.branch+'/login');
+								$location.path('/'+branch+'/login');
 							}
 						}
 					}

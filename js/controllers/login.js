@@ -15,7 +15,12 @@
 		function($scope, $location, $routeParams, GlobalService, AuthService) {
 			$scope.branch = GlobalService.Branch($routeParams.branch, true);
 			if (AuthService.isOnline()) {
-				$location.path('/'+$scope.branch+'/pedidos');
+				if (AuthService.isAdmin()) {
+					$location.path('/admin');
+				} else {
+					$location.path('/'+$scope.branch+'/pedidos');
+				}
+				return;
 			}
 
 			$scope.user = {
@@ -38,7 +43,11 @@
 				//TODO: validate sign in form inputs
 				AuthService.login($scope.user.login.email, $scope.user.login.password).then(function(user) {
 					if(angular.isString(user.id) && user.id.length){
-						$location.path('/'+$scope.branch+'/pedidos');
+						if (user.isAdmin) {
+							$location.path('/admin');
+						} else {
+							$location.path('/'+$scope.branch+'/pedidos');	
+						}
 					} else {
 						console.log('show signin error');
 					}

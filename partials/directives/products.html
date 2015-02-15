@@ -1,16 +1,16 @@
 <div class="row products" ng-if="!isCombos">
-	<div class="col-md-7 product-list">
+	<div class="col-sm-7 product-list">
 		<div ng-repeat="row in products" class="row">
-			<div ng-repeat="product in row" class="col-md-6 product">
+			<div ng-repeat="product in row" class="col-sm-6 product">
 				<p class="image">
 					<img ng-src="{{product.image}}">
 				</p>
 				<div class="details">
 					<div class="row">
-						<div class="col-md-7">
+						<div class="col-sm-7">
 							<span class="name">{{product.name}}</span>
 						</div>
-						<div class="col-md-5">
+						<div class="col-sm-5">
 							<span class="price">{{product.amount}} u.</span>
 							<span class="price">${{product.price}}</span>
 							<img src="/img/icons/buy.png" ng-click="addToOrder(product)">

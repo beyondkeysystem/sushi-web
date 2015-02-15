@@ -151,6 +151,9 @@
 					isOnline: function() {
 						return angular.isString(_user.id) && _user.id.length;
 					},
+					isAdmin: function() {
+						return angular.isString(_user.id) && _user.isAdmin;
+					},
 					isPrivatePage: function(pageAccess) {
 						return angular.isArray(pageAccess) && pageAccess.length;
 					}

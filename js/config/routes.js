@@ -13,6 +13,20 @@
 			};
 
 			var routes = [
+
+				/* ***************** Admin ***************** */
+				{
+					'url': '/admin',
+					'template': '/partials/pages/admin.html',
+					'controller': 'Admin',
+					'roles': accessLevels['admin']
+				},
+				{
+					'url': '/admin/:page',
+					'template': '/partials/pages/admin.html',
+					'controller': 'Admin',
+					'roles': accessLevels['admin']
+				},
 				/* ***************** Public ***************** */
 				{
 					'url': '/',
@@ -80,7 +94,6 @@
 					'controller': 'Order',
 					'roles': accessLevels['public']
 				}
-				/* ***************** User ***************** */
 			];
 
 			this.getRoutes = function() {

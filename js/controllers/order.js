@@ -12,7 +12,6 @@
 		'$routeParams',
 		'GlobalService',
 		function($scope, $routeParams, GlobalService) {
-			$scope.isMobile = angular.isMobile();
 			$scope.branch = GlobalService.Branch($routeParams.branch, true);
 		}
 	]);

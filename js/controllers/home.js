@@ -12,8 +12,9 @@
 		'GlobalService',
 		function($scope, $location, $routeParams, GlobalService) {
 			$scope.branch = GlobalService.Branch($routeParams.branch, true);
-			if(angular.isMobile()){
+			if(angular.isMobile){
 				$location.path('/'+$scope.branch+'/pedidos');
+				return;
 			}
 			$scope.page = GlobalService.Page();
 		}
