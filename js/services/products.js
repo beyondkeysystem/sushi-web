@@ -23,6 +23,16 @@
 				_products = [];
 			};
 
+			var _getAll = function (products) {
+				var i;
+				for (i = products.length - 1; i >= 0; i--) {
+					products[i].categoryId = parseInt(products[i].categoryId);
+					products[i].amount = parseInt(products[i].amount);
+					products[i].price = parseFloat(products[i].price);
+				}
+				return products;
+			};
+
 			var _getCurrent = function () {
 				var i, row, 
 					max = 6,
@@ -44,6 +54,17 @@
 				_clear();
 				_products = products;
 				return _getCurrent();
+			};
+
+			var _getColumns = function () {
+				return [
+					{id: 'name', name: 'Nombre', isEditable: true, type: 'text'},
+					{id: 'categoryId', name: 'Categoria', isEditable: true, type: 'number'},
+					{id: 'description', name: 'Descripción', isEditable: true, type: 'text'},
+					{id: 'image', name: 'Imagen', isEditable: false, type: 'image'},
+					{id: 'amount', name: 'Cantidad', isEditable: true, type: 'number'},
+					{id: 'price', name: 'Precio', isEditable: true, type: 'number'}
+				]
 			};
 
 			var _goTo = function(page) {
@@ -84,6 +105,12 @@
 						}
 					}
 					return results;
+				},
+				GetAll: function() {
+					return Product.FetchAll().then(_getAll);
+				},
+				GetColumns: function() {
+					return _getColumns();
 				},
 				GoTo: function(page) {
 					_goTo(page);

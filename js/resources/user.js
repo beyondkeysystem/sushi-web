@@ -35,7 +35,11 @@
 			Resource.$extend('User', User);
 
 			User.GetSession = function() {
-				return User.Fetch('session', true);
+				return $http.get('/api/v1/user/session').then(
+					function(response) {
+						return response.data;
+					}
+				);
 			};
 
 			User.GetExpirationDate = function() {

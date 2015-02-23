@@ -38,6 +38,10 @@ almost-white: #eeeeee;
 	overflow-x: hidden;
 }
 
+.clickeable {
+	cursor: pointer;
+}
+
 .center {
 	text-align: center;
 	vertical-align: middle;
@@ -215,18 +219,11 @@ almost-white: #eeeeee;
 }
 
 .public .body .nav-bar div {
-	border-left: 2px solid #999999; 
+	border-left: 2px solid #777; 
 }
 
 .public .body .nav-bar div:first-child {
 	border-left: none; 
-}
-
-.public .body .nav-bar a {
-	color: #767676;
-	text-decoration: none;
-	font-family: Montserrat, sans-serif;
-	font-size: 16px;
 }
 
 .public .body .nav-bar span {
@@ -236,8 +233,14 @@ almost-white: #eeeeee;
 }
 
 .public .body .nav-bar a {
-	color: #767676;
+	color: #777;
 	text-decoration: none;
+	font-family: Montserrat, sans-serif;
+	font-size: 16px;
+}
+
+.public .body .nav-bar a.selected {
+	color: #000;
 }
 
 .public .body .container {
@@ -802,4 +805,15 @@ almost-white: #eeeeee;
 	text-transform: uppercase;
 }
 
-/* background-size: cover; */
+/************ ADMIN ************/
+.admin {
+	padding-top: 3ex;
+}
+
+.admin.table-responsive tr, .admin.table-responsive tr td {
+	vertical-align: middle;
+}
+
+.admin.table-responsive tr td button {
+	font-size: 16px;
+}

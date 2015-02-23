@@ -18,6 +18,7 @@
 			var _getAll = function (categories) {
 				var i;
 				for (i = categories.length - 1; i >= 0; i--) {
+					categories[i].order = parseInt(categories[i].order);
 					if(categories[i].name.indexOf(' ') >= 0 || categories[i].name.length >= 10) {
 						categories[i].isLong = true;
 					} else {
@@ -30,6 +31,14 @@
 					}
 				};
 				return categories;
+			};
+
+			var _getColumns = function () {
+				return [
+					{id: 'name', name: 'Nombre', isEditable: true, type: 'text'},
+					{id: 'description', name: 'Descripción', isEditable: true, type: 'text'},
+					{id: 'image', name: 'Imagen', isEditable: false, type: 'image'}
+				]
 			};
 
 			var _goTo = function(category) {
@@ -64,6 +73,9 @@
 				},
 				GetAll: function() {
 					return Category.FetchAll().then(_getAll);
+				},
+				GetColumns: function() {
+					return _getColumns();
 				},
 				GoTo: function(category) {
 					_goTo(category);
