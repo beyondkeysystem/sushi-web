@@ -171,7 +171,7 @@ almost-white: #eeeeee;
 	display: inline-block;
 	padding: 1.5em;
 	margin: 1vh 0 7vh 0;
-	background: transparent url("/img/backgrounds/dot.png") repeat-x left bottom;
+	background: transparent url("../img/backgrounds/dot.png") repeat-x left bottom;
 }
 
 .index .footer img {
@@ -214,7 +214,7 @@ almost-white: #eeeeee;
 	height: 6vh;
 	line-height: 4vh;
 	margin-top: 2vh;
-	background: transparent url("/img/backgrounds/dot.png") repeat-x left bottom;
+	background: transparent url("../img/backgrounds/dot.png") repeat-x left bottom;
 	text-align: center;
 }
 
@@ -246,14 +246,14 @@ almost-white: #eeeeee;
 .public .body .container {
 	padding: 0 0 30px 0;
 	min-height: 65vh;
-	background: transparent url("/img/backgrounds/body.png") repeat-x left bottom;
+	background: transparent url("../img/backgrounds/body.png") repeat-x left bottom;
 }
 
 .public .footer {
 	width: 100vw;
 	padding: 4ex 0 6ex 0;
 	margin: 0;
-	background: #333333 url("/img/backgrounds/footer.jpg") left top;
+	background: #333333 url("../img/backgrounds/footer.jpg") left top;
 }
 
 .public .footer h2, .public .footer .h2 {
@@ -596,7 +596,7 @@ almost-white: #eeeeee;
 .categories {
 	width: 100%;
 	padding: 3vh 0 3vh 0;
-	background: transparent url("/img/backgrounds/dot.png") repeat-x left bottom;
+	background: transparent url("../img/backgrounds/dot.png") repeat-x left bottom;
 	text-align: center;
 }
 
@@ -648,7 +648,7 @@ almost-white: #eeeeee;
 }
 
 .products {
-	background: url("/img/backgrounds/ribbon-right.png") no-repeat top right;
+	background: url("../img/backgrounds/ribbon-right.png") no-repeat top right;
 }
 
 .products .product-list {

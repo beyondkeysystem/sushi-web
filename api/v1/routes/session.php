@@ -6,7 +6,8 @@ $app->get('/user/session', function() use($app, $db){
 
 $app->get('/user/session/expiration', function() use($app, $db){
 	Security::RestictedAccess();
-	echoResponse(200, Security::GetSession()['expires']);
+	$mySession = Security::GetSession();
+	echoResponse(200, $mySession['expires']);
 });
 
 $app->post('/user/session',function() use($app, $db){

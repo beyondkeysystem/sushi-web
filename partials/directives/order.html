@@ -10,7 +10,7 @@
 				</div>
 				<div class="col-sm-5">
 					<input type="number" ng-model="product.count" min="0" max="999" ng-change="calculateTotal()">
-					<img src="/img/icons/remove.png" alt="X" ng-click="removeFromOrder(product.id)">
+					<img src="img/icons/remove.png" alt="X" ng-click="removeFromOrder(product.id)">
 					<span>${{product.price}}</span>
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<div class="login-box text-center" data-ng-if="!user.id">
-			<a class="btn btn-primary" data-ng-href="/#/{{branch}}/login">LOGIN</a>
+			<a class="btn btn-primary" data-ng-href="#/{{branch}}/login">LOGIN</a>
 		</div>
 	</div>
 </div>

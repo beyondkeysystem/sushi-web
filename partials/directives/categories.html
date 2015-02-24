@@ -2,11 +2,11 @@
 	<div class="col-sm-12">
 		<div ng-repeat="category in categories" ng-click="goToCategory(category.id)" class="category" ng-class="{'long': category.isLong, 'active': category.active}">
 			<img ng-src="{{category.image}}">
-			<a ng-href="/#/{{branch}}/pedidos/categoria/{{category.id}}">{{category.name}}</a>
+			<a ng-href="#/{{branch}}/pedidos/categoria/{{category.id}}">{{category.name}}</a>
 		</div>
 		<div class="category" ng-click="goToCategory('combos')" ng-class="{'active': isCombos}">
-			<img src="/img/icons/products/combos.png">
-			<a ng-href="/#/{{branch}}/pedidos/categoria/combos">Combos</a>
+			<img src="img/icons/products/combos.png">
+			<a ng-href="#/{{branch}}/pedidos/categoria/combos">Combos</a>
 		</div>
 		<div class="clearfix"></div>
 	</div>
