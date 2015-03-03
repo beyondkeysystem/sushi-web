@@ -1,6 +1,6 @@
 <?php
 /** 
-* @author Web Design Rosario
+* @author David Curras
 * @version Oct 6 2011
 */
 

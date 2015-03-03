@@ -12,3 +12,8 @@ define('DB_NAME', 'sushiweb'); //delimall_prod
  * Session
  */
 define('TIMEOUT', 10 * 60); //10 minutes
+
+/**
+ * Email
+ */
+define('EMAIL', 'davidc.ferre@gmail.com');
