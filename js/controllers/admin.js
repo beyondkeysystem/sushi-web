@@ -4,14 +4,16 @@
 	angular.module('controllers.admin', [
 		'ngRoute',
 		'directives.admin-navbar',
-		'services.categories'
+		'services.categories',
+		'services.validate'
 	]).controller('AdminController', [
 		'$scope',
 		'$location',
 		'$routeParams',
 		'CategoriesService',
 		'ProductsService',
-		function($scope, $location, $routeParams, CS, PS) {
+		'ValidateService',
+		function($scope, $location, $routeParams, CS, PS, Validate) {
 			var _pages = ['general', 'categorias', 'productos', 'combos', 'ordenes', 'clientes'];
 
 			$scope.page = undefined;
