@@ -19,13 +19,14 @@
 
 			var User = function(config) {
 				var defaultProperties = {
-					id: null,
-					name: null,
-					email: null,
-					photo: null,
-					network: null,
-					logo: null,
-					created: null
+					id: undefined,
+					firstName: undefined,
+					lastName: undefined,
+					email: undefined,
+					address: undefined,
+					phone: undefined,
+					password: undefined,
+					isAdmin: 0
 				};
 				angular.extend(defaultProperties, new Resource(config));
 				angular.extend(this, defaultProperties);

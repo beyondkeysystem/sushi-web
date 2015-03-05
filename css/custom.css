@@ -61,19 +61,40 @@ almost-white: #eeeeee;
 	margin: 1em;
 }
 
+.margin-xsmall {
+	margin: 1ex;
+}
+
 .margin-left-small {
 	margin-left: 1em;
+}
+
+.margin-left-xsmall {
+	margin-left: 1ex;
 }
 
 .margin-right-small {
 	margin-right: 1em;
 }
 
+.margin-right-xsmall {
+	margin-right: 1ex;
+}
+
 .margin-top-small {
 	margin-top: 1em;
 }
+
+.margin-top-xsmall {
+	margin-top: 1ex;
+}
+
 .margin-bottom-small {
 	margin-bottom: 1em;
+}
+
+.margin-bottom-xsmall {
+	margin-bottom: 1ex;
 }
 
 .rounded {
@@ -122,7 +143,7 @@ almost-white: #eeeeee;
 	opacity: 1;
 }
 
-.btn-primary:hover {
+.btn-primary:hover, .btn-primary:active {
 	background-color: #ff9c00;
 	border-color: #ff9c00;
 	opacity: 0.8;
@@ -145,6 +166,13 @@ almost-white: #eeeeee;
 	width: 55%;
 	margin-left: 1em;
 	color: #000000;
+}
+
+.form-input span.label {
+	display: inline-block;
+	font-weight: 400;
+	font-size: 85%;
+	margin: 1ex 0 3ex 0;
 }
 
 /************ INDEX ************/
@@ -550,7 +578,7 @@ almost-white: #eeeeee;
 	min-height: 25vh;
 	background-color: #fbc848;
 	color: #FFFFFF;
-	text-shadow: 1px 2px 0 #999999;
+	text-shadow: 1px 1px 1px #999999;
 	border: 1px solid #999999;
 	border-bottom: none;
 	padding-bottom: 2ex;
@@ -575,7 +603,7 @@ almost-white: #eeeeee;
 	border: 1px solid #999999;
 	border-top: none;
 	color: #000000;
-	text-shadow: 1px 1px 0 #999999;
+	text-shadow: 1px 1px 1px #999999;
 	padding-bottom: 1em;
 }
 

@@ -4,17 +4,27 @@
 	angular.module('controllers.admin', [
 		'ngRoute',
 		'directives.admin-navbar',
+		'services.global',
+		'services.auth',
 		'services.categories',
 		'services.validate'
 	]).controller('AdminController', [
 		'$scope',
 		'$location',
 		'$routeParams',
+		'GlobalService',
+		'AuthService',
 		'CategoriesService',
 		'ProductsService',
 		'ValidateService',
-		function($scope, $location, $routeParams, CS, PS, Validate) {
-			var _pages = ['general', 'categorias', 'productos', 'combos', 'ordenes', 'clientes'];
+		function($scope, $location, $routeParams, GlobalService, AuthService, CS, PS, Validate) {
+			var _pages = ['general', 'categorias', 'productos', 'combos', 'ordenes', 'clientes'],
+				_branch = GlobalService.Branch($routeParams.branch, true);
+				
+			if (!AuthService.isOnline() || !AuthService.isAdmin()) {
+				$location.path('/'+$scope.branch+'/pedidos');
+				return;
+			}
 
 			$scope.page = undefined;
 			$scope.results = [];

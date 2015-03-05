@@ -1,8 +1,8 @@
 <?php
 
-require_once('../libs/Slim/Slim.php');
+require_once('../libs/Slim/Slim.php'); //@see http://www.slimframework.com/
 require_once('../libs/Slim/Middleware.php');
-require_once('../libs/Respect/Validation/Validatable.php');
+require_once('../libs/Respect/Validation/Validatable.php'); //@see https://github.com/Respect/Validation
 require_once('../libs/Respect/Validation/Rules/AbstractRule.php');
 require_once('../libs/Respect/Validation/Rules/AbstractComposite.php');
 require_once('../libs/Respect/Validation/Rules/AllOf.php');

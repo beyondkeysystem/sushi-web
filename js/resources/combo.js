@@ -11,18 +11,18 @@
 
 			var Combo = function(config) {
 				var defaultProperties = {
-					id: null,
-					name: null,
-					description: null,
-					image: null,
-					price1: null,
-					amount1: null,
-					price2: null,
-					amount2: null,
-					price3: null,
-					amount3: null,
-					price4: null,
-					amount4: null
+					id: undefined,
+					name: undefined,
+					description: undefined,
+					image: undefined,
+					price1: undefined,
+					amount1: undefined,
+					price2: undefined,
+					amount2: undefined,
+					price3: undefined,
+					amount3: undefined,
+					price4: undefined,
+					amount4: undefined
 				};
 				angular.extend(defaultProperties, new Resource(config));
 				angular.extend(this, defaultProperties);

@@ -54,7 +54,7 @@
 						_user.email = data.email;
 						_user.phone = data.phone;
 						_user.address = data.address;
-						_user.isAdmin = data.isAdmin;
+						_user.isAdmin = data.isAdmin === '1' || data.isAdmin === 1;
 						_user.expires = data.expires;
 						_user.lastExpirationCheck = Date.now();
 						_isConnected = true;
@@ -111,7 +111,7 @@
 				var _register = function(data) {
 					return User.Register(data).then(
 						function(response) {
-							return _set(response.data);
+							return _set(response);
 						}
 					);
 				};

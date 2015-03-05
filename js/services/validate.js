@@ -18,13 +18,14 @@
 			var TIME_REGEXP = /^(\d\d):(\d\d)(?::(\d\d)(\.\d{1,3})?)?$/;
 
 			var _pwdMinLength = 3;
+			var _nameMinLength = 3;
 
 			var _notEmpty = function (value) {
 				return angular.isString(value) && value.length > 0;
 			};
 
 			var _minLength = function (value, min) {
-				return angular.isString(value) && value.length > min;
+				return angular.isString(value) && value.length >= min;
 			};
 
 			var _equal = function (value1, value2) {
@@ -39,6 +40,7 @@
 				var key, isInvalid = true, errors = [];
 				for(key in data) {
 					isInvalid = (key.toLowerCase().indexOf('mail') >= 0 && !_email(data[key])) || //validate email
+						(key.toLowerCase().indexOf('name') >= 0 && !_minLength(data[key], _nameMinLength)) || //validate names
 						(key === 'password' && !_minLength(data[key], _pwdMinLength)) || //validate password
 						(key === 'passwordRepeat' && !_equal(data['password'], data['passwordRepeat'])) || //validate repit password
 						!_notEmpty(data[key]); //validate all the rest required

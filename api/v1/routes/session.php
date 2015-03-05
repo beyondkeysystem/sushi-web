@@ -20,7 +20,7 @@ $app->post('/user/session',function() use($app, $db){
 	$dbquery->execute($queryValues);
 	$data = $dbquery->fetchAll(PDO::FETCH_ASSOC);
 	if(empty($data)){
-		echoResponse(401, null, array('meesage' => 'Invalid user or password'));
+		echoResponse(400, null, array('meesage' => 'Invalid user or password'));
 	} else {
 		$session = Security::Login($data[0]);
 		echoResponse(200, $session);

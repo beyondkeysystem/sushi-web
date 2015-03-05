@@ -14,6 +14,9 @@
 						<div class="form-input">
 							<label for="password-login">Contrase&ntilde;a: </label>
 							<input type="password" name="password-login" type="text" ng-model="user.login.password">
+							<span data-ng-if="errors.login.email || errors.login.password" class="label label-danger">
+								<i class="fa fa-times-circle margin-right-xsmall"></i> Usuario o contrase&ntilde;a inv&aacute;lido
+							</span>
 						</div>
 						<div class="form-input">
 							<button class="btn btn-default" ng-click="signIn()">Enviar</button>
@@ -32,30 +35,51 @@
 						<div class="form-input">
 							<label for="user-name">Nombre: </label>
 							<input type="text" name="user-name" placeholder="" ng-model="user.register.firstName" ng-trim="true">
+							<span data-ng-if="errors.register.firstName" class="label label-danger">
+								<i class="fa fa-times-circle margin-right-xsmall"></i> Debe ingresar un nombre de al menos 3 letras
+							</span>
 						</div>
 						<div class="form-input">
 							<label for="user-surname">Apellido: </label>
 							<input type="text" name="user-surname" placeholder="" ng-model="user.register.lastName" ng-trim="true">
+							<span data-ng-if="errors.register.lastName" class="label label-danger">
+								<i class="fa fa-times-circle margin-right-xsmall"></i> Debe ingresar un apellido de al menos 3 letras
+							</span>
 						</div>
 						<div class="form-input">
 							<label for="user-phone">Tel&eacute;fono: </label>
 							<input type="text" name="user-phone" placeholder="" ng-model="user.register.phone" ng-trim="true">
+							<span data-ng-if="errors.register.phone" class="label label-danger">
+								<i class="fa fa-times-circle margin-right-xsmall"></i> El tel&eacute;fono es requerido
+							</span>
 						</div>
 						<div class="form-input">
 							<label for="user-address">Domicilio: </label>
 							<input type="text" name="user-address" placeholder="" ng-model="user.register.address" ng-trim="true">
+							<span data-ng-if="errors.register.address" class="label label-danger">
+								<i class="fa fa-times-circle margin-right-xsmall"></i> La direcci&oacute;n es requerida
+							</span>
 						</div>
 						<div class="form-input">
 							<label for="user-email">Usuario: </label>
 							<input type="email" name="user-email" placeholder="mi-mail@ejemplo.com" ng-model="user.register.email" ng-trim="true">
+							<span data-ng-if="errors.register.email" class="label label-danger">
+								<i class="fa fa-times-circle margin-right-xsmall"></i> Debe ingresar un email v&aacute;lido
+							</span>
 						</div>
 						<div class="form-input">
 							<label for="user-password">Contrase&ntilde;a: </label>
 							<input type="password" name="user-password" type="text" ng-model="user.register.password">
+							<span data-ng-if="errors.register.password" class="label label-danger">
+								<i class="fa fa-times-circle margin-right-xsmall"></i> Debe ingresar una contrase&ntilde;a de al menos 3 letras
+							</span>
 						</div>
 						<div class="form-input">
 							<label for="user-password-repeat">Repetir contrase&ntilde;a: </label>
 							<input type="password" name="user-password-repeat" type="text" ng-model="user.register.passwordRepeat">
+							<span data-ng-if="errors.register.passwordRepeat" class="label label-danger">
+								<i class="fa fa-times-circle margin-right-xsmall"></i> Las contrase&ntilde;as no coinciden
+							</span>
 						</div>
 						<div class="form-input">
 							<button class="btn btn-primary" ng-click="signUp()">Enviar</button>

@@ -11,11 +11,11 @@
 
 			var Category = function(config) {
 				var defaultProperties = {
-					id: null,
-					name: null,
-					image: null,
-					description: null,
-					order: null
+					id: undefined,
+					name: undefined,
+					image: undefined,
+					description: undefined,
+					order: undefined
 				};
 				angular.extend(defaultProperties, new Resource(config));
 				angular.extend(this, defaultProperties);

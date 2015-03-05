@@ -20,13 +20,14 @@
 			var Product = function(config) {
 				var defaultProperties, populationEngine;
 				defaultProperties = {
-					id: null,
-					name: null,
-					description: null,
-					image: null,
-					price: null,
-					amount: null,
-					category: null
+					id: undefined,
+					name: undefined,
+					plu: undefined,
+					description: undefined,
+					image: undefined,
+					price: undefined,
+					amount: undefined,
+					category: undefined
 				};
 				angular.extend(defaultProperties, new Resource(config));
 				angular.extend(this, defaultProperties);

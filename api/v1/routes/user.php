@@ -34,7 +34,6 @@ $app->get('/user/:param/:value',function($param, $id) use($db){
 });
 
 $app->post('/user',function() use($app, $db){
-	Security::RestictedAccess();
 	$params = $app->request->post();
 	$queryValues = array(
 		'firstName'=>$params['firstName'],
@@ -47,6 +46,7 @@ $app->post('/user',function() use($app, $db){
 	);
 	$dbquery = $db->prepare('INSERT INTO customers(firstName, lastName, email, address, phone, password, isAdmin) VALUES (:firstName, :lastName, :email, :address, :phone, :password, :isAdmin)');
 	$dbquery->execute($queryValues);
+	$queryValues['id'] = $db->lastInsertId();
 	$session = Security::Login($queryValues);
 	echoResponse(200, $session);
 });
