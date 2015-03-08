@@ -110,8 +110,8 @@ CREATE TABLE IF NOT EXISTS `customers` (
 --
 
 INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
-(1, 'a@b', '123', 1, 'asdqwe', '0341', '', 'David', 'Curras', 1),
-(2, 'z@x', '123', 0, 'qwedgh', '011', '', 'Ricardo', 'Lopez', 1);
+(1, 'a@a.aa', '123', 1, 'asdqwe', '0341', '', 'David', 'Curras', 1),
+(2, 'b@b.bb', '123', 0, 'qwedgh', '011', '', 'Ricardo', 'Lopez', 1);
 
 -- --------------------------------------------------------
 
