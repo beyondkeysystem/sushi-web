@@ -55,6 +55,12 @@
 				NotEmpty: function (value) {
 					return _notEmpty(value);
 				},
+				MinLength: function (value) {
+					return _minLength(value);
+				},
+				Equal: function (value) {
+					return _equal(value);
+				},
 				Email: function (value) {
 					return _email(value);
 				},

@@ -9,19 +9,31 @@
 				</div>
 				<div class="col-xs-6 text-right">
 					<div class="form-input">
-						<input type="text" name="contact-firstname" placeholder="Nombre *" ng-model="contact.firstName" ng-trim="true">
+						<input type="text" name="contact-name" placeholder="Nombre *" ng-model="data.contact.name" ng-trim="true">
+						<span data-ng-if="errors.contact.name" class="label label-danger">
+							<i class="fa fa-times-circle margin-right-xsmall"></i> Debe ingresar un nombre de al menos 3 letras
+						</span>
 					</div>
 					<div class="form-input">
-						<input type="email" name="contact-email" placeholder="E-mail *" ng-model="contact.email" ng-trim="true">
+						<input type="email" name="contact-email" placeholder="E-mail *" ng-model="data.contact.email" ng-trim="true">
+						<span data-ng-if="errors.contact.email" class="label label-danger">
+							<i class="fa fa-times-circle margin-right-xsmall"></i> Debe ingresar un email v&aacute;lido
+						</span>
 					</div>
 					<div class="form-input">
-						<input type="text" name="contact-phone" placeholder="Tel&eacute;fono *" ng-model="contact.phone" ng-trim="true">
+						<input type="text" name="contact-phone" placeholder="Tel&eacute;fono *" ng-model="data.contact.phone" ng-trim="true">
+						<span data-ng-if="errors.contact.phone" class="label label-danger">
+							<i class="fa fa-times-circle margin-right-xsmall"></i> El tel&eacute;fono es requerido
+						</span>
 					</div>
 					<div class="form-input">
-						<textarea name="contact-message" placeholder="Por favor, escribi un mensaje" ng-model="contact.message" ng-trim="true"></textarea>
+						<textarea name="contact-message" placeholder="Por favor, escribi un mensaje" ng-model="data.contact.message" ng-trim="true"></textarea>
+						<span data-ng-if="errors.contact.message" class="label label-danger">
+							<i class="fa fa-times-circle margin-right-xsmall"></i> El mensaje es requerido
+						</span>
 					</div>
 					<div class="form-input">
-						<button class="btn btn-primary" ng-click="send()">Enviar</button>
+						<button class="btn btn-primary" ng-click="send('contact')">Enviar</button>
 					</div>
 				</div>
 			</div>

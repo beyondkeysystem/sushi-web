@@ -25,36 +25,57 @@
 							<div class="col-xs-5">
 								<div class="form-input">
 									<label for="contact-firstname">Nombre: </label>
-									<input type="text" name="contact-firstname" ng-model="contact.firstName" ng-trim="true">
+									<input type="text" name="contact-firstname" ng-model="data.franchises.firstName" ng-trim="true">
+									<span data-ng-if="errors.franchises.firstName" class="label label-danger">
+										<i class="fa fa-times-circle margin-right-xsmall"></i> Debe ingresar un nombre de al menos 3 letras
+									</span>
 								</div>
 								<div class="form-input">
 									<label for="contact-lastname">Apellido: </label>
-									<input type="text" name="contact-lastname" ng-model="contact.lastName" ng-trim="true">
+									<input type="text" name="contact-lastname" ng-model="data.franchises.lastName" ng-trim="true">
+									<span data-ng-if="errors.franchises.lastName" class="label label-danger">
+										<i class="fa fa-times-circle margin-right-xsmall"></i> Debe ingresar un apellido de al menos 3 letras
+									</span>
 								</div>
 								<div class="form-input">
 									<label for="contact-email">E-mail: </label>
-									<input type="email" name="contact-email" ng-model="contact.email" ng-trim="true">
+									<input type="email" name="contact-email" ng-model="data.franchises.email" ng-trim="true">
+									<span data-ng-if="errors.franchises.email" class="label label-danger">
+										<i class="fa fa-times-circle margin-right-xsmall"></i> Debe ingresar un email v&aacute;lido
+									</span>
 								</div>
 								<div class="form-input">
 									<label for="contact-phone">Tel&eacute;fono: </label>
-									<input type="text" name="contact-phone" ng-model="contact.phone" ng-trim="true">
+									<input type="text" name="contact-phone" ng-model="data.franchises.phone" ng-trim="true">
+									<span data-ng-if="errors.franchises.phone" class="label label-danger">
+										<i class="fa fa-times-circle margin-right-xsmall"></i> El tel&eacute;fono es requerido
+									</span>
 								</div>
 								<div class="form-input">
 									<label for="contact-city">Ciudad: </label>
-									<input type="text" name="contact-city" ng-model="contact.city" ng-trim="true">
+									<input type="text" name="contact-city" ng-model="data.franchises.city" ng-trim="true">
+									<span data-ng-if="errors.franchises.city" class="label label-danger">
+										<i class="fa fa-times-circle margin-right-xsmall"></i> La ciudad es requerida
+									</span>
 								</div>
 								<div class="form-input">
 									<label for="contact-country">Pa&iacute;s: </label>
-									<input type="text" name="contact-country" ng-model="contact.country" ng-trim="true">
+									<input type="text" name="contact-country" ng-model="data.franchises.country" ng-trim="true">
+									<span data-ng-if="errors.franchises.country" class="label label-danger">
+										<i class="fa fa-times-circle margin-right-xsmall"></i> El pa&iacute;s es requerido
+									</span>
 								</div>
 							</div>
 							<div class="col-xs-7">
 								<div class="form-input">
 									<label for="contact-message">Mensaje: </label>
-									<textarea name="contact-message" ng-model="contact.message" ng-trim="true"></textarea>
+									<textarea name="contact-message" ng-model="data.franchises.message" ng-trim="true"></textarea>
+									<span data-ng-if="errors.franchises.message" class="label label-danger">
+										<i class="fa fa-times-circle margin-right-xsmall"></i> El mensaje es requerido
+									</span>
 								</div>
 								<div class="form-input">
-									<button class="btn btn-primary" ng-click="send()">Enviar</button>
+									<button class="btn btn-primary" ng-click="send('franchises')">Enviar</button>
 								</div>
 							</div>
 						</div>

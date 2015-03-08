@@ -16,7 +16,7 @@
 		'AuthService',
 		'ValidateService',
 		'User',
-		function($scope, $location, $routeParams, GlobalService, AuthService, Validate, User) {
+		function($scope, $location, $routeParams, GlobalService, AuthService, ValidateService, User) {
 			$scope.branch = GlobalService.Branch($routeParams.branch, true);
 			if (AuthService.isOnline()) {
 				if (AuthService.isAdmin()) {
@@ -68,7 +68,7 @@
 			$scope.signIn = function(){
 				var i, key, invalidFields;
 				_reset($scope.errors.login);
-				invalidFields = Validate.All($scope.user.login);
+				invalidFields = ValidateService.All($scope.user.login);
 				if(!invalidFields.length) {
 					AuthService.login($scope.user.login.email, $scope.user.login.password).then(function(user) {
 						if(angular.isString(user.id) && user.id.length){
@@ -96,7 +96,7 @@
 			$scope.signUp = function(){
 				var i, key, user, invalidFields;
 				_reset($scope.errors.register);
-				invalidFields = Validate.All($scope.user.register);
+				invalidFields = ValidateService.All($scope.user.register);
 				if(!invalidFields.length) {
 					user = new User($scope.user.register);
 					AuthService.register(user).then(function(newUser) {
