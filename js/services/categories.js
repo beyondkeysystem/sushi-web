@@ -77,6 +77,10 @@
 				GetColumns: function() {
 					return _getColumns();
 				},
+				GetNew: function() {
+					//Admin not allowed to add new category
+					return new Category();
+				},
 				GoTo: function(category) {
 					_goTo(category);
 				}

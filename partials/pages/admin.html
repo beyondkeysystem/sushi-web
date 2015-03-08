@@ -12,11 +12,29 @@
 						</tr>
 					</thead>
 					<tbody>
+						<tr data-ng-if="new.show">
+							<td data-ng-if="!new.isEditing" colspan="{{columns.length+1}}" title="{{new.text}}" class="text-center">
+								<button data-ng-if="!new.isEditing" class="btn btn-success" data-ng-click="new(new.item)">
+									<i class="fa fa-plus"></i>
+								</button>
+							</td>
+							<td data-ng-if="new.isEditing" data-ng-repeat="field in columns">
+								<input data-ng-if="field.isEditable && new.isEditing" type="{{field.type}}" min="0" class="form-control" data-ng-model="new.item[field.id]">
+							</td>
+							<td data-ng-if="new.isEditing">
+								<button data-ng-if="new.isEditing" class="btn btn-success" data-ng-click="saveNew(new.item)">
+									<i class="fa fa-check"></i>
+								</button>
+								<button data-ng-if="new.isEditing" class="btn btn-danger" data-ng-click="cancelNew(new.item)">
+									<i class="fa fa-times"></i>
+								</button>
+							</td>
+						</tr>
 						<tr data-ng-repeat="item in results">
 							<td data-ng-repeat="field in columns">
 								<img data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'image'" data-ng-src="{{item.image}}" alt="{{item.image}}" width="50">
 								<span data-ng-if="(!field.isEditable || !item.isEditing) && field.type !== 'image'">{{item[field.id]}}</span>
-								<input data-ng-if="field.isEditable && item.isEditing" type="{{field.type}}" class="form-control" data-ng-model="item[field.id]">
+								<input data-ng-if="field.isEditable && item.isEditing" type="{{field.type}}" min="0" class="form-control" data-ng-model="editList[item.id][field.id]">
 							</td>
 							<td>
 								<button data-ng-if="!item.isEditing" class="btn btn-primary" data-ng-click="edit(item)">

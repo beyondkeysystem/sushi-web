@@ -112,6 +112,9 @@
 				GetColumns: function() {
 					return _getColumns();
 				},
+				GetNew: function() {
+					return new Product();
+				},
 				GoTo: function(page) {
 					_goTo(page);
 				},
