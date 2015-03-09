@@ -3,7 +3,7 @@
 	'use strict';
 
 	angular.module('services.global', [
-			'ngRoute',
+			'ngRoute'
 		]).factory('GlobalService', [
 			'$location',
 			function($location) {

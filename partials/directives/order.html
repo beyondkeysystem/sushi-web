@@ -24,12 +24,29 @@
 					<span>TOTAL ${{myOrder.total}}</span>
 				</div>
 			</div>
+			<div class="time-range">
+				<div class="form-input">
+					<label for="time-range">Horario de entrega: </label>
+					<select name="time-range" data-ng-model="myOrder.timeRange">
+						<option data-ng-repeat="option in getTimeRange()" value="{{option}}">{{option}}</option>
+					</select>
+					<span data-ng-if="errors.timeRange" class="label label-danger">
+						<i class="fa fa-times-circle margin-right-xsmall"></i> Debe seleccionar un horario de entrega
+					</span>
+					<span data-ng-if="myOrder.success" class="label label-success">
+						<i class="fa fa-check margin-right-xsmall"></i> Su pedido ha sido entregado correctamente
+					</span>
+					<span data-ng-if="myOrder.error" class="label label-danger">
+						<i class="fa fa-times-circle margin-right-xsmall"></i> Su pedido no ha podido ser entregado
+					</span>
+				</div>
+			</div>
 			<div class="row buttons">
 				<div class="col-sm-6 text-right">
-					<button class="btn btn-default" ng-click="clear()">VACIAR CARRO</button>
+					<button class="btn btn-default" data-ng-click="clear()">VACIAR CARRO</button>
 				</div>
 				<div class="col-sm-6 text-left">
-					<button class="btn btn-primary" ng-click="send()">ENVIAR</button>
+					<button class="btn btn-primary" data-ng-click="send()" data-ng-disabled="!myOrder.count">ENVIAR</button>
 				</div>
 			</div>
 		</div>

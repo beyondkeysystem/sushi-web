@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 08, 2015 at 11:46 PM
+-- Generation Time: Mar 09, 2015 at 06:57 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `general` (
   `name` varchar(256) NOT NULL,
   `value` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `general`
@@ -139,7 +139,8 @@ INSERT INTO `general` (`id`, `name`, `value`) VALUES
 (6, 'rosarioAmTimeTo', '14:00'),
 (7, 'rosarioPmTimeFrom', '20:00'),
 (8, 'rosarioPmTimeTo', '23:00'),
-(9, 'closed', '0');
+(9, 'closed', '0'),
+(10, 'minOrderPrice', '20');
 
 -- --------------------------------------------------------
 
@@ -149,6 +150,7 @@ INSERT INTO `general` (`id`, `name`, `value`) VALUES
 
 CREATE TABLE IF NOT EXISTS `order-item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `orderId` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
   `amount` int(11) NOT NULL,
   PRIMARY KEY (`id`)
@@ -163,12 +165,18 @@ CREATE TABLE IF NOT EXISTS `order-item` (
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `userId` int(11) NOT NULL,
-  `dateFrom` varchar(8) NOT NULL,
-  `timeFrom` varchar(8) NOT NULL,
-  `dateTo` varchar(8) NOT NULL,
-  `timeTo` varchar(8) NOT NULL,
+  `name` varchar(256) NOT NULL,
+  `phone` varchar(256) NOT NULL,
+  `address` varchar(256) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateFrom` varchar(32) NOT NULL,
+  `timeFrom` varchar(32) NOT NULL,
+  `dateTo` varchar(32) NOT NULL,
+  `timeTo` varchar(32) NOT NULL,
   `paid` tinyint(1) NOT NULL DEFAULT '0',
   `deliver` tinyint(1) NOT NULL DEFAULT '0',
+  `src` varchar(256) NOT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 

@@ -38,6 +38,28 @@ almost-white: #eeeeee;
 	overflow-x: hidden;
 }
 
+.loading {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background-color: #000;
+	text-align: center;
+	overflow: hidden;
+	filter: alpha(opacity=75);
+	-moz-opacity: 0.75;
+	-khtml-opacity: 0.75;
+	opacity: 0.75;
+	z-index: 999999;
+}
+
+.loading img {
+	margin-top: 30vh;
+}
+
 .clickeable {
 	cursor: pointer;
 }
@@ -149,6 +171,16 @@ almost-white: #eeeeee;
 	opacity: 0.8;
 }
 
+.btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:hover,
+.btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus,
+.btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled:active,
+.btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, fieldset[disabled] .btn-primary.active,
+.btn-primary.disabled.active, .btn-primary[disabled].active, .btn-primary.disabled {
+	background-color: #333;
+	border-color: #333;
+	opacity: 0.8;
+}
+
 .form-input{
 	padding-top: 1ex;
 }
@@ -158,7 +190,7 @@ almost-white: #eeeeee;
 	vertical-align: top;
 }
 
-.form-input input, .form-input textarea {
+.form-input input, .form-input select, .form-input textarea {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
@@ -823,6 +855,11 @@ almost-white: #eeeeee;
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
 	filter: alpha(opacity=100);
 	opacity: 1;
+}
+
+.products .order-details .order-box .time-range {
+	padding-top: 2ex;
+	text-align: center;
 }
 
 .products .order-details .order-box .buttons {

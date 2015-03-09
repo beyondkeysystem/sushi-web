@@ -6,17 +6,21 @@
 		<title>Delimall</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
+
 		<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
 		<link type="text/css" rel="stylesheet" href="js/libs/font-awesome/less/font-awesome.css">
 		<link type='text/css' rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:800italic,400,800,600|Montserrat:400,700' />
 		<link type="text/css" rel="stylesheet" href="css/custom.css">
+
 		<script type="text/javascript" src="js/libs/angular/angular.js"></script>
 		<script type="text/javascript" src="js/libs/angular-animate/angular-animate.min.js"></script>
 		<script type="text/javascript" src="js/libs/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 		<script type="text/javascript" src="js/libs/angular-cookies/angular-cookies.min.js"></script>
 		<script type="text/javascript" src="js/libs/angular-route/angular-route.min.js"></script>
+
 		<script type="text/javascript" src="js/utils/extend.js"></script>
 		<script type="text/javascript" src="js/config/routes.js"></script>
+
 		<script type="text/javascript" src="js/directives/header.js"></script>
 		<script type="text/javascript" src="js/directives/navbar.js"></script>
 		<script type="text/javascript" src="js/directives/admin-navbar.js"></script>
@@ -25,14 +29,21 @@
 		<script type="text/javascript" src="js/directives/categories.js"></script>
 		<script type="text/javascript" src="js/directives/products.js"></script>
 		<script type="text/javascript" src="js/directives/order.js"></script>
+
 		<script type="text/javascript" src="js/filters/capitalize.js"></script>
+
 		<script type="text/javascript" src="js/resources/resource.js"></script>
 		<script type="text/javascript" src="js/resources/user.js"></script>
 		<script type="text/javascript" src="js/resources/category.js"></script>
+		<script type="text/javascript" src="js/resources/general.js"></script>
+		<script type="text/javascript" src="js/resources/order.js"></script>
+		<script type="text/javascript" src="js/resources/order-item.js"></script>
 		<script type="text/javascript" src="js/resources/product.js"></script>
 		<script type="text/javascript" src="js/resources/combo.js"></script>
+
 		<script type="text/javascript" src="js/services/auth.js"></script>
 		<script type="text/javascript" src="js/services/error.js"></script>
+		<script type="text/javascript" src="js/services/general.js"></script>
 		<script type="text/javascript" src="js/services/global.js"></script>
 		<script type="text/javascript" src="js/services/categories.js"></script>
 		<script type="text/javascript" src="js/services/message.js"></script>
@@ -40,6 +51,7 @@
 		<script type="text/javascript" src="js/services/order.js"></script>
 		<script type="text/javascript" src="js/services/population-engine.js"></script>
 		<script type="text/javascript" src="js/services/validate.js"></script>
+
 		<script type="text/javascript" src="js/controllers/error.js"></script>
 		<script type="text/javascript" src="js/controllers/index.js"></script>
 		<script type="text/javascript" src="js/controllers/home.js"></script>
@@ -48,10 +60,14 @@
 		<script type="text/javascript" src="js/controllers/order.js"></script>
 		<script type="text/javascript" src="js/controllers/admin.js"></script>
 		<script type="text/javascript" src="js/controllers/app.js"></script>
+
 		<link rel="shortcut icon" href="img/favicon.png">
 	</head>
 	<body>
 		<div class="app" data-ng-cloak>
+			<div class="loading" data-ng-if="config.loading">
+				<img src="img/misc/loading.gif">
+			</div>
 			<div data-ng-view=""></div>
 		</div>
 	</body>

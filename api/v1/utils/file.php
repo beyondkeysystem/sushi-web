@@ -9,13 +9,11 @@ class File {
 	/**
 	 * Writes a message on a file location
 	 */
-	public static function Write() {
-		$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
-		$txt = "John Doe\n";
-		fwrite($myfile, $txt);
-		$txt = "Jane Doe\n";
-		fwrite($myfile, $txt);
+	public static function Write($message, $fileName) {
+		$myfile = fopen('../../'.$fileName, 'a') or die("Unable to open file!");
+		fwrite($myfile, $message);
 		fclose($myfile);
+		return true;
 	}
 
 }

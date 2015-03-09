@@ -14,10 +14,11 @@
 		'controllers.logout',
 		'services.auth',
 		'services.global',
+		'services.general',
 		'services.error',
 		'directives.header',
 		'directives.navbar',
-		'directives.footer'
+		'directives.footer',
 	]).config([
 		'$routeProvider',
 		'$httpProvider',
@@ -137,7 +138,9 @@
 		}
 	]).controller('MainController', [
 		'$scope',
-		function($scope) {
+		'GeneralService',
+		function($scope, GeneralService) {
+			$scope.config = GeneralService.GetConfig();
 		}
 	]);
 })();

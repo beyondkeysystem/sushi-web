@@ -2,28 +2,27 @@
 
 	'use strict';
 
-	angular.module('resources.category', [
+	angular.module('resources.order-item', [
 		'resources.resource'
-	]).factory('Category', [
+	]).factory('OrderItem', [
 		'Resource',
 		function(Resource) {
 
-			var Category = function(config) {
+			var OrderItem = function(config) {
 				var defaultProperties = {
 					id: undefined,
-					name: undefined,
-					image: undefined,
-					description: undefined,
-					order: undefined
+					orderId: undefined,
+					productId: undefined,
+					amount: undefined
 				};
 				angular.extend(defaultProperties, new Resource(config));
 				angular.extend(this, defaultProperties);
 				return this;
 			};
 
-			Resource.$extend('Category', Category);
+			Resource.$extend('OrderItem', OrderItem);
 
-			return Category;
+			return OrderItem;
 		}
 	]);
 })();

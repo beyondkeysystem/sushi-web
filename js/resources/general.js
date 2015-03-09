@@ -2,28 +2,26 @@
 
 	'use strict';
 
-	angular.module('resources.category', [
+	angular.module('resources.general', [
 		'resources.resource'
-	]).factory('Category', [
+	]).factory('General', [
 		'Resource',
 		function(Resource) {
 
-			var Category = function(config) {
+			var General = function(config) {
 				var defaultProperties = {
 					id: undefined,
 					name: undefined,
-					image: undefined,
-					description: undefined,
-					order: undefined
+					value: undefined
 				};
 				angular.extend(defaultProperties, new Resource(config));
 				angular.extend(this, defaultProperties);
 				return this;
 			};
 
-			Resource.$extend('Category', Category);
+			Resource.$extend('General', General);
 
-			return Category;
+			return General;
 		}
 	]);
 })();
