@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 07, 2015 at 09:21 PM
+-- Generation Time: Mar 08, 2015 at 11:46 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -112,6 +112,65 @@ CREATE TABLE IF NOT EXISTS `customers` (
 INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone`, `comments`, `firstName`, `lastName`, `active`) VALUES
 (1, 'a@a.aa', '123', 1, 'asdqwe', '0341', '', 'David', 'Curras', 1),
 (2, 'b@b.bb', '123', 0, 'qwedgh', '011', '', 'Ricardo', 'Lopez', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `general`
+--
+
+CREATE TABLE IF NOT EXISTS `general` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(256) NOT NULL,
+  `value` varchar(256) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `general`
+--
+
+INSERT INTO `general` (`id`, `name`, `value`) VALUES
+(1, 'funesAmTimeFrom', '10:30'),
+(2, 'funesAmTimeTo', '14:00'),
+(3, 'funesPmTimeFrom', '20:00'),
+(4, 'funesPmTimeTo', '23:00'),
+(5, 'rosarioAmTimeFrom', '10:30'),
+(6, 'rosarioAmTimeTo', '14:00'),
+(7, 'rosarioPmTimeFrom', '20:00'),
+(8, 'rosarioPmTimeTo', '23:00'),
+(9, 'closed', '0');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order-item`
+--
+
+CREATE TABLE IF NOT EXISTS `order-item` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productId` int(11) NOT NULL,
+  `amount` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE IF NOT EXISTS `orders` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL,
+  `dateFrom` varchar(8) NOT NULL,
+  `timeFrom` varchar(8) NOT NULL,
+  `dateTo` varchar(8) NOT NULL,
+  `timeTo` varchar(8) NOT NULL,
+  `paid` tinyint(1) NOT NULL DEFAULT '0',
+  `deliver` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
