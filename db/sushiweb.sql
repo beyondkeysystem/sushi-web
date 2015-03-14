@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 09, 2015 at 06:57 PM
+-- Generation Time: Mar 14, 2015 at 03:38 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -124,7 +124,7 @@ CREATE TABLE IF NOT EXISTS `general` (
   `name` varchar(256) NOT NULL,
   `value` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `general`
@@ -139,8 +139,9 @@ INSERT INTO `general` (`id`, `name`, `value`) VALUES
 (6, 'rosarioAmTimeTo', '14:00'),
 (7, 'rosarioPmTimeFrom', '20:00'),
 (8, 'rosarioPmTimeTo', '23:00'),
-(9, 'closed', '0'),
-(10, 'minOrderPrice', '20');
+(9, 'open', '1'),
+(10, 'minOrderPrice', '20.00'),
+(11, 'deliveryPrice', '6.00');
 
 -- --------------------------------------------------------
 
@@ -168,7 +169,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `name` varchar(256) NOT NULL,
   `phone` varchar(256) NOT NULL,
   `address` varchar(256) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `dateFrom` varchar(32) NOT NULL,
   `timeFrom` varchar(32) NOT NULL,
   `dateTo` varchar(32) NOT NULL,

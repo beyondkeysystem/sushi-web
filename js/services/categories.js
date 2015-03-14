@@ -35,8 +35,7 @@
 
 			var _getColumns = function () {
 				return [
-					{id: 'name', name: 'Nombre', isEditable: true, type: 'text'},
-					{id: 'description', name: 'Descripción', isEditable: true, type: 'text'},
+					{id: 'name', name: 'Nombre', isEditable: false, type: 'text'},
 					{id: 'image', name: 'Imagen', isEditable: false, type: 'image'}
 				]
 			};

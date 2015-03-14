@@ -33,8 +33,10 @@
 						<tr data-ng-repeat="item in results">
 							<td data-ng-repeat="field in columns">
 								<img data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'image'" data-ng-src="{{item[field.id]}}" alt="{{item[field.id]}}" width="50">
-								<span data-ng-if="(!field.isEditable || !item.isEditing) && field.type !== 'image'">{{item[field.id]}} </span>
+								<span data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'text'">{{item[field.id]}}</span>
+								<span data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'config-text'">{{getHumanReadable(item[field.id])}}</span>
 								<a data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'file'" data-ng-href="{{item[field.id]}}" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
+								<div data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'config'">{{item[field.id]}}</div>
 								<input data-ng-if="field.isEditable && item.isEditing" type="{{field.type}}" min="0" class="form-control" data-ng-model="editList[item.id][field.id]">
 							</td>
 							<td data-ng-if="new.options">
@@ -42,7 +44,7 @@
 									<i class="fa fa-pencil"></i>
 								</button>
 								<button data-ng-if="new.canDelete && !item.isEditing" class="btn btn-danger" data-ng-click="remove(item)">
-									<i class="fa fa-times"></i>
+									<i class="fa fa-trash"></i>
 								</button>
 								<button data-ng-if="item.isEditing" class="btn btn-success" data-ng-click="save(item)">
 									<i class="fa fa-check"></i>

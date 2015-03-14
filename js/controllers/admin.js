@@ -24,6 +24,46 @@
 		function($scope, $timeout, $location, $routeParams, AuthService, GS, CS, PS, OS, Validate) {
 			var _pages = ['general', 'categorias', 'productos', 'combos', 'ordenes', 'clientes'];
 
+			var _save = function (item) {
+				if($scope.page === 'general') {
+					GS.Save(item).then(
+						function (response) {
+							console.log(response);
+						},
+						function (error) {
+							console.error(error);
+						}
+					);
+				} else if($scope.page === 'categorias') {
+					CS.Save(item).then(
+						function (response) {
+							console.log(response);
+						},
+						function (error) {
+							console.error(error);
+						}
+					);
+				} else if($scope.page === 'productos') {
+					PS.Save(item).then(
+						function (response) {
+							console.log(response);
+						},
+						function (error) {
+							console.error(error);
+						}
+					);
+				} else if($scope.page === 'ordenes') {
+					OS.Save(item).then(
+						function (response) {
+							console.log(response);
+						},
+						function (error) {
+							console.error(error);
+						}
+					);
+				}
+			};
+
 			$scope.page = undefined;
 			$scope.results = [];
 			$scope.columns = [];
@@ -37,6 +77,33 @@
 				isEditing: false,
 				text: '',
 				item: {}
+			};
+
+			$scope.getHumanReadable = function (text) {
+				switch(text) {
+					case 'funesAmTimeFrom':
+						return 'Funes - Hora Desde (AM)';
+					case 'funesAmTimeTo':
+						return 'Funes - Hora Hasta (AM)';
+					case 'funesPmTimeFrom':
+						return 'Funes - Hora Desde (PM)';
+					case 'funesPmTimeTo':
+						return 'Funes - Hora Hasta (PM)';
+					case 'rosarioAmTimeFrom':
+						return 'Rosario - Hora Desde (AM)';
+					case 'rosarioAmTimeTo':
+						return 'Rosario - Hora Hasta (AM)';
+					case 'rosarioPmTimeFrom':
+						return 'Rosario - Hora Desde (PM)';
+					case 'rosarioPmTimeTo':
+						return 'Rosario - Hora Hasta (PM)';
+					case 'open':
+						return 'Abierto (0-No, 1-Si)';
+					case 'minOrderPrice':
+						return 'Precio minimo';
+					case 'deliveryPrice':
+						return 'Precio delivery';
+				}
 			};
 
 			$scope.new = function () {
@@ -61,7 +128,7 @@
 				item.isEditing = false;
 				$scope.editList[item.id] = undefined;
 				delete $scope.editList[item.id];
-				item.Save();
+				_save(item);
 			};
 
 			$scope.cancel = function (item) {
@@ -92,8 +159,8 @@
 				$scope.columns = CS.GetColumns();
 				$scope.new.show = false;
 				$scope.new.canDelete = false;
-				$scope.new.canEdit = true;
-				$scope.new.options = true;
+				$scope.new.canEdit = false;
+				$scope.new.options = false;
 			} else if ($scope.page === 'productos') {
 				CS.GetAll().then(function (categories) {
 					$scope.categories = categories;

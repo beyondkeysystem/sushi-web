@@ -7,25 +7,28 @@
 		'resources.order',
 		'resources.order-item',
 		'services.global',
+		'services.general',
 		'services.auth'
 	]).factory('OrderService', [
 		'$http',
 		'$location',
 		'GlobalService',
+		'GeneralService',
 		'AuthService',
 		'Order',
 		'OrderItem',
-		function($http, $location, GlobalService, AuthService, Order, OrderItem) {
+		function($http, $location, GlobalService, GeneralService, AuthService, Order, OrderItem) {
 
-			var _order = {
-				products: {},
-				delivery: false,
-				success: false,
-				error: false,
-				timeRange: undefined,
-				count: 0,
-				total: '0.00'
-			};
+			var _config = GeneralService.GetConfig(),
+				_order = {
+					products: {},
+					delivery: false,
+					success: false,
+					error: false,
+					timeRange: undefined,
+					count: 0,
+					total: '0.00'
+				};
 
 			var _getAll = function (response) {
 				var i, orders = response.data;
@@ -42,7 +45,7 @@
 					{id: 'address', name: 'Direccion', isEditable: false, type: 'text'},
 					{id: 'dateFrom', name: 'Fecha', isEditable: false, type: 'text'},
 					{id: 'timeRange', name: 'Horario', isEditable: false, type: 'text'},
-					{id: 'deliver', name: 'Delivery', isEditable: false, type: 'bool'},
+					{id: 'deliver', name: 'Delivery', isEditable: false, type: 'text'},
 					{id: 'src', name: 'Archivo', isEditable: false, type: 'file'}
 				]
 			};
@@ -52,12 +55,13 @@
 			};
 
 			var _calculateTotal = function() {
-				var key, sum = 0;
+				var key, sum = 0,
+					deliveryPrice = parseFloat(_config.deliveryPrice);
 				for(key in _order.products) {
 					sum += _order.products[key].price * _order.products[key].count;
 				}
-				if(_order.delivery){
-					sum += 6; //TODO: use service value
+				if(_order.delivery && !isNaN(deliveryPrice)) {
+					sum += deliveryPrice;
 				}
 				_order.total = sum.toFixed(2);
 				_order.count = Object.keys(_order.products).length;

@@ -25,13 +25,14 @@
 							rosarioPm: []
 						},
 						minOrderPrice: 0,
+						deliveryPrice: 0,
 						closed: false
 					};
 
 				var _getColumns = function () {
 					return [
-						{id: 'name', name: 'Nombre', isEditable: false, type: 'text'},
-						{id: 'value', name: 'Valor', isEditable: true, type: 'text'}
+						{id: 'name', name: 'Nombre', isEditable: false, type: 'config-text'},
+						{id: 'value', name: 'Valor', isEditable: true, type: 'config'}
 					]
 				};
 
@@ -140,6 +141,9 @@
 				return {
 					GetAll: function() {
 						return General.FetchAll();
+					},
+					Save: function(item) {
+						return General.Save(item);
 					},
 					GetColumns: function() {
 						return _getColumns();
