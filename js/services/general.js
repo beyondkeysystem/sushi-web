@@ -5,8 +5,9 @@
 	angular.module('services.general', [
 			'resources.general'
 		]).factory('GeneralService', [
+			'$http',
 			'General',
-			function(General) {
+			function($http, General) {
 
 				var _config = {
 						loading: false,
@@ -143,7 +144,12 @@
 						return General.FetchAll();
 					},
 					Save: function(item) {
-						return General.Save(item);
+						return $http({
+							method: 'PUT',
+							url: '/api/v1/general/'+item.id,
+							data: {name: item.name, value: item.value},
+							headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+						});
 					},
 					GetColumns: function() {
 						return _getColumns();

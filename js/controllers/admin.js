@@ -34,15 +34,6 @@
 							console.error(error);
 						}
 					);
-				} else if($scope.page === 'categorias') {
-					CS.Save(item).then(
-						function (response) {
-							console.log(response);
-						},
-						function (error) {
-							console.error(error);
-						}
-					);
 				} else if($scope.page === 'productos') {
 					PS.Save(item).then(
 						function (response) {
