@@ -59,7 +59,7 @@
 			var _getColumns = function () {
 				return [
 					{id: 'name', name: 'Nombre', isEditable: true, type: 'text'},
-					{id: 'categoryId', name: 'Categoria', isEditable: true, type: 'text'},
+					{id: 'categoryId', name: 'Categoria', isEditable: true, type: 'select'},
 					{id: 'description', name: 'Descripción', isEditable: true, type: 'text'},
 					{id: 'image', name: 'Imagen', isEditable: false, type: 'image'},
 					{id: 'amount', name: 'Cantidad', isEditable: true, type: 'text'},

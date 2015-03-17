@@ -94,6 +94,8 @@
 						return 'Precio minimo';
 					case 'deliveryPrice':
 						return 'Precio delivery';
+					case 'promo':
+						return 'Mostrar Promo (0-No, 1-Si)';
 				}
 			};
 

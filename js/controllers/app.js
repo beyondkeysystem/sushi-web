@@ -10,6 +10,7 @@
 		'controllers.home',
 		'controllers.order',
 		'controllers.admin',
+		'controllers.admin-combos',
 		'controllers.login',
 		'controllers.logout',
 		'services.auth',

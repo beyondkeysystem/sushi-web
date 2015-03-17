@@ -22,6 +22,12 @@
 					'roles': accessLevels['admin']
 				},
 				{
+					'url': '/admin/combos',
+					'template': '/partials/pages/admin-combos.html',
+					'controller': 'AdminCombos',
+					'roles': accessLevels['admin']
+				},
+				{
 					'url': '/admin/:page',
 					'template': '/partials/pages/admin.html',
 					'controller': 'Admin',
