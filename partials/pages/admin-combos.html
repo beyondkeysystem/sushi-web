@@ -1,35 +1,48 @@
 <div class="public">
 	<div data-header=""></div>
 	<div class="body">
-		<div class="container">
+		<div class="container-fluid">
 			<div data-admin-navbar=""></div>
 			<div class="admin table-responsive">
 				<table class="table table-striped table-hover table-condensed">
 					<thead>
 						<tr>
 							<th data-ng-repeat="column in columns">{{column.name}}</th>
-							<th data-ng-if="new.options">Opciones</th>
+							<th class="table-opt-2 text-center">Opciones</th>
 						</tr>
 					</thead>
 					<tbody>
+						<!-- NEW -->
 						<tr>
-							<td data-ng-if="!new.isEditing" colspan="{{columns.length+1}}" title="{{new.text}}" class="text-center">
-								<button data-ng-if="!new.isEditing" class="btn btn-success" data-ng-click="new(new.item)">
+							<!-- NEW BUTTON -->
+							<td data-ng-if="!newItem.isEditing" colspan="{{columns.length+1}}" title="{{newItem.text}}" class="text-center">
+								<button data-ng-if="!newItem.isEditing" class="btn btn-success" data-ng-click="addNew(newItem.item)">
 									<i class="fa fa-plus"></i>
 								</button>
 							</td>
-							<td data-ng-if="new.isEditing" data-ng-repeat="field in columns">
-								<input data-ng-if="field.isEditable && new.isEditing" type="{{field.type}}" min="0" class="form-control" data-ng-model="new.item[field.id]">
+							<!-- EDITING -->
+							<td data-ng-if="newItem.isEditing" data-ng-repeat="field in columns" data-ng-class="field.tdClass">
+								<div data-ng-if="field.isEditable && newItem.isEditing" class="input-group text-center">
+									<input data-ng-if="field.type === 'text'" type="text" class="form-control" data-ng-model="newItem.item[field.id]">
+									<input data-ng-if="field.type === 'int'" type="number" step="1" min="1" class="form-control" data-ng-model="newItem.item[field.id]">
+									<span data-ng-if="field.type === 'money'" class="input-group-addon">$</span>
+									<input data-ng-if="field.type === 'money'" type="number" min="0" class="form-control" data-ng-model="newItem.item[field.id]">
+									<button data-ng-if="field.type === 'image'" class="btn btn-success" data-ng-click="uploadImage(newItem.item)">
+										<i class="fa fa-upload"></i>
+									</button>
+								</div>
 							</td>
-							<td data-ng-if="new.isEditing">
-								<button data-ng-if="new.isEditing" class="btn btn-success" data-ng-click="saveNew(new.item)">
+							<!-- EDIT OPTIONS -->
+							<td data-ng-if="newItem.isEditing" class="text-center">
+								<button data-ng-if="newItem.isEditing" class="btn btn-success" data-ng-click="saveNew(newItem.item)">
 									<i class="fa fa-check"></i>
 								</button>
-								<button data-ng-if="new.isEditing" class="btn btn-danger" data-ng-click="cancelNew(new.item)">
+								<button data-ng-if="newItem.isEditing" class="btn btn-danger" data-ng-click="cancelNew(newItem.item)">
 									<i class="fa fa-times"></i>
 								</button>
 							</td>
 						</tr>
+						<!-- LIST -->
 						<tr data-ng-if="results.length" data-ng-repeat="item in results">
 							<td data-ng-repeat="field in columns">
 								<img data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'image'" data-ng-src="{{item[field.id]}}" alt="{{item[field.id]}}" width="50">
@@ -39,11 +52,11 @@
 								<div data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'config'">{{item[field.id]}}</div>
 								<input data-ng-if="field.isEditable && item.isEditing" type="{{field.type}}" min="0" class="form-control" data-ng-model="editList[item.id][field.id]">
 							</td>
-							<td data-ng-if="new.options">
-								<button data-ng-if="new.canEdit && !item.isEditing" class="btn btn-primary" data-ng-click="edit(item)">
+							<td class="table-opt-2 text-center">
+								<button data-ng-if="!item.isEditing" class="btn btn-primary" data-ng-click="edit(item)">
 									<i class="fa fa-pencil"></i>
 								</button>
-								<button data-ng-if="new.canDelete && !item.isEditing" class="btn btn-danger" data-ng-click="remove(item)">
+								<button data-ng-if="!item.isEditing" class="btn btn-danger" data-ng-click="remove(item)">
 									<i class="fa fa-trash"></i>
 								</button>
 								<button data-ng-if="item.isEditing" class="btn btn-success" data-ng-click="save(item)">

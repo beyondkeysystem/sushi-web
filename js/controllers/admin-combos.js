@@ -19,39 +19,48 @@
 		'Combo',
 		function($scope, $http, $timeout, $location, AuthService, GS, Validate, Combo) {
 
+			var _validate = function (combo) {
+				var invalids = [];
+			};
+
 			$scope.results = [];
 			$scope.columns = [
-				{id: 'name', name: 'Nombre', isEditable: true, type: 'text'},
-				{id: 'description', name: 'Descripcion', isEditable: true, type: 'text'},
-				{id: 'image', name: 'Imagen', isEditable: true, type: 'image'},
-				{id: 'amount1', name: 'Cant', isEditable: true, type: 'int'},
-				{id: 'price1', name: 'Prec', isEditable: true, type: 'money'},
-				{id: 'amount2', name: 'Cant', isEditable: true, type: 'int'},
-				{id: 'price2', name: 'Prec', isEditable: true, type: 'money'},
-				{id: 'amount3', name: 'Cant', isEditable: true, type: 'int'},
-				{id: 'price3', name: 'Prec', isEditable: true, type: 'money'},
-				{id: 'amount4', name: 'Cant', isEditable: true, type: 'int'},
-				{id: 'price5', name: 'Prec', isEditable: true, type: 'money'}
+				{id: 'name', name: 'Nombre', isEditable: true, type: 'text', tdClass: 'table-opt-2'},
+				{id: 'description', name: 'Descripcion', isEditable: true, type: 'text', tdClass: 'table-opt-min-4'},
+				{id: 'image', name: 'Imagen', isEditable: true, type: 'image', tdClass: 'center-image'},
+				{id: 'amount1', name: 'Cant', isEditable: true, type: 'int', tdClass: 'table-opt-2'},
+				{id: 'price1', name: 'Prec', isEditable: true, type: 'money', tdClass: 'table-opt-3'},
+				{id: 'amount2', name: 'Cant', isEditable: true, type: 'int', tdClass: 'table-opt-2'},
+				{id: 'price2', name: 'Prec', isEditable: true, type: 'money', tdClass: 'table-opt-3'},
+				{id: 'amount3', name: 'Cant', isEditable: true, type: 'int', tdClass: 'table-opt-2'},
+				{id: 'price3', name: 'Prec', isEditable: true, type: 'money', tdClass: 'table-opt-3'},
+				{id: 'amount4', name: 'Cant', isEditable: true, type: 'int', tdClass: 'table-opt-2'},
+				{id: 'price5', name: 'Prec', isEditable: true, type: 'money', tdClass: 'table-opt-3'}
 			];
 
 			$scope.editList = {};
 
-			$scope.new = {
+			$scope.newItem = {
 				isEditing: false,
 				text: 'Nuevo Combo',
-				item: {}
+				item: new Combo()
 			};
 
-			$scope.new = function () {
-				$scope.new.isEditing = true;
+			$scope.uploadImage = function (item) {
+				console.log('uploading image for: ', item);
+			};
+
+			$scope.addNew = function () {
+				$scope.newItem.isEditing = true;
 			};
 
 			$scope.saveNew = function () {
-				$scope.new.isEditing = false;
+				console.log($scope.newItem.item);
+				$scope.newItem.isEditing = false;
 			};
 
 			$scope.cancelNew = function () {
-				$scope.new.isEditing = false;
+				$scope.newItem.isEditing = false;
 			};
 
 			$scope.edit = function (item) {

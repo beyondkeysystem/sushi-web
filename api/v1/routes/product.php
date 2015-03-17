@@ -11,8 +11,8 @@ $app->get('/product/:id',function($id) use($db){
 	$dbquery = $db->prepare("select * from products where id=:id AND active=1");
 	$dbquery->execute(array('id'=>$id));
 	$data = $dbquery->fetchAll(PDO::FETCH_ASSOC);
-	if(empty($data)){
-		echoResponse(404);
+	if(empty($data)) {
+		echoResponse(200, null);
 	} else {
 		echoResponse(200, $data[0]);
 	}
@@ -24,7 +24,7 @@ $app->get('/product/:param/:value',function($param, $id) use($db){
 	$dbquery->execute();
 	$data = $dbquery->fetchAll(PDO::FETCH_ASSOC);
 	if(empty($data)){
-		echoResponse(404);
+		echoResponse(200, array());
 	} else {
 		echoResponse(200, $data);
 	}
