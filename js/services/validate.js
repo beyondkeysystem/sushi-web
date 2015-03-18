@@ -55,8 +55,8 @@
 				NotEmpty: function (value) {
 					return _notEmpty(value);
 				},
-				MinLength: function (value) {
-					return _minLength(value);
+				MinLength: function (value, min) {
+					return _minLength(value, min);
 				},
 				Equal: function (value) {
 					return _equal(value);

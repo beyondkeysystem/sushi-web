@@ -24,12 +24,15 @@
 							<td data-ng-if="newItem.isEditing" data-ng-repeat="field in columns" data-ng-class="field.tdClass">
 								<div data-ng-if="field.isEditable && newItem.isEditing" class="input-group text-center">
 									<input data-ng-if="field.type === 'text'" type="text" class="form-control" data-ng-model="newItem.item[field.id]">
-									<input data-ng-if="field.type === 'int'" type="number" step="1" min="1" class="form-control" data-ng-model="newItem.item[field.id]">
+									<input data-ng-if="field.type === 'int'" type="text" class="form-control" data-ng-model="newItem.item[field.id]">
 									<span data-ng-if="field.type === 'money'" class="input-group-addon">$</span>
-									<input data-ng-if="field.type === 'money'" type="number" min="0" class="form-control" data-ng-model="newItem.item[field.id]">
+									<input data-ng-if="field.type === 'money'" type="text" class="form-control" data-ng-model="newItem.item[field.id]">
 									<button data-ng-if="field.type === 'image'" class="btn btn-success" data-ng-click="uploadImage(newItem.item)">
 										<i class="fa fa-upload"></i>
 									</button>
+									<span data-ng-if="newItem.item.errors[field.id]" class="label label-danger">
+										<i class="fa fa-times-circle margin-right-xsmall"></i> {{newItem.item.errors[field.id]}}
+									</span>
 								</div>
 							</td>
 							<!-- EDIT OPTIONS -->

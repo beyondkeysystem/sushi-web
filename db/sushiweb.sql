@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 17, 2015 at 01:31 PM
+-- Generation Time: Mar 18, 2015 at 06:10 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -59,7 +59,7 @@ INSERT INTO `categories` (`id`, `name`, `image`, `description`, `order`, `active
 CREATE TABLE IF NOT EXISTS `combos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `description` varchar(1023) DEFAULT NULL,
   `image` varchar(255) NOT NULL DEFAULT '/img/combos/00001.png',
   `amount1` int(3) NOT NULL DEFAULT '1',
   `price1` float NOT NULL DEFAULT '0',
