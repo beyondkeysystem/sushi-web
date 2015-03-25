@@ -4,6 +4,7 @@
 	angular.module('controllers.admin-combos', [
 		'ngRoute',
 		'ngNotify',
+		'flow',
 		'directives.admin-navbar',
 		'services.auth',
 		'services.general',
@@ -127,6 +128,11 @@
 				{id: 'price4', name: 'Prec4', isEditable: true, type: 'money', tdClass: 'table-opt-3'}
 			];
 
+			$scope.renderUpload = true;
+			$scope.showUpload = false;
+			$scope.uploadError = false;
+			$scope.uploadItem = undefined;
+
 			$scope.editList = {};
 
 			$scope.newItem = {
@@ -135,8 +141,35 @@
 				item: new Combo()
 			};
 
-			$scope.uploadImage = function (item) {
-				console.log('uploading image for: ', item);
+			$scope.startUpload = function (item) {
+				$scope.showUpload = true;
+				$scope.uploadItem = item;
+			};
+
+			$scope.imageAdded = function (image) {
+				$scope.uploadError = false;
+				if(['png', 'jpg', 'jpeg'].indexOf(image.getExtension()) < 0) {
+					$scope.uploadError = true;
+					return false;
+				}
+				image.uniqueIdentifier += '--data--combos--'+$scope.uploadItem.id;
+				return true;
+			};
+
+			$scope.closeUpload = function () {
+				$scope.showUpload = false;
+				$scope.uploadError = true;
+				$scope.uploadItem = undefined;
+				$timeout(function () {
+					$scope.renderUpload = false;
+					$timeout(function () {
+						$scope.renderUpload = true;
+					}, 100);
+				}, 1000);
+			};
+
+			$scope.newImage = function () {
+				ngNotify.set('Debe guardar el combo y luego abrir el modo edicion para cargar la imagen.', 'error');
 			};
 
 			$scope.addNew = function () {
@@ -146,6 +179,7 @@
 			$scope.saveNew = function () {
 				if(_validate($scope.newItem.item)) {
 					$scope.newItem.isEditing = false;
+					//TODO: use Combo.Save
 					$http({
 						method: 'POST',
 						url: '/api/v1/combo',
@@ -154,8 +188,11 @@
 					}).then(
 						function (response) {
 							ngNotify.set('El combo se ha guardado correctamente.', 'success');
-							$scope.newItem.item = new Combo();
-							console.log(response);
+							$scope.newItem.item.id = response.data.id;
+							$timeout(function() {
+								$scope.results.push(angular.copy($scope.newItem.item));
+								$scope.newItem.item = new Combo();
+							});
 						},
 						function (error) {
 							ngNotify.set('No se puedo guardar el nuevo combo.', 'error');

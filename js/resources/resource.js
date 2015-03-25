@@ -261,11 +261,11 @@
 				};
 
 				Resource.Save = function(name, obj, createResource, populate, config) {
-					var method = 'post', url = '/api/v1/' + name,
+					var method = 'POST', url = '/api/v1/' + name,
 						deferred = $q.defer();
 					if (angular.isObject(obj)) {
 						if (angular.isString(obj.id)) {
-							method = 'put';
+							method = 'PUT';
 							url += '/' + obj.id;
 						}
 						if (!angular.isFunction(createResource)) {
@@ -274,7 +274,12 @@
 							};
 						}
 						obj = obj.$export();
-						$http[method](url, obj, config).then(
+						$http({
+							method: method,
+							url: url,
+							data: obj,
+							headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+						}).then(
 							function(response) {
 								var newResource = createResource(response.data);
 								deferred.resolve(_updateCachePromise(name, newResource, populate));

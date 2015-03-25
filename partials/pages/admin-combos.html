@@ -27,8 +27,8 @@
 									<input data-ng-if="field.type === 'int'" type="text" class="form-control" data-ng-model="newItem.item[field.id]">
 									<span data-ng-if="field.type === 'money'" class="input-group-addon">$</span>
 									<input data-ng-if="field.type === 'money'" type="text" class="form-control" data-ng-model="newItem.item[field.id]">
-									<button data-ng-if="field.type === 'image'" class="btn btn-success" data-ng-click="uploadImage(newItem.item)">
-										<i class="fa fa-upload"></i>
+									<button data-ng-if="field.type === 'image'" class="btn btn-danger" data-ng-click="newImage()">
+										<i class="fa fa-question"></i>
 									</button>
 									<span data-ng-if="newItem.item.errors[field.id]" class="label label-danger">
 										<i class="fa fa-times-circle margin-right-xsmall"></i> {{newItem.item.errors[field.id]}}
@@ -47,13 +47,25 @@
 						</tr>
 						<!-- LIST -->
 						<tr data-ng-if="results.length" data-ng-repeat="item in results">
-							<td data-ng-repeat="field in columns">
-								<img data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'image'" data-ng-src="{{item[field.id]}}" alt="{{item[field.id]}}" width="50">
-								<span data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'text'">{{item[field.id]}}</span>
-								<span data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'config-text'">{{getHumanReadable(item[field.id])}}</span>
-								<a data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'file'" data-ng-href="{{item[field.id]}}" target="_blank" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-								<div data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'config'">{{item[field.id]}}</div>
-								<input data-ng-if="field.isEditable && item.isEditing" type="{{field.type}}" min="0" class="form-control" data-ng-model="editList[item.id][field.id]">
+							<td data-ng-repeat="field in columns" data-ng-class="field.tdClass">
+								<div data-ng-if="!field.isEditable || !item.isEditing">
+									<span data-ng-if="field.type === 'money' && item[field.id].length">$</span>
+									<span data-ng-if="field.type !== 'image'">{{item[field.id]}}</span>
+									<i data-ng-if="field.type === 'int' && item[field.id].length" class="fa fa-arrow-right margin-left-xsmall"></i>
+									<img data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'image'" data-ng-src="{{item[field.id]}}" alt="{{item[field.id]}}" width="50">
+								</div>
+								<div data-ng-if="field.isEditable && item.isEditing" class="input-group text-center">
+									<input data-ng-if="field.type === 'text'" type="text" class="form-control" data-ng-model="item[field.id]">
+									<input data-ng-if="field.type === 'int'" type="text" class="form-control" data-ng-model="item[field.id]">
+									<span data-ng-if="field.type === 'money'" class="input-group-addon">$</span>
+									<input data-ng-if="field.type === 'money'" type="text" class="form-control" data-ng-model="item[field.id]">
+									<button data-ng-if="field.type === 'image'" class="btn btn-success" data-ng-click="startUpload(item)">
+										<i class="fa fa-upload"></i>
+									</button>
+									<span data-ng-if="item.errors[field.id]" class="label label-danger">
+										<i class="fa fa-times-circle margin-right-xsmall"></i> {{item.errors[field.id]}}
+									</span>
+								</div>
 							</td>
 							<td class="table-opt-2 text-center">
 								<button data-ng-if="!item.isEditing" class="btn btn-primary" data-ng-click="edit(item)">
@@ -79,6 +91,52 @@
 						</tr>
 					</tbody>
 				</table>
+			</div>
+			<div class="image-upload" data-ng-if="renderUpload" data-ng-class="{shown: showUpload}" 
+				data-flow-init="{target:'/api/v1/upload/image/combo', testChunks:false, singleFile:true}"
+				data-flow-file-added="imageAdded($file)">
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<h3>Cargar Imagen</h3>
+						<div class="action-buttons">
+							<span class="btn btn-success" data-ng-show="!$flow.files.length" data-flow-btn="">
+								<i class="fa fa-upload"></i> Seleccionar
+								<input type="file" style="visibility: hidden; position: absolute;">
+							</span>
+							<span class="btn btn-danger" data-ng-show="!$flow.files.length" data-ng-click="closeUpload()">
+								<i class="fa fa-times"></i> Salir
+							</span>
+							<span class="btn btn-success ng-hide" data-ng-show="$flow.files.length && !$flow.isUploading()" ng-click="$flow.resume()">
+								<i class="fa fa-upload"></i> Subir
+							</span>
+							<span class="btn btn-info ng-hide" data-ng-show="$flow.files.length && !$flow.isUploading()" data-flow-btn="">
+								<i class="fa fa-pencil"></i> Cambiar
+								<input type="file" style="visibility: hidden; position: absolute;">
+							</span>
+							<span data-ng-show="$flow.isUploading()">Subiendo...</span>
+							<span class="btn btn-danger" data-ng-show="$flow.files.length && !$flow.isUploading()" data-ng-click="closeUpload()">
+								<i class="fa fa-times"></i> Cancelar
+							</span>
+							<span class="btn btn-danger ng-hide" data-ng-show="$flow.isUploading()" ng-click="$flow.pause()">
+								<i class="fa fa-times"></i> Cancelar
+							</span>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="thumbnail" data-ng-show="!$flow.files.length">
+							<img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=sin+imagen">
+						</div>
+						<div class="thumbnail ng-hide" data-ng-show="$flow.files.length">
+							<img data-flow-img="$flow.files[0]">
+						</div>
+						<div class="text-center">
+							
+						</div>
+						<span data-ng-if="uploadError" class="label label-danger">
+							Solo se permite PNG o JPG.
+						</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
