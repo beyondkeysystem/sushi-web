@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.14
+-- version 4.2.10
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 18, 2015 at 06:10 PM
--- Server version: 5.6.17
--- PHP Version: 5.5.12
+-- Host: localhost
+-- Generation Time: Mar 28, 2015 at 04:27 AM
+-- Server version: 5.5.38
+-- PHP Version: 5.6.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,15 +26,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `categories`
 --
 
-CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `categories` (
+`id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `image` varchar(255) NOT NULL,
   `description` text,
   `order` int(11) DEFAULT '0',
-  `active` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+  `active` tinyint(4) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `categories`
@@ -56,11 +55,11 @@ INSERT INTO `categories` (`id`, `name`, `image`, `description`, `order`, `active
 -- Table structure for table `combos`
 --
 
-CREATE TABLE IF NOT EXISTS `combos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `combos` (
+`id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(1023) DEFAULT NULL,
-  `image` varchar(255) NOT NULL DEFAULT '/img/combos/00001.png',
+  `image` varchar(255) NOT NULL DEFAULT '/img/combos/00000.png',
   `amount1` int(3) NOT NULL DEFAULT '1',
   `price1` float NOT NULL DEFAULT '0',
   `amount2` int(3) DEFAULT NULL,
@@ -69,9 +68,8 @@ CREATE TABLE IF NOT EXISTS `combos` (
   `price3` float DEFAULT NULL,
   `amount4` int(3) DEFAULT NULL,
   `price4` float DEFAULT NULL,
-  `active` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `active` tinyint(4) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `combos`
@@ -79,10 +77,7 @@ CREATE TABLE IF NOT EXISTS `combos` (
 
 INSERT INTO `combos` (`id`, `name`, `description`, `image`, `amount1`, `price1`, `amount2`, `price2`, `amount3`, `price3`, `amount4`, `price4`, `active`) VALUES
 (1, 'AMAZONAS', 'Shitake Roll, Golden, Shi Roll, California Roll, Tei Salmón, Azteka Roll.', '/img/combos/00001.png', 24, 151, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(2, 'TAMESIS', 'Humo Roll, Dragon Roll, Capresse, Sunny Roll, Chicken, Veggie, Sashimi de Tamago', '/img/combos/00001.png', 36, 225, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(3, 'HOME SPECCIALS', 'Tuna Roll, SH Roll, Philadelphia Roll, Humo Maki, Maki de Salmón, Futomaki vegetariano', '/img/combos/00001.png', 12, 45, 24, 89, 36, 130, NULL, NULL, 1),
-(4, 'VOLGA', 'Philadelphia Roll, New York Roll, Maki Salmón, Maki Philadelphia, Niguiris de Salmón, Sashimi de Salmón', '/img/combos/00001.png', 12, 89, 24, 174, NULL, NULL, NULL, NULL, 1),
-(5, 'Home Salmón', 'Philadelphia Roll New York Roll Maki Salmón Maki Philadelphia Niguiris de Salmón Sashimi de Salmón', '/img/combos/00001.png', 12, 84, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+(2, 'TAMESIS', 'Humo Roll, Dragon Roll, Capresse, Sunny Roll, Chicken, Veggie, Sashimi de Tamago', '/img/combos/00001.png', 36, 225, NULL, NULL, NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -90,8 +85,8 @@ INSERT INTO `combos` (`id`, `name`, `description`, `image`, `amount1`, `price1`,
 -- Table structure for table `customers`
 --
 
-CREATE TABLE IF NOT EXISTS `customers` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `customers` (
+`id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL DEFAULT '',
   `password` varchar(255) NOT NULL DEFAULT '',
   `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
@@ -100,9 +95,8 @@ CREATE TABLE IF NOT EXISTS `customers` (
   `comments` varchar(255) NOT NULL,
   `firstName` varchar(255) NOT NULL,
   `lastName` varchar(255) NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `active` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `customers`
@@ -118,12 +112,11 @@ INSERT INTO `customers` (`id`, `email`, `password`, `isAdmin`, `address`, `phone
 -- Table structure for table `general`
 --
 
-CREATE TABLE IF NOT EXISTS `general` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `general` (
+`id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
-  `value` varchar(256) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+  `value` varchar(256) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `general`
@@ -149,13 +142,12 @@ INSERT INTO `general` (`id`, `name`, `value`) VALUES
 -- Table structure for table `order-item`
 --
 
-CREATE TABLE IF NOT EXISTS `order-item` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `order-item` (
+`id` int(11) NOT NULL,
   `orderId` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
-  `amount` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -163,8 +155,8 @@ CREATE TABLE IF NOT EXISTS `order-item` (
 -- Table structure for table `orders`
 --
 
-CREATE TABLE IF NOT EXISTS `orders` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `orders` (
+`id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
   `phone` varchar(256) NOT NULL,
@@ -177,9 +169,8 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `paid` tinyint(1) NOT NULL DEFAULT '0',
   `deliver` tinyint(1) NOT NULL DEFAULT '0',
   `src` varchar(256) NOT NULL,
-  `active` tinyint(1) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `active` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -187,8 +178,8 @@ CREATE TABLE IF NOT EXISTS `orders` (
 -- Table structure for table `products`
 --
 
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `products` (
+`id` int(11) NOT NULL,
   `categoryId` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `plu` smallint(6) NOT NULL,
@@ -196,10 +187,94 @@ CREATE TABLE IF NOT EXISTS `products` (
   `image` varchar(255) NOT NULL DEFAULT '/img/products/00001.png',
   `amount` int(3) NOT NULL DEFAULT '1',
   `price` float NOT NULL DEFAULT '0',
-  `active` tinyint(4) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `active` tinyint(4) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `combos`
+--
+ALTER TABLE `combos`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `customers`
+--
+ALTER TABLE `customers`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `general`
+--
+ALTER TABLE `general`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `order-item`
+--
+ALTER TABLE `order-item`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+ ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `combos`
+--
+ALTER TABLE `combos`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `customers`
+--
+ALTER TABLE `customers`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `general`
+--
+ALTER TABLE `general`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+--
+-- AUTO_INCREMENT for table `order-item`
+--
+ALTER TABLE `order-item`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

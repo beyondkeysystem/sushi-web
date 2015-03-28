@@ -46,24 +46,24 @@
 							</td>
 						</tr>
 						<!-- LIST -->
-						<tr data-ng-if="results.length" data-ng-repeat="item in results">
+						<tr data-ng-if="results.length" data-ng-repeat="item in results track by $index">
 							<td data-ng-repeat="field in columns" data-ng-class="field.tdClass">
 								<div data-ng-if="!field.isEditable || !item.isEditing">
 									<span data-ng-if="field.type === 'money' && item[field.id].length">$</span>
 									<span data-ng-if="field.type !== 'image'">{{item[field.id]}}</span>
 									<i data-ng-if="field.type === 'int' && item[field.id].length" class="fa fa-arrow-right margin-left-xsmall"></i>
-									<img data-ng-if="(!field.isEditable || !item.isEditing) && field.type === 'image'" data-ng-src="{{item[field.id]}}" alt="{{item[field.id]}}" width="50">
+									<img data-ng-if="field.type === 'image'" data-ng-src="{{item[field.id]}}" alt="{{item[field.id]}}" width="50">
 								</div>
 								<div data-ng-if="field.isEditable && item.isEditing" class="input-group text-center">
-									<input data-ng-if="field.type === 'text'" type="text" class="form-control" data-ng-model="item[field.id]">
-									<input data-ng-if="field.type === 'int'" type="text" class="form-control" data-ng-model="item[field.id]">
+									<input data-ng-if="field.type === 'text'" type="text" class="form-control" data-ng-model="editList[item.id][field.id]">
+									<input data-ng-if="field.type === 'int'" type="text" class="form-control" data-ng-model="editList[item.id][field.id]">
 									<span data-ng-if="field.type === 'money'" class="input-group-addon">$</span>
-									<input data-ng-if="field.type === 'money'" type="text" class="form-control" data-ng-model="item[field.id]">
+									<input data-ng-if="field.type === 'money'" type="text" class="form-control" data-ng-model="editList[item.id][field.id]">
 									<button data-ng-if="field.type === 'image'" class="btn btn-success" data-ng-click="startUpload(item)">
 										<i class="fa fa-upload"></i>
 									</button>
-									<span data-ng-if="item.errors[field.id]" class="label label-danger">
-										<i class="fa fa-times-circle margin-right-xsmall"></i> {{item.errors[field.id]}}
+									<span data-ng-if="editList[item.id].errors[field.id]" class="label label-danger">
+										<i class="fa fa-times-circle margin-right-xsmall"></i> {{editList[item.id].errors[field.id]}}
 									</span>
 								</div>
 							</td>
@@ -71,7 +71,7 @@
 								<button data-ng-if="!item.isEditing" class="btn btn-primary" data-ng-click="edit(item)">
 									<i class="fa fa-pencil"></i>
 								</button>
-								<button data-ng-if="!item.isEditing" class="btn btn-danger" data-ng-click="remove(item)">
+								<button data-ng-if="!item.isEditing" class="btn btn-danger" data-ng-click="removeInfo()" data-ng-dblclick="remove(item)">
 									<i class="fa fa-trash"></i>
 								</button>
 								<button data-ng-if="item.isEditing" class="btn btn-success" data-ng-click="save(item)">
@@ -94,6 +94,7 @@
 			</div>
 			<div class="image-upload" data-ng-if="renderUpload" data-ng-class="{shown: showUpload}" 
 				data-flow-init="{target:'/api/v1/upload/image/combo', testChunks:false, singleFile:true}"
+				data-flow-file-error="errorUpload()" data-flow-file-success="successUpload()"
 				data-flow-file-added="imageAdded($file)">
 				<div class="panel panel-success">
 					<div class="panel-heading">
@@ -133,7 +134,7 @@
 							
 						</div>
 						<span data-ng-if="uploadError" class="label label-danger">
-							Solo se permite PNG o JPG.
+							Solo se permiten imagenes PNG.
 						</span>
 					</div>
 				</div>

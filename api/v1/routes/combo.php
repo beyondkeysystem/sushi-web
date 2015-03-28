@@ -46,75 +46,65 @@ $app->get('/combo/:param/:value',function($param, $id) use($db){
 */
 $app->post('/combo',function() use($app, $db){
 	Security::RestictedAccess('admin');
-	$params = $app->request->post();
-	$invalids = array();
-	if(!isset($params['name']) || !Validation::string()->length(1, 255)->validate($params['name'])) array_push($invalids, 'name');
-	if(!isset($params['description']) || !Validation::string()->length(4, 1023)->validate($params['description'])) array_push($invalids, 'description');
-	if(!isset($params['price1']) || !Validation::float()->min(0, true)->validate($params['price1'])) array_push($invalids, 'price1');
-	if(!isset($params['amount1']) || !Validation::int()->min(1, true)->validate($params['amount1'])) array_push($invalids, 'amount1');
-	//check if combos 2, 3 or 4 are given
-	if(isset($params['price2']) || isset($params['amount2']) || isset($params['price3']) || isset($params['amount3']) || isset($params['price4']) || isset($params['amount4'])) {
-		if(!isset($params['price2']) || !Validation::float()->min(0, true)->validate($params['price2'])) array_push($invalids, 'price2');
-		if(!isset($params['amount2']) || !Validation::int()->min(1, true)->validate($params['amount2'])) array_push($invalids, 'amount2');	
-	} else {
-		$params['price2'] = $params['amount2'] = null;
-	}
-	//check if combos 3 or 4 are given
-	if(isset($params['price3']) || isset($params['amount3']) || isset($params['price4']) || isset($params['amount4'])) {
-		if(!isset($params['price3']) || !Validation::float()->min(0, true)->validate($params['price3'])) array_push($invalids, 'price3');
-		if(!isset($params['amount3']) || !Validation::int()->min(1, true)->validate($params['amount3'])) array_push($invalids, 'amount3');
-	} else {
-		$params['price3'] = $params['amount3'] = null;
-	}
-	//check if combo 4 is given
-	if(isset($params['price4']) || isset($params['amount4'])) {
-		if(!isset($params['price4']) || !Validation::float()->min(0, true)->validate($params['price4'])) array_push($invalids, 'price4');
-		if(!isset($params['amount4']) || !Validation::int()->min(1, true)->validate($params['amount4'])) array_push($invalids, 'amount4');
-	} else {
-		$params['price4'] = $params['amount4'] = null;
-	}
+	$combo = $app->request->post();
+	$invalids = validateCombo($combo);
 	if(empty($invalids)) {
 		$queryValues = array(
-			'name'=>$params['name'],
-			'description'=>$params['description'],
-			'amount1'=>$params['amount1'],
-			'price1'=>$params['price1'],
-			'amount2'=>$params['amount2'],
-			'price2'=>$params['price2'],
-			'amount3'=>$params['amount3'],
-			'price3'=>$params['price3'],
-			'amount4'=>$params['amount4'],
-			'price4'=>$params['price4']
+			'name'=>$combo['name'],
+			'description'=>$combo['description'],
+			'amount1'=>$combo['amount1'],
+			'price1'=>$combo['price1'],
+			'amount2'=>$combo['amount2'],
+			'price2'=>$combo['price2'],
+			'amount3'=>$combo['amount3'],
+			'price3'=>$combo['price3'],
+			'amount4'=>$combo['amount4'],
+			'price4'=>$combo['price4']
 		);
 		$dbquery = $db->prepare('INSERT INTO combos(name, description, amount1, price1, amount2, price2, amount3, price3, amount4, price4) VALUES (:name, :description, :amount1, :price1, :amount2, :price2, :amount3, :price3, :amount4, :price4)');
 		$success = $dbquery->execute($queryValues);
 		$id = $db->lastInsertId();
-		echoResponse(200, array('success'=>$success, 'id'=>$id));
+		$ds = DIRECTORY_SEPARATOR;
+		$fileName = str_pad($id, 5, '0', STR_PAD_LEFT).'.png';
+		$dir = __DIR__ .$ds.'..'.$ds.'..'.$ds.'..'.$ds.'img'.$ds.'combos';
+		if ($success && copy($dir.$ds.'00000.png', $dir.$ds.$fileName)) {
+			$dbquery = $db->prepare('UPDATE combos SET image="/img/combos/'.$fileName.'" where id='.$id);
+			$dbquery->execute();
+			$combo['id'] = $id;
+			$combo['image'] = '/img/combos/'.$fileName;
+		}
+		echoResponse(200, array('success'=>$success, 'combo'=>$combo));
 	} else {
 		$error = 'Unable to save combo with invalid params: '.join(', ', $invalids);
-		echoResponse(400, null, array('error'=>$error, 'params'=>$params));
+		echoResponse(400, null, array('error'=>$error, 'params'=>$combo));
 	}
 });
 
 $app->put('/combo/:id',function($id) use($app, $db){
 	Security::RestictedAccess('admin');
-	$params = $app->request->put();
-	$queryValues = array(
-		'name'=>$params['name'],
-		'description'=>$params['description'],
-		'image'=>$params['image'],
-		'amount1'=>$params['amount1'],
-		'price1'=>$params['price1'],
-		'amount2'=>$params['amount2'],
-		'price2'=>$params['price2'],
-		'amount3'=>$params['amount3'],
-		'price3'=>$params['price3'],
-		'amount4'=>$params['amount4'],
-		'price4'=>$params['price4']
-	);
-	$dbquery = $db->prepare('UPDATE combos SET name:=name, description=:description, image=:image, amount1:=amount1, price1=:price1, amount2:=amount2, price2=:price2, amount3:=amount3, price3=:price3, amount4:=amount4, price4=:price4 where id=:id');
-	$dbquery->execute($queryValues);
-	echoResponse(200, array('success'=>$success));
+	$combo = $app->request->put();
+	$invalids = validateCombo($combo);
+	if(empty($invalids)) {
+		$queryValues = array(
+			'id'=>$id,
+			'name'=>$combo['name'],
+			'description'=>$combo['description'],
+			'amount1'=>$combo['amount1'],
+			'price1'=>$combo['price1'],
+			'amount2'=>$combo['amount2'],
+			'price2'=>$combo['price2'],
+			'amount3'=>$combo['amount3'],
+			'price3'=>$combo['price3'],
+			'amount4'=>$combo['amount4'],
+			'price4'=>$combo['price4']
+		);
+		$dbquery = $db->prepare('UPDATE combos SET name=:name, description=:description, amount1=:amount1, price1=:price1, amount2=:amount2, price2=:price2, amount3=:amount3, price3=:price3, amount4=:amount4, price4=:price4 where id=:id');
+		$success = $dbquery->execute($queryValues);
+		echoResponse(200, array('success'=>$success, 'combo'=>$combo));
+	} else {
+		$error = 'Unable to save combo with invalid params: '.join(', ', $invalids);
+		echoResponse(400, null, array('error'=>$error, 'params'=>$combo));
+	}
 });
 
 $app->delete('/combo/:id',function($id) use($app, $db){
@@ -123,3 +113,33 @@ $app->delete('/combo/:id',function($id) use($app, $db){
 	$dbquery->execute(array('id'=>$id));
 	echoResponse(200, array('success'=>true));
 });
+
+function validateCombo(&$combo) {
+	$invalids = array();
+	if(empty($combo['name']) || !Validation::string()->length(1, 255)->validate($combo['name'])) array_push($invalids, 'name');
+	if(empty($combo['description']) || !Validation::string()->length(4, 1023)->validate($combo['description'])) array_push($invalids, 'description');
+	if(empty($combo['price1']) || !Validation::float()->min(0, true)->validate($combo['price1'])) array_push($invalids, 'price1');
+	if(empty($combo['amount1']) || !Validation::int()->min(1, true)->validate($combo['amount1'])) array_push($invalids, 'amount1');
+	//check if combos 2, 3 or 4 are given
+	if(!empty($combo['price2']) || !empty($combo['amount2']) || !empty($combo['price3']) || !empty($combo['amount3']) || !empty($combo['price4']) || !empty($combo['amount4'])) {
+		if(empty($combo['price2']) || !Validation::float()->min(0, true)->validate($combo['price2'])) array_push($invalids, 'price2');
+		if(empty($combo['amount2']) || !Validation::int()->min(1, true)->validate($combo['amount2'])) array_push($invalids, 'amount2');	
+	} else {
+		$combo['price2'] = $combo['amount2'] = null;
+	}
+	//check if combos 3 or 4 are given
+	if(!empty($combo['price3']) || !empty($combo['amount3']) || !empty($combo['price4']) || !empty($combo['amount4'])) {
+		if(empty($combo['price3']) || !Validation::float()->min(0, true)->validate($combo['price3'])) array_push($invalids, 'price3');
+		if(empty($combo['amount3']) || !Validation::int()->min(1, true)->validate($combo['amount3'])) array_push($invalids, 'amount3');
+	} else {
+		$combo['price3'] = $combo['amount3'] = null;
+	}
+	//check if combo 4 is given
+	if(!empty($combo['price4']) || !empty($combo['amount4'])) {
+		if(empty($combo['price4']) || !Validation::float()->min(0, true)->validate($combo['price4'])) array_push($invalids, 'price4');
+		if(empty($combo['amount4']) || !Validation::int()->min(1, true)->validate($combo['amount4'])) array_push($invalids, 'amount4');
+	} else {
+		$combo['price4'] = $combo['amount4'] = null;
+	}
+	return $invalids;
+}

@@ -148,12 +148,21 @@
 
 			$scope.imageAdded = function (image) {
 				$scope.uploadError = false;
-				if(['png', 'jpg', 'jpeg'].indexOf(image.getExtension()) < 0) {
+				if('png' !== image.getExtension()) {
 					$scope.uploadError = true;
 					return false;
 				}
 				image.uniqueIdentifier += '--data--combos--'+$scope.uploadItem.id;
 				return true;
+			};
+
+			$scope.successUpload = function () {
+				ngNotify.set('La imagen se ha guardado correctamente.', 'success');
+				$scope.closeUpload();
+			};
+
+			$scope.errorUpload = function () {
+				ngNotify.set('La imagen no se ha podido guardar.', 'error');
 			};
 
 			$scope.closeUpload = function () {
@@ -188,7 +197,8 @@
 					}).then(
 						function (response) {
 							ngNotify.set('El combo se ha guardado correctamente.', 'success');
-							$scope.newItem.item.id = response.data.id;
+							$scope.newItem.item.id = response.data.combo.id;
+							$scope.newItem.item.image = response.data.combo.image;
 							$timeout(function() {
 								$scope.results.push(angular.copy($scope.newItem.item));
 								$scope.newItem.item = new Combo();
@@ -213,15 +223,55 @@
 			};
 
 			$scope.save = function (item) {
-				angular.copy($scope.editList[item.id], item);
-				item.isEditing = false;
-				$scope.editList[item.id] = undefined;
-				delete $scope.editList[item.id];
-				Combo.Save(item).then(
+				if(_validate($scope.editList[item.id])) {
+					//TODO: use Combo.Save
+					$http({
+						method: 'PUT',
+						url: '/api/v1/combo/'+item.id,
+						data: $scope.editList[item.id],
+						headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+					}).then(
+						function (response) {
+							ngNotify.set('El combo se ha guardado correctamente.', 'success');
+							$timeout(function() {
+								angular.extend(item, $scope.editList[item.id]);
+								console.log(item);
+								console.log($scope.editList[item.id]);
+								item.isEditing = false;
+								$scope.editList[item.id] = undefined;
+								delete $scope.editList[item.id];
+							});
+						},
+						function (error) {
+							ngNotify.set('No se puedo guardar el nuevo combo.', 'error');
+							console.error(error);
+						}
+					);
+				}
+			};
+
+			$scope.removeInfo = function () {
+				ngNotify.set('Seguro desea eliminar el combo? Haga doble click sobre el boton rojo para eliminar.', 'error');
+			};
+
+			$scope.remove = function (item) {
+				$http({
+					method: 'DELETE',
+					url: '/api/v1/combo/'+item.id
+				}).then(
 					function (response) {
-						console.log(response);
+						ngNotify.set('El combo se ha eliminado correctamente.', 'success');
+						$timeout(function() {
+							for (var i = $scope.results.length - 1; i >= 0; i--) {
+								if($scope.results[i].id === item.id) {
+									$scope.results.splice(i, 1);
+									break;
+								}
+							};
+						});
 					},
 					function (error) {
+						ngNotify.set('No se puedo eliminar el combo.', 'error');
 						console.error(error);
 					}
 				);

@@ -9,6 +9,12 @@ $app->post('/upload/image/:table', function($table) use($app, $db){
 	if (!file_exists($flowData['location']['dir'])) {
 		mkdir($flowData['location']['dir']);
 	}
+	if (!file_exists($flowData['location']['dir'].DIRECTORY_SEPARATOR.'old')) {
+		mkdir($flowData['location']['dir'].DIRECTORY_SEPARATOR.'old');
+	}
+	if ($flowData['location']['file']) {
+		copy($flowData['location']['file'], $flowData['location']['backup']);
+	}
 	if (move_uploaded_file($flowData['location']['temp'], $flowData['location']['file']) === true) {
 		$success = true;
 	}
@@ -31,12 +37,14 @@ function parseFlowData($flowData) {
 	$name = $flowIdData[0];
 	$ext = substr($flowData['flowRelativePath'], strrpos($flowData['flowRelativePath'], '.') + 1);
 	$temp = $_FILES['file']['tmp_name'];
-	$dir = __DIR__ .$ds.'..'.$ds.'..'.$ds.'..'.$ds.'img/'.$table;
+	$dir = __DIR__ .$ds.'..'.$ds.'..'.$ds.'..'.$ds.'img'.$ds.$table;
 	$file = $dir . $ds . str_pad($id, 5, '0', STR_PAD_LEFT).'.'.$ext;
+	$backup = $dir . $ds . 'old' . $ds . str_pad($id, 5, '0', STR_PAD_LEFT).'-'.time().'.'.$ext;
 	return [
 		'location' => [
 			'dir' => $dir,
 			'file' => $file,
+			'backup' => $backup,
 			'temp' => $temp
 		],
 		'table' => $table,
