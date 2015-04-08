@@ -271,7 +271,7 @@
 						});
 					},
 					function (error) {
-						ngNotify.set('No se puedo eliminar el combo.', 'error');
+						ngNotify.set('No se pudo eliminar el combo.', 'error');
 						console.error(error);
 					}
 				);
