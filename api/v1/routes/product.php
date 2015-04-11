@@ -1,5 +1,7 @@
 <?php
 
+use Respect\Validation\Validator as Validation;
+
 $app->get('/product', function() use($app, $db){
 	$dbquery = $db->prepare("select * from products where active=1");
 	$dbquery->execute();
@@ -30,38 +32,60 @@ $app->get('/product/:param/:value',function($param, $id) use($db){
 	}
 });
 
+/**
+ * @param {int} categoryId
+ * @param {string} name 		Max length 255
+ * @param {int} amount
+ * @param {float} price
+*/
 $app->post('/product',function() use($app, $db){
 	Security::RestictedAccess('admin');
-	$params = $app->request->post();
-	$queryValues = array(
-		'categoryId'=>$params['categoryId'],
-		'name'=>$params['name'],
-		'plu'=>$params['plu'],
-		'description'=>$params['description'],
-		'image'=>$params['image'],
-		'amount'=>$params['amount'],
-		'price'=>$params['price']
-	);
-	$dbquery = $db->prepare('INSERT INTO products(categoryId, name, plu, description, image, amount, price) VALUES (:categoryId, :name, :plu, :description, :image, :amount, :price)');
-	$success = $dbquery->execute($queryValues);
-	echoResponse(200, array('success'=>$success));
+	$product = $app->request->post();
+	$invalids = validateProduct($product);
+	if(empty($invalids)) {
+		$queryValues = array(
+			'categoryId'=>$product['categoryId'],
+			'name'=>$product['name'],
+			'amount'=>$product['amount'],
+			'price'=>$product['price']
+		);
+		$dbquery = $db->prepare('INSERT INTO products(categoryId, name, amount, price) VALUES (:categoryId, :name, :amount, :price)');
+		$success = $dbquery->execute($queryValues);
+		$id = $db->lastInsertId();
+		$ds = DIRECTORY_SEPARATOR;
+		$fileName = str_pad($id, 5, '0', STR_PAD_LEFT).'.png';
+		$dir = __DIR__ .$ds.'..'.$ds.'..'.$ds.'..'.$ds.'img'.$ds.'products';
+		if ($success && copy($dir.$ds.'00000.png', $dir.$ds.$fileName)) {
+			$dbquery = $db->prepare('UPDATE products SET image="/img/products/'.$fileName.'" where id='.$id);
+			$dbquery->execute();
+			$product['id'] = $id;
+			$product['image'] = '/img/products/'.$fileName;
+		}
+		echoResponse(200, array('success'=>$success, 'product'=>$product));
+	} else {
+		$error = 'Unable to save product with invalid params: '.join(', ', $invalids);
+		echoResponse(400, null, array('error'=>$error, 'params'=>$product));
+	}
 });
 
 $app->put('/product/:id',function($id) use($app, $db){
 	Security::RestictedAccess('admin');
-	$params = $app->request->put();
-	$queryValues = array(
-		'categoryId'=>$params['categoryId'],
-		'name'=>$params['name'],
-		'plu'=>$params['plu'],
-		'description'=>$params['description'],
-		'image'=>$params['image'],
-		'amount'=>$params['amount'],
-		'price'=>$params['price']
-	);
-	$dbquery = $db->prepare('UPDATE products SET categoryId=:categoryId, name:=name, plu:=plu, description=:description, image=:image, amount:=amount, price=:price where id=:id');
-	$dbquery->execute($queryValues);
-	echoResponse(200, array('success'=>$success));
+	$product = $app->request->put();
+	$invalids = validateProduct($product);
+	if(empty($invalids)) {
+		$queryValues = array(
+			'categoryId'=>$product['categoryId'],
+			'name'=>$product['name'],
+			'amount'=>$product['amount'],
+			'price'=>$product['price']
+		);
+		$dbquery = $db->prepare('UPDATE products SET categoryId=:categoryId, name:=name, amount:=amount, price=:price where id=:id');
+		$success = $dbquery->execute($queryValues);
+		echoResponse(200, array('success'=>$success, 'product'=>$product));
+	} else {
+		$error = 'Unable to save product with invalid params: '.join(', ', $invalids);
+		echoResponse(400, null, array('error'=>$error, 'params'=>$product));
+	}
 });
 
 $app->delete('/product/:id',function($id) use($app, $db){
@@ -70,3 +94,12 @@ $app->delete('/product/:id',function($id) use($app, $db){
 	$dbquery->execute(array('id'=>$id));
 	echoResponse(200, array('success'=>true));
 });
+
+function validateProduct(&$product) {
+	$invalids = array();
+	if(empty($product['name']) || !Validation::string()->length(1, 255)->validate($product['name'])) array_push($invalids, 'name');
+	if(empty($product['price']) || !Validation::float()->min(0, true)->validate($product['price'])) array_push($invalids, 'price');
+	if(empty($product['amount']) || !Validation::int()->min(1, true)->validate($product['amount'])) array_push($invalids, 'amount');
+	if(empty($product['categoryId']) || !Validation::int()->max(10, true)->validate($product['categoryId'])) array_push($invalids, 'categoryId');
+	return $invalids;
+}

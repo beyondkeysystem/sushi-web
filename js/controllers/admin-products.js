@@ -9,7 +9,8 @@
 		'services.auth',
 		'services.general',
 		'services.validate',
-		'resources.product'
+		'resources.product',
+		'resources.category'
 	]).controller('AdminProductsController', [
 		'$scope',
 		'$http',
@@ -20,13 +21,13 @@
 		'GeneralService',
 		'ValidateService',
 		'Product',
-		function($scope, $http, $timeout, $location, ngNotify, AuthService, GS, Validate, Product) {
+		'Category',
+		function($scope, $http, $timeout, $location, ngNotify, AuthService, GS, Validate, Product, Category) {
 
 			var _clearErrors = function (product) {
 				product.errors = {
 					name: undefined,
 					categoryId: undefined,
-					plu: undefined,
 					amount: undefined,
 					price: undefined
 				};
@@ -39,8 +40,8 @@
 					product.errors.name = 'Min 2 letras';
 					isValid = false;
 				}
-				if(!Validate.MinLength(product.plu, 5)) {
-					product.errors.plu = 'Min 5 numeros';
+				if($scope.categories.indexOf(product.category) < 0) {
+					product.errors.categoryId = 'Debe seleccionar categoria';
 					isValid = false;
 				}
 				if(isNaN(product.amount) || product.amount < 1) {
@@ -59,11 +60,11 @@
 			};
 
 			$scope.results = [];
+			$scope.categories = [];
 			$scope.columns = [
-				{id: 'name', name: 'Nombre', isEditable: true, type: 'text', tdClass: 'table-opt-2'},
-				{id: 'categoryId', name: 'Categoria', isEditable: false, type: 'text'},
-				{id: 'image', name: 'Imagen', isEditable: true, type: 'image', tdClass: 'center-image'},
-				{id: 'plu', name: 'PLU', isEditable: true, type: 'text', tdClass: 'table-opt-2'},
+				{id: 'name', name: 'Nombre', isEditable: true, type: 'text', tdClass: 'table-opt-4'},
+				{id: 'categoryId', name: 'Categoria', isEditable: true, type: 'category'},
+				{id: 'image', name: 'Imagen', isEditable: true, type: 'image', tdClass: 'left-image'},
 				{id: 'amount', name: 'Cant', isEditable: true, type: 'int', tdClass: 'table-opt-2'},
 				{id: 'price', name: 'Prec', isEditable: true, type: 'money', tdClass: 'table-opt-3'}
 			];
@@ -72,6 +73,7 @@
 			$scope.showUpload = false;
 			$scope.uploadError = false;
 			$scope.uploadItem = undefined;
+			$scope.updateImage = Date.now();
 
 			$scope.editList = {};
 
@@ -98,6 +100,7 @@
 
 			$scope.successUpload = function () {
 				ngNotify.set('La imagen se ha guardado correctamente.', 'success');
+				$scope.updateImage = Date.now();
 				$scope.closeUpload();
 			};
 
@@ -127,6 +130,7 @@
 
 			$scope.saveNew = function () {
 				if(_validate($scope.newItem.item)) {
+					$scope.newItem.item.categoryId = $scope.newItem.item.category.id;
 					$scope.newItem.isEditing = false;
 					//TODO: use Product.Save
 					$http({
@@ -137,6 +141,7 @@
 					}).then(
 						function (response) {
 							ngNotify.set('El producto se ha guardado correctamente.', 'success');
+							console.log(response);
 							$scope.newItem.item.id = response.data.product.id;
 							$scope.newItem.item.image = response.data.product.image;
 							$timeout(function() {
@@ -145,7 +150,7 @@
 							});
 						},
 						function (error) {
-							ngNotify.set('No se puedo guardar el nuevo producto.', 'error');
+							ngNotify.set('No se pudo guardar el nuevo producto.', 'error');
 							console.error(error);
 						}
 					);
@@ -164,6 +169,7 @@
 
 			$scope.save = function (item) {
 				if(_validate($scope.editList[item.id])) {
+					item.categoryId = item.category.id;
 					//TODO: use Product.Save
 					$http({
 						method: 'PUT',
@@ -223,8 +229,20 @@
 				delete $scope.editList[item.id];
 			};
 
-			Product.FetchAll().then(function (products) {
-				$scope.results = products;
+			Category.FetchAll().then(function (categories) {
+				$scope.categories = categories;
+				Product.FetchAll().then(function (products) {
+					var i, j;
+					for (i = products.length - 1; i >= 0; i--) {
+						for (j = categories.length - 1; j >= 0; j--) {
+							if(products[i].categoryId === categories[j].id) {
+								products[i].category = categories[j];
+								break;
+							}
+						}
+					};
+					$scope.results = products;
+				});
 			});
 
 			$timeout(function () {

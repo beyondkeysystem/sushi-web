@@ -34,7 +34,6 @@ $app->get('/combo/:param/:value',function($param, $id) use($db){
 
 /**
  * @param {string} name 		Max length 255
- * @param {string} description 	Max length 1023
  * @param {int} amount1
  * @param {float} price1
  * @param {int} amount2
@@ -51,7 +50,6 @@ $app->post('/combo',function() use($app, $db){
 	if(empty($invalids)) {
 		$queryValues = array(
 			'name'=>$combo['name'],
-			'description'=>$combo['description'],
 			'amount1'=>$combo['amount1'],
 			'price1'=>$combo['price1'],
 			'amount2'=>$combo['amount2'],
@@ -61,7 +59,7 @@ $app->post('/combo',function() use($app, $db){
 			'amount4'=>$combo['amount4'],
 			'price4'=>$combo['price4']
 		);
-		$dbquery = $db->prepare('INSERT INTO combos(name, description, amount1, price1, amount2, price2, amount3, price3, amount4, price4) VALUES (:name, :description, :amount1, :price1, :amount2, :price2, :amount3, :price3, :amount4, :price4)');
+		$dbquery = $db->prepare('INSERT INTO combos(name, amount1, price1, amount2, price2, amount3, price3, amount4, price4) VALUES (:name, :amount1, :price1, :amount2, :price2, :amount3, :price3, :amount4, :price4)');
 		$success = $dbquery->execute($queryValues);
 		$id = $db->lastInsertId();
 		$ds = DIRECTORY_SEPARATOR;
@@ -88,7 +86,6 @@ $app->put('/combo/:id',function($id) use($app, $db){
 		$queryValues = array(
 			'id'=>$id,
 			'name'=>$combo['name'],
-			'description'=>$combo['description'],
 			'amount1'=>$combo['amount1'],
 			'price1'=>$combo['price1'],
 			'amount2'=>$combo['amount2'],
@@ -98,7 +95,7 @@ $app->put('/combo/:id',function($id) use($app, $db){
 			'amount4'=>$combo['amount4'],
 			'price4'=>$combo['price4']
 		);
-		$dbquery = $db->prepare('UPDATE combos SET name=:name, description=:description, amount1=:amount1, price1=:price1, amount2=:amount2, price2=:price2, amount3=:amount3, price3=:price3, amount4=:amount4, price4=:price4 where id=:id');
+		$dbquery = $db->prepare('UPDATE combos SET name=:name, amount1=:amount1, price1=:price1, amount2=:amount2, price2=:price2, amount3=:amount3, price3=:price3, amount4=:amount4, price4=:price4 where id=:id');
 		$success = $dbquery->execute($queryValues);
 		echoResponse(200, array('success'=>$success, 'combo'=>$combo));
 	} else {
@@ -117,7 +114,6 @@ $app->delete('/combo/:id',function($id) use($app, $db){
 function validateCombo(&$combo) {
 	$invalids = array();
 	if(empty($combo['name']) || !Validation::string()->length(1, 255)->validate($combo['name'])) array_push($invalids, 'name');
-	if(empty($combo['description']) || !Validation::string()->length(4, 1023)->validate($combo['description'])) array_push($invalids, 'description');
 	if(empty($combo['price1']) || !Validation::float()->min(0, true)->validate($combo['price1'])) array_push($invalids, 'price1');
 	if(empty($combo['amount1']) || !Validation::int()->min(1, true)->validate($combo['amount1'])) array_push($invalids, 'amount1');
 	//check if combos 2, 3 or 4 are given

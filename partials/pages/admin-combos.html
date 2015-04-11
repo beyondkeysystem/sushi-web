@@ -8,7 +8,7 @@
 					<thead>
 						<tr>
 							<th data-ng-repeat="column in columns">{{column.name}}</th>
-							<th class="table-opt-2 text-center">Opciones</th>
+							<th class="table-opt-min-3 text-center">Opciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -52,24 +52,25 @@
 									<span data-ng-if="field.type === 'money' && item[field.id].length">$</span>
 									<span data-ng-if="field.type !== 'image'">{{item[field.id]}}</span>
 									<i data-ng-if="field.type === 'int' && item[field.id].length" class="fa fa-arrow-right margin-left-xsmall"></i>
-									<img data-ng-if="field.type === 'image'" data-ng-src="{{item[field.id]}}" alt="{{item[field.id]}}" width="50">
+									<img data-ng-if="field.type === 'image'" data-ng-src="{{item[field.id]}}?t={{updateImage}}" alt="{{item[field.id]}}" width="50">
 								</div>
 								<div data-ng-if="field.isEditable && item.isEditing" class="input-group text-center">
 									<input data-ng-if="field.type === 'text'" type="text" class="form-control" data-ng-model="editList[item.id][field.id]">
 									<input data-ng-if="field.type === 'int'" type="text" class="form-control" data-ng-model="editList[item.id][field.id]">
 									<span data-ng-if="field.type === 'money'" class="input-group-addon">$</span>
 									<input data-ng-if="field.type === 'money'" type="text" class="form-control" data-ng-model="editList[item.id][field.id]">
-									<button data-ng-if="field.type === 'image'" class="btn btn-success" data-ng-click="startUpload(item)">
-										<i class="fa fa-upload"></i>
-									</button>
+									<img data-ng-if="field.type === 'image'" data-ng-src="{{item[field.id]}}?t={{updateImage}}" alt="{{item[field.id]}}" width="50">
 									<span data-ng-if="editList[item.id].errors[field.id]" class="label label-danger">
 										<i class="fa fa-times-circle margin-right-xsmall"></i> {{editList[item.id].errors[field.id]}}
 									</span>
 								</div>
 							</td>
-							<td class="table-opt-2 text-center">
+							<td class="table-opt-min-3 text-center">
 								<button data-ng-if="!item.isEditing" class="btn btn-primary" data-ng-click="edit(item)">
 									<i class="fa fa-pencil"></i>
+								</button>
+								<button data-ng-if="!item.isEditing" class="btn btn-info" data-ng-click="startUpload(item)">
+									<i class="fa fa-image"></i>
 								</button>
 								<button data-ng-if="!item.isEditing" class="btn btn-danger" data-ng-click="removeInfo()" data-ng-dblclick="remove(item)">
 									<i class="fa fa-trash"></i>

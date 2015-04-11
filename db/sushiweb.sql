@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 28, 2015 at 04:27 AM
+-- Generation Time: Apr 11, 2015 at 04:49 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -30,7 +30,6 @@ CREATE TABLE `categories` (
 `id` int(11) NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `image` varchar(255) NOT NULL,
-  `description` text,
   `order` int(11) DEFAULT '0',
   `active` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
@@ -39,15 +38,15 @@ CREATE TABLE `categories` (
 -- Dumping data for table `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `image`, `description`, `order`, `active`) VALUES
-(1, 'Entradas', '/img/icons/products/01.png', NULL, 0, 1),
-(2, 'Sushi', '/img/icons/products/02.png', NULL, 1, 1),
-(3, 'Wok', '/img/icons/products/03.png', NULL, 2, 1),
-(4, 'Ensaladas', '/img/icons/products/04.png', NULL, 3, 1),
-(5, 'Wraps', '/img/icons/products/05.png', NULL, 4, 1),
-(6, 'Pies', '/img/icons/products/06.png', NULL, 5, 1),
-(7, 'Postres y Bebidas', '/img/icons/products/07.png', NULL, 6, 1),
-(8, 'Take Away', '/img/icons/products/08.png', NULL, 7, 1);
+INSERT INTO `categories` (`id`, `name`, `image`, `order`, `active`) VALUES
+(1, 'Entradas', '/img/icons/products/01.png', 0, 1),
+(2, 'Sushi', '/img/icons/products/02.png', 1, 1),
+(3, 'Wok', '/img/icons/products/03.png', 2, 1),
+(4, 'Ensaladas', '/img/icons/products/04.png', 3, 1),
+(5, 'Wraps', '/img/icons/products/05.png', 4, 1),
+(6, 'Pies', '/img/icons/products/06.png', 5, 1),
+(7, 'Postres y Bebidas', '/img/icons/products/07.png', 6, 1),
+(8, 'Take Away', '/img/icons/products/08.png', 7, 1);
 
 -- --------------------------------------------------------
 
@@ -58,7 +57,6 @@ INSERT INTO `categories` (`id`, `name`, `image`, `description`, `order`, `active
 CREATE TABLE `combos` (
 `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` varchar(1023) DEFAULT NULL,
   `image` varchar(255) NOT NULL DEFAULT '/img/combos/00000.png',
   `amount1` int(3) NOT NULL DEFAULT '1',
   `price1` float NOT NULL DEFAULT '0',
@@ -69,15 +67,14 @@ CREATE TABLE `combos` (
   `amount4` int(3) DEFAULT NULL,
   `price4` float DEFAULT NULL,
   `active` tinyint(4) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `combos`
 --
 
-INSERT INTO `combos` (`id`, `name`, `description`, `image`, `amount1`, `price1`, `amount2`, `price2`, `amount3`, `price3`, `amount4`, `price4`, `active`) VALUES
-(1, 'AMAZONAS', 'Shitake Roll, Golden, Shi Roll, California Roll, Tei Salmón, Azteka Roll.', '/img/combos/00001.png', 24, 151, NULL, NULL, NULL, NULL, NULL, NULL, 1),
-(2, 'TAMESIS', 'Humo Roll, Dragon Roll, Capresse, Sunny Roll, Chicken, Veggie, Sashimi de Tamago', '/img/combos/00001.png', 36, 225, NULL, NULL, NULL, NULL, NULL, NULL, 1);
+INSERT INTO `combos` (`id`, `name`, `image`, `amount1`, `price1`, `amount2`, `price2`, `amount3`, `price3`, `amount4`, `price4`, `active`) VALUES
+(1, 'AMAZONAS', '/img/combos/00001.png', 24, 151, NULL, NULL, NULL, NULL, NULL, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -183,12 +180,19 @@ CREATE TABLE `products` (
   `categoryId` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `plu` smallint(6) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
   `image` varchar(255) NOT NULL DEFAULT '/img/products/00001.png',
   `amount` int(3) NOT NULL DEFAULT '1',
   `price` float NOT NULL DEFAULT '0',
   `active` tinyint(4) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `categoryId`, `name`, `plu`, `image`, `amount`, `price`, `active`) VALUES
+(1, 1, 'asd', 123, '/img/products/00001.png', 1, 0, 1),
+(2, 2, 'qwe', 234, '/img/products/00002.png', 1, 0, 1);
 
 --
 -- Indexes for dumped tables
@@ -249,7 +253,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 -- AUTO_INCREMENT for table `combos`
 --
 ALTER TABLE `combos`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `customers`
 --
@@ -274,7 +278,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -225,6 +225,10 @@ almost-white: #eeeeee;
 	width: 150px !important;
 }
 
+.table tr th.table-opt-min-3, .table tr td.table-opt-min-3 {
+	min-width: 150px !important;
+}
+
 .table tr th.table-opt-min-4, .table tr td.table-opt-min-4 {
 	min-width: 200px !important;
 }
@@ -233,8 +237,8 @@ almost-white: #eeeeee;
 	width: 100%;
 }
 
-.table tr th.center-image .input-group, .table tr td.center-image .input-group {
-	margin:0 auto;
+.table tr th.left-image .input-group, .table tr td.left-image .input-group {
+	margin:0;
 	font-size: 20px;
 }
 

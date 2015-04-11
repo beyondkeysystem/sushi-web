@@ -25,7 +25,6 @@
 			var _clearErrors = function (combo) {
 				combo.errors = {
 					name: undefined,
-					description: undefined,
 					image: undefined,
 					amount1: undefined,
 					price1: undefined,
@@ -43,10 +42,6 @@
 				_clearErrors(combo);
 				if(!Validate.MinLength(combo.name, 2)) {
 					combo.errors.name = 'Min 2 letras';
-					isValid = false;
-				}
-				if(!Validate.MinLength(combo.description, 5)) {
-					combo.errors.description = 'Min 5 letras';
 					isValid = false;
 				}
 				if(isNaN(combo.amount1) || combo.amount1 < 1) {
@@ -115,9 +110,8 @@
 
 			$scope.results = [];
 			$scope.columns = [
-				{id: 'name', name: 'Nombre', isEditable: true, type: 'text', tdClass: 'table-opt-2'},
-				{id: 'description', name: 'Descripcion', isEditable: true, type: 'text', tdClass: 'table-opt-min-4'},
-				{id: 'image', name: 'Imagen', isEditable: true, type: 'image', tdClass: 'center-image'},
+				{id: 'name', name: 'Nombre', isEditable: true, type: 'text', tdClass: 'table-opt-min-4'},
+				{id: 'image', name: 'Imagen', isEditable: true, type: 'image', tdClass: 'left-image'},
 				{id: 'amount1', name: 'Cant1', isEditable: true, type: 'int', tdClass: 'table-opt-2'},
 				{id: 'price1', name: 'Prec1', isEditable: true, type: 'money', tdClass: 'table-opt-3'},
 				{id: 'amount2', name: 'Cant2', isEditable: true, type: 'int', tdClass: 'table-opt-2'},
@@ -132,6 +126,7 @@
 			$scope.showUpload = false;
 			$scope.uploadError = false;
 			$scope.uploadItem = undefined;
+			$scope.updateImage = Date.now();
 
 			$scope.editList = {};
 
@@ -158,6 +153,7 @@
 
 			$scope.successUpload = function () {
 				ngNotify.set('La imagen se ha guardado correctamente.', 'success');
+				$scope.updateImage = Date.now();
 				$scope.closeUpload();
 			};
 
