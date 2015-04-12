@@ -34,6 +34,12 @@
 					'roles': accessLevels['admin']
 				},
 				{
+					'url': '/admin/clientes',
+					'template': '/partials/pages/admin-clients.html',
+					'controller': 'AdminClients',
+					'roles': accessLevels['admin']
+				},
+				{
 					'url': '/admin/productos',
 					'template': '/partials/pages/admin-products.html',
 					'controller': 'AdminProducts',

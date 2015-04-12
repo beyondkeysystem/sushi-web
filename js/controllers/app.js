@@ -10,6 +10,7 @@
 		'controllers.home',
 		'controllers.order',
 		'controllers.admin',
+		'controllers.admin-clients',
 		'controllers.admin-combos',
 		'controllers.admin-general',
 		'controllers.admin-products',

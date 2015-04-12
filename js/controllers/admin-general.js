@@ -4,7 +4,6 @@
 	angular.module('controllers.admin-general', [
 		'ngRoute',
 		'ngNotify',
-		'flow',
 		'directives.admin-navbar',
 		'services.auth',
 		'services.general',
@@ -62,7 +61,6 @@
 			};
 
 			$scope.results = [];
-			$scope.categories = [];
 			$scope.columns = GS.GetColumns();
 
 			$scope.editList = {};
