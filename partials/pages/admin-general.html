@@ -1,0 +1,58 @@
+<div class="public">
+	<div data-header=""></div>
+	<div class="body">
+		<div class="container-fluid">
+			<div data-admin-navbar=""></div>
+			<div class="admin table-responsive">
+				<table class="table table-striped table-hover table-condensed">
+					<thead>
+						<tr>
+							<th data-ng-repeat="column in columns">{{column.name}}</th>
+							<th class="table-opt-3 text-center">Opciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- LIST -->
+						<tr data-ng-if="results.length" data-ng-repeat="item in results track by $index">
+							<td data-ng-repeat="field in columns" data-ng-class="field.tdClass">
+								<div data-ng-if="!field.isEditable || !item.isEditing">
+									<span data-ng-if="field.type === 'config-text'">{{getHumanReadable(item[field.id])}}</span>
+									<span data-ng-if="field.type === 'config' && !item.isSelect">$</span>
+									<span data-ng-if="field.type === 'config'">{{item[field.id]}}</span>
+								</div>
+								<div data-ng-if="field.isEditable && item.isEditing" class="input-group text-center">
+									<select data-ng-if="field.type === 'config' && item.isSelect" class="form-control" ng-model="editList[item.id][field.id]">
+										<option data-ng-repeat="opt in optionList[item.name]">{{opt}}</option>
+									</select>
+									<input data-ng-if="field.type === 'config' && !item.isSelect" type="text" class="form-control" data-ng-model="editList[item.id][field.id]">
+									<span data-ng-if="editList[item.id].errors[field.id]" class="label label-danger">
+										<i class="fa fa-times-circle margin-right-xsmall"></i> {{editList[item.id].errors[field.id]}}
+									</span>
+								</div>
+							</td>
+							<td class="table-opt-3 text-center">
+								<button data-ng-if="!item.isEditing" class="btn btn-primary" data-ng-click="edit(item)">
+									<i class="fa fa-pencil"></i>
+								</button>
+								<button data-ng-if="item.isEditing" class="btn btn-success" data-ng-click="save(item)">
+									<i class="fa fa-check"></i>
+								</button>
+								<button data-ng-if="item.isEditing" class="btn btn-danger" data-ng-click="cancel(item)">
+									<i class="fa fa-times"></i>
+								</button>
+							</td>
+						</tr>
+						<tr data-ng-if="!results.length">
+							<td colspan="{{columns.length+1}}">
+								<div class="alert alert-info">
+									No hay resultados para mostrar
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<div data-footer=""></div>
+</div>

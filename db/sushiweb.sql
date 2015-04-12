@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2015 at 04:49 PM
+-- Generation Time: Apr 12, 2015 at 10:11 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -113,14 +113,14 @@ CREATE TABLE `general` (
 `id` int(11) NOT NULL,
   `name` varchar(256) NOT NULL,
   `value` varchar(256) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `general`
 --
 
 INSERT INTO `general` (`id`, `name`, `value`) VALUES
-(1, 'funesAmTimeFrom', '10:30'),
+(1, 'funesAmTimeFrom', '11:30'),
 (2, 'funesAmTimeTo', '14:00'),
 (3, 'funesPmTimeFrom', '20:00'),
 (4, 'funesPmTimeTo', '23:00'),
@@ -128,10 +128,11 @@ INSERT INTO `general` (`id`, `name`, `value`) VALUES
 (6, 'rosarioAmTimeTo', '14:00'),
 (7, 'rosarioPmTimeFrom', '20:00'),
 (8, 'rosarioPmTimeTo', '23:00'),
-(9, 'open', '1'),
-(10, 'minOrderPrice', '17.00'),
-(11, 'deliveryPrice', '16.00'),
-(12, 'promo', '0');
+(9, 'funesOpen', '1'),
+(10, 'rosarioOpen', '1'),
+(11, 'deliveryPrice', '0.00'),
+(12, 'minOrderPrice', '20.00'),
+(13, 'showPromo', '0');
 
 -- --------------------------------------------------------
 
@@ -184,15 +185,15 @@ CREATE TABLE `products` (
   `amount` int(3) NOT NULL DEFAULT '1',
   `price` float NOT NULL DEFAULT '0',
   `active` tinyint(4) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `products`
 --
 
 INSERT INTO `products` (`id`, `categoryId`, `name`, `plu`, `image`, `amount`, `price`, `active`) VALUES
-(1, 1, 'asd', 123, '/img/products/00001.png', 1, 0, 1),
-(2, 2, 'qwe', 234, '/img/products/00002.png', 1, 0, 1);
+(1, 1, 'asd', 123, '/img/products/00001.png', 1, 40.5, 1),
+(2, 2, 'qwe', 234, '/img/products/00002.png', 1, 30, 1);
 
 --
 -- Indexes for dumped tables
@@ -263,7 +264,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `general`
 --
 ALTER TABLE `general`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `order-item`
 --
@@ -278,7 +279,7 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -225,6 +225,10 @@ almost-white: #eeeeee;
 	width: 150px !important;
 }
 
+.table tr th.table-opt-3x, .table tr td.table-opt-3x {
+	width: 175px !important;
+}
+
 .table tr th.table-opt-min-3, .table tr td.table-opt-min-3 {
 	min-width: 150px !important;
 }

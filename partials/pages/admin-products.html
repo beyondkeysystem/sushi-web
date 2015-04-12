@@ -8,7 +8,7 @@
 					<thead>
 						<tr>
 							<th data-ng-repeat="column in columns">{{column.name}}</th>
-							<th class="table-opt-min-3 text-center">Opciones</th>
+							<th class="table-opt-3x text-center">Opciones</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,7 +57,7 @@
 								</div>
 								<div data-ng-if="field.isEditable && item.isEditing" class="input-group text-center">
 									<input data-ng-if="field.type === 'text'" type="text" class="form-control" data-ng-model="editList[item.id][field.id]">
-									<select data-ng-if="field.type === 'category'" class="form-control" ng-model="item.category" ng-options="cat as cat.name for cat in categories"></select>
+									<select data-ng-if="field.type === 'category'" class="form-control" ng-model="editList[item.id].category" ng-options="cat as cat.name for cat in categories"></select>
 									<input data-ng-if="field.type === 'int'" type="text" class="form-control" data-ng-model="editList[item.id][field.id]">
 									<span data-ng-if="field.type === 'money'" class="input-group-addon">$</span>
 									<input data-ng-if="field.type === 'money'" type="text" class="form-control" data-ng-model="editList[item.id][field.id]">
@@ -67,7 +67,7 @@
 									</span>
 								</div>
 							</td>
-							<td class="table-opt-min-3 text-center">
+							<td class="table-opt-3x text-center">
 								<button data-ng-if="!item.isEditing" class="btn btn-primary" data-ng-click="edit(item)">
 									<i class="fa fa-pencil"></i>
 								</button>

@@ -74,12 +74,13 @@ $app->put('/product/:id',function($id) use($app, $db){
 	$invalids = validateProduct($product);
 	if(empty($invalids)) {
 		$queryValues = array(
+			'id'=>$id,
 			'categoryId'=>$product['categoryId'],
 			'name'=>$product['name'],
 			'amount'=>$product['amount'],
 			'price'=>$product['price']
 		);
-		$dbquery = $db->prepare('UPDATE products SET categoryId=:categoryId, name:=name, amount:=amount, price=:price where id=:id');
+		$dbquery = $db->prepare('UPDATE products SET categoryId=:categoryId, name=:name, amount=:amount, price=:price where id=:id');
 		$success = $dbquery->execute($queryValues);
 		echoResponse(200, array('success'=>$success, 'product'=>$product));
 	} else {

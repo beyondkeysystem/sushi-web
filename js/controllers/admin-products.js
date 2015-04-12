@@ -7,7 +7,6 @@
 		'flow',
 		'directives.admin-navbar',
 		'services.auth',
-		'services.general',
 		'services.validate',
 		'resources.product',
 		'resources.category'
@@ -18,11 +17,10 @@
 		'$location',
 		'ngNotify',
 		'AuthService',
-		'GeneralService',
 		'ValidateService',
 		'Product',
 		'Category',
-		function($scope, $http, $timeout, $location, ngNotify, AuthService, GS, Validate, Product, Category) {
+		function($scope, $http, $timeout, $location, ngNotify, AuthService, Validate, Product, Category) {
 
 			var _clearErrors = function (product) {
 				product.errors = {
@@ -164,6 +162,7 @@
 
 			$scope.edit = function (item) {
 				$scope.editList[item.id] = angular.copy(item);
+				$scope.editList[item.id].category = item.category;
 				item.isEditing = true;
 			};
 
@@ -181,8 +180,6 @@
 							ngNotify.set('El producto se ha guardado correctamente.', 'success');
 							$timeout(function() {
 								angular.extend(item, $scope.editList[item.id]);
-								console.log(item);
-								console.log($scope.editList[item.id]);
 								item.isEditing = false;
 								$scope.editList[item.id] = undefined;
 								delete $scope.editList[item.id];

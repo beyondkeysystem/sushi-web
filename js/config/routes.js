@@ -28,6 +28,12 @@
 					'roles': accessLevels['admin']
 				},
 				{
+					'url': '/admin/general',
+					'template': '/partials/pages/admin-general.html',
+					'controller': 'AdminGeneral',
+					'roles': accessLevels['admin']
+				},
+				{
 					'url': '/admin/productos',
 					'template': '/partials/pages/admin-products.html',
 					'controller': 'AdminProducts',

@@ -11,6 +11,7 @@
 		'controllers.order',
 		'controllers.admin',
 		'controllers.admin-combos',
+		'controllers.admin-general',
 		'controllers.admin-products',
 		'controllers.login',
 		'controllers.logout',
