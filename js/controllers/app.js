@@ -13,6 +13,7 @@
 		'controllers.admin-clients',
 		'controllers.admin-combos',
 		'controllers.admin-general',
+		'controllers.admin-orders',
 		'controllers.admin-products',
 		'controllers.login',
 		'controllers.logout',

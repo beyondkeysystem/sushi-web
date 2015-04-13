@@ -1,0 +1,98 @@
+<div class="public">
+	<div data-header=""></div>
+	<div class="body">
+		<div class="container-fluid">
+			<div data-admin-navbar=""></div>
+			<div class="admin table-responsive">
+				<table class="table table-striped table-hover table-condensed">
+					<thead>
+						<tr>
+							<th data-ng-repeat="column in columns">{{column.name}}</th>
+							<th class="table-opt-2 text-center">Opciones</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- LIST -->
+						<tr data-ng-if="results.length" data-ng-repeat="item in results track by $index">
+							<td data-ng-repeat="field in columns">
+								<div data-ng-if="!field.isEditable || !item.isEditing">
+									<span data-ng-if="field.type === 'text'">{{item[field.id]}}</span>
+								</div>
+							</td>
+							<td class="table-opt-2 text-center">
+								<button data-ng-if="!item.isEditing" class="btn btn-info" data-ng-click="showDetails(item)">
+									<i class="fa fa-eye"></i>
+								</button>
+							</td>
+						</tr>
+						<tr data-ng-if="!results.length">
+							<td colspan="{{columns.length+1}}">
+								<div class="alert alert-info">
+									No hay resultados para mostrar
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="order-detail" data-ng-class="{shown: detailsShown}">
+				<div class="panel panel-success">
+					<div class="panel-heading">
+						<h3>Detalle orden: {{orderShown.id}}</h3>
+						<div class="action-buttons">
+							<span class="btn btn-danger" data-ng-click="closeDetails()">
+								<i class="fa fa-times"></i> Cerrar
+							</span>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="col-sm-5">
+							<ul class="text-left">
+								<li><strong>Nombre:</strong> {{orderShown.name}}</li>
+								<li><strong>Telefono:</strong> {{orderShown.phone}}</li>
+								<li><strong>Direccion:</strong> {{orderShown.address}}</li>
+								<li><strong>Fecha:</strong> {{orderShown.dateFrom}}</li>
+								<li><strong>Hora Entrega:</strong> {{orderShown.timeRange}}</li>
+								<li><strong>Delivery:</strong> {{orderShown.deliver}}</li>
+							</ul>
+						</div>
+						<div class="col-sm-7">
+							<table class="table table-striped table-hover table-condensed">
+								<thead>
+									<tr>
+										<th class="text-center">Producto</th>
+										<th class="text-center">Imagen</th>
+										<th class="text-center">Categoria</th>
+										<th class="text-center">Precio</th>
+										<th class="text-center">Cantidad</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr data-ng-repeat="item in orderShown.products track by $index">
+										<td class="text-center">{{item.name}}</td>
+										<td class="text-center"><img data-ng-src="{{item.image}}" alt="Imagen" width="50"></td>
+										<td class="text-center"><img data-ng-src="{{item.category}}" alt="Imagen" width="50"></td>
+										<td class="text-center">${{item.price}}</td>
+										<td class="text-center">{{item.amount}}</td>
+									</tr>
+									<tr>
+										<td class="text-left" colspan="2">
+											<strong>Cantidad:</strong> {{orderShown.count}}
+										</td>
+										<td class="text-left" colspan="1">
+											<strong>Delivery:</strong> ${{orderShown.deliveryPrice}}
+										</td>
+										<td class="text-right" colspan="2">
+											<strong>Total:</strong> ${{orderShown.total}}
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div data-footer=""></div>
+</div>

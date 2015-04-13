@@ -40,6 +40,12 @@
 					'roles': accessLevels['admin']
 				},
 				{
+					'url': '/admin/ordenes',
+					'template': '/partials/pages/admin-orders.html',
+					'controller': 'AdminOrders',
+					'roles': accessLevels['admin']
+				},
+				{
 					'url': '/admin/productos',
 					'template': '/partials/pages/admin-products.html',
 					'controller': 'AdminProducts',

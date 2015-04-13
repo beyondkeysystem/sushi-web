@@ -3,8 +3,19 @@
 use Respect\Validation\Validator as Validation;
 
 $app->get('/order', function() use($app, $db){
-	$dbquery = $db->prepare("select * from orders");
+	$dbquery = $db->prepare("select * from orders where active=1");
 	$dbquery->execute();
+	$data = $dbquery->fetchAll(PDO::FETCH_ASSOC);
+	echoResponse(200, $data);
+});
+
+$app->get('/order/:id/detail',function($id) use($db){
+	$query = 'select p.*, c.image as category from `order-item` oi ';
+	$query .= 'join products p on oi.productId = p.id ';
+	$query .= 'join categories c on p.categoryId = c.id ';
+	$query .= 'where orderId=:id';
+	$dbquery = $db->prepare($query);
+	$dbquery->execute(array('id'=>$id));
 	$data = $dbquery->fetchAll(PDO::FETCH_ASSOC);
 	echoResponse(200, $data);
 });
@@ -65,12 +76,14 @@ $app->post('/order',function() use($app, $db) {
 			);
 			$dbquery = $db->prepare('INSERT INTO `order-item`(orderId, productId, amount) VALUES (:orderId, :productId, :amount)');
 			$success = $dbquery->execute($subQueryValues);
+			/*
 			$message = $queryValues['phone'].'|'.$queryValues['address'].'|'.$queryValues['name'].'|';
 			$message .= $queryValues['deliver'] ? 'S|' : 'N|';
 			$message .= $queryValues['dateFrom'].'|'.$queryValues['timeFrom'].'|'.$queryValues['dateTo'].'|'.$queryValues['timeTo'].'|';
 			$message .= $queryValues['paid'] ? 'S|' : 'N|';
 			$message .= $product['plu'].'|'.$product['amount']."\n";
 			$success = File::Write($message, $queryValues['src']);
+			*/
 		}
 		echoResponse(200, array('success'=>$success));
 	} else {

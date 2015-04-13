@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 12, 2015 at 10:11 PM
+-- Generation Time: Apr 13, 2015 at 02:44 PM
 -- Server version: 5.5.38
 -- PHP Version: 5.6.2
 
@@ -126,7 +126,7 @@ INSERT INTO `general` (`id`, `name`, `value`) VALUES
 (4, 'funesPmTimeTo', '23:00'),
 (5, 'rosarioAmTimeFrom', '10:30'),
 (6, 'rosarioAmTimeTo', '14:00'),
-(7, 'rosarioPmTimeFrom', '20:00'),
+(7, 'rosarioPmTimeFrom', '19:00'),
 (8, 'rosarioPmTimeTo', '23:00'),
 (9, 'funesOpen', '1'),
 (10, 'rosarioOpen', '1'),
@@ -145,7 +145,16 @@ CREATE TABLE `order-item` (
   `orderId` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
   `amount` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `order-item`
+--
+
+INSERT INTO `order-item` (`id`, `orderId`, `productId`, `amount`) VALUES
+(1, 1, 1, 2),
+(2, 2, 1, 4),
+(3, 2, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -168,7 +177,15 @@ CREATE TABLE `orders` (
   `deliver` tinyint(1) NOT NULL DEFAULT '0',
   `src` varchar(256) NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `userId`, `name`, `phone`, `address`, `date`, `dateFrom`, `timeFrom`, `dateTo`, `timeTo`, `paid`, `deliver`, `src`, `active`) VALUES
+(1, 1, 'David Curras', '0341', 'asdqwe', '2015-04-12 20:43:38', '2015-04-12', '20:00', '2015-04-12', '20:30', 0, 1, 'orders/2015-04-12-17-43-1428871418.txt', 1),
+(2, 1, 'David Curras', '0341', 'asdqwe', '2015-04-12 20:49:56', '2015-04-12', '22:00', '2015-04-12', '22:30', 0, 1, 'orders/2015-04-12-17-49-1428871796.txt', 1);
 
 -- --------------------------------------------------------
 
@@ -269,12 +286,12 @@ MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
 -- AUTO_INCREMENT for table `order-item`
 --
 ALTER TABLE `order-item`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `products`
 --

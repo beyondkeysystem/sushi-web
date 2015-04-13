@@ -279,7 +279,7 @@ almost-white: #eeeeee;
 
 /************ IMAGE UPLOAD ************/
 
-.image-upload {
+.image-upload, .order-detail {
 	position: fixed;
 	top: 0;
 	right: -100%;
@@ -296,7 +296,7 @@ almost-white: #eeeeee;
 	z-index: 0;
 }
 
-.image-upload.shown {
+.image-upload.shown, .order-detail.shown {
 	right: 0;
 	-webkit-transition: 1s;
 	-moz-transition: 1s;
@@ -304,7 +304,7 @@ almost-white: #eeeeee;
 	z-index: 9999999;
 }
 
-.image-upload .panel {
+.image-upload .panel, .order-detail .panel {
 	position: relative;
 	width: 80%;
 	margin-left: 10%;
@@ -312,7 +312,7 @@ almost-white: #eeeeee;
 	height: 80vh;
 }
 
-.image-upload .panel .action-buttons {
+.image-upload .panel .action-buttons, .order-detail .panel .action-buttons {
 	position: absolute;
 	right: 5%;
 	top: 5%;

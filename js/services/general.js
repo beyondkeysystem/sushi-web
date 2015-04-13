@@ -27,7 +27,9 @@
 						},
 						minOrderPrice: 0,
 						deliveryPrice: 0,
-						closed: false
+						showPromo: 0,
+						funesOpen: 0,
+						rosarioOpen: 0
 					};
 
 				var _getColumns = function () {
@@ -108,10 +110,10 @@
 						for (i = data.length - 1; i >= 0; i--) {
 							key = data[i].name;
 							value = data[i].value;
-							if(key == 'minOrderPrice'){
-								value = isNaN(value) || parseInt(value) < 0 ? 0 : parseInt(value);
+							if(key == 'minOrderPrice' || key == 'deliveryPrice') {
+								value = isNaN(value) || parseFloat(value) < 0 ? 0 : parseFloat(value);
 							}
-							if(key == 'closed'){
+							if(key == 'funesOpen' || key == 'rosarioOpen' || key == 'showPromo') {
 								value = !!value;
 							}
 							_config[key] = value;
