@@ -4,6 +4,7 @@
 
 	angular.module('directives.products', [
 		'services.global',
+		'services.general',
 		'services.categories',
 		'services.products',
 		'services.order'
@@ -18,10 +19,14 @@
 				controller: [
 					'$scope',
 					'GlobalService',
+					'GeneralService',
 					'CategoriesService',
 					'ProductsService',
 					'OrderService',
-					function($scope, GlobalService, CategoriesService, ProductsService, OrderService) {
+					function($scope, GlobalService, GeneralService, CategoriesService, ProductsService, OrderService) {
+
+						var _config = GeneralService.GetConfig();
+
 						ProductsService.Clear();
 						$scope.branch = GlobalService.Branch();
 						$scope.isCombos = CategoriesService.IsCombos();
@@ -31,8 +36,13 @@
 							OrderService.Add(product);
 						};
 
+						_config.loading = true;
 						ProductsService.GetCurrent().then(function(products) {
 							$scope.products = products;
+							_config.loading = false;
+						}, function (error) {
+							_config.loading = false;
+							console.error(error);
 						});
 					}
 				]

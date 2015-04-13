@@ -18,12 +18,12 @@ $app->post('/upload/image/:table', function($table) use($app, $db){
 	if (move_uploaded_file($flowData['location']['temp'], $flowData['location']['file']) === true) {
 		$success = true;
 	}
-	$data = [
+	$data = array(
 		'success' => $success,
 		'files' => $_FILES,
 		'post' => $params,
 		'flowData' => $flowData
-	];
+	);
 	echoResponse(200, array('params'=>$data));
 });
 
@@ -40,19 +40,19 @@ function parseFlowData($flowData) {
 	$dir = __DIR__ .$ds.'..'.$ds.'..'.$ds.'..'.$ds.'img'.$ds.$table;
 	$file = $dir . $ds . str_pad($id, 5, '0', STR_PAD_LEFT).'.'.$ext;
 	$backup = $dir . $ds . 'old' . $ds . str_pad($id, 5, '0', STR_PAD_LEFT).'-'.time().'.'.$ext;
-	return [
-		'location' => [
+	return array(
+		'location' => array(
 			'dir' => $dir,
 			'file' => $file,
 			'backup' => $backup,
 			'temp' => $temp
-		],
+		),
 		'table' => $table,
 		'id' => $id,
-		'file' => [
+		'file' => array(
 			'name' => $name,
 			'size' => $size,
 			'ext' => $ext
-		]
-	];
+		)
+	);
 }
