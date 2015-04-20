@@ -29,38 +29,3 @@ $app->get('/category/:param/:value',function($param, $id) use($db){
 		echoResponse(200, $data);
 	}
 });
-
-$app->post('/category',function() use($app, $db){
-	Security::RestictedAccess('admin');
-	$params = $app->request->post();
-	$queryValues = array(
-		'name'=>$params['name'],
-		'image'=>$params['image'],
-		'description'=>$params['description'],
-		'order'=>$params['order']
-	);
-	$dbquery = $db->prepare('INSERT INTO categories(name, image, description, order) VALUES (:name, :image, :description, :order)');
-	$dbquery->execute($queryValues);
-	echoResponse(200, array('success'=>$success));
-});
-
-$app->put('/category/:id',function($id) use($app, $db){
-	Security::RestictedAccess('admin');
-	$params = $app->request->put();
-	$queryValues = array(
-		'name'=>$params['name'],
-		'image'=>$params['image'],
-		'description'=>$params['description'],
-		'order'=>$params['order']
-	);
-	$dbquery = $db->prepare('UPDATE categories SET name:=name, image=:image, description=:description, order=:order where id=:id');
-	$dbquery->execute($queryValues);
-	echoResponse(200, array('success'=>$success));
-});
-
-$app->delete('/category/:id',function($id) use($app, $db){
-	Security::RestictedAccess('admin');
-	$dbquery = $db->prepare('UPDATE categories SET active=0 WHERE id=:id');
-	$dbquery->execute(array('id'=>$id));
-	echoResponse(200, array('success'=>true));
-});

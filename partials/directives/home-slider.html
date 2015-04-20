@@ -1,7 +1,7 @@
 <div id="home-slider" class="col-xs-12">
 	<carousel interval="interval">
 		<slide ng-repeat="article in news" active="article.active">
-			<img data-ng-src="{{article.image.src}}" alt="{{article.image.alt}}" data-ng-click="next()">
+			<img data-ng-src="{{article.image}}" alt="{{article.title}}" data-ng-click="next()">
 		</slide>
 		<div class="slide-controls row">
 			<div data-ng-repeat="article in news" class="slide-control col-xs-3" data-ng-class="{active: article.active}">

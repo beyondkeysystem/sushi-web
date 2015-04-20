@@ -26,6 +26,7 @@ require_once('routes/upload.php');
 require_once('routes/general.php');
 require_once('routes/session.php');
 require_once('routes/user.php');
+require_once('routes/article.php');
 require_once('routes/order.php');
 require_once('routes/category.php');
 require_once('routes/product.php');
