@@ -1,9 +1,18 @@
-<div class="row categories">
-	<div class="col-sm-12">
-		<div ng-repeat="category in categories" ng-click="goToCategory(category.id)" class="category" ng-class="{'long': category.isLong, 'active': category.active}">
+<div>
+	<div class="row categories hidden-xs">
+		<div class="col-sm-12">
+			<div ng-repeat="category in categories" ng-click="goToCategory(category.id)" class="category" ng-class="{'long': category.isLong, 'active': category.active}">
+				<img ng-src="{{category.image}}">
+				<a ng-href="#/{{branch}}/pedidos/categoria/{{category.id}}">{{category.name}}</a>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+	<div class="categories-sm hidden-sm hidden-sm hidden-md hidden-lg" data-ng-class="{shown: menuShown}">
+		<button class="btn btn-default" data-ng-click="toggleMenu()"><i class="fa fa-bars"></i></button>
+		<div ng-repeat="category in categories" ng-click="goToCategory(category.id)" class="category col-xs-4">
 			<img ng-src="{{category.image}}">
 			<a ng-href="#/{{branch}}/pedidos/categoria/{{category.id}}">{{category.name}}</a>
 		</div>
-		<div class="clearfix"></div>
 	</div>
 </div>

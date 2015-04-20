@@ -23,8 +23,15 @@
 						$scope.category = CategoriesService.Current($routeParams.category);
 						$scope.isCombos = CategoriesService.IsCombos();
 						$scope.categories = [];
+						$scope.menuShown = false;
+
+						$scope.toggleMenu = function () {
+							$scope.menuShown = !$scope.menuShown;
+							console.log($scope.menuShown);
+						};
 
 						$scope.goToCategory = function(categoryId) {
+							$scope.menuShown = false;
 							CategoriesService.GoTo(categoryId);
 						};
 
