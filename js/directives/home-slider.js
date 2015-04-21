@@ -26,30 +26,34 @@
 								title: 'Bienvenido New York Roll!',
 								description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet.',
 								image: '/img/slides/0001.jpg',
-								active: true
+								order: 0
 							},
 							{
 								title: 'Lorem ipsum sit amet!',
 								description: 'Beatiful flowers in Kolymbari, Crete.Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
 								image: '/img/slides/0002.jpg',
-								active: false
+								order: 3
 							},
 							{
 								title: 'Bienvenido New York Roll!',
 								description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor. Lorem ipsum dolor sit amet.',
 								image: '/img/slides/0001.jpg',
-								active: false
+								order: 1
 							},
 							{
 								title: 'Lorem ipsum sit amet!',
 								description: 'Beatiful flowers in Kolymbari, Crete.Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
 								image: '/img/slides/0002.jpg',
-								active: false
+								order: 2
 							}
 						];
 
 						Article.FetchAll().then(function (news) {
-							console.log(news);
+							for (var i = news.length - 1; i >= 0; i--) {
+								$scope.news[i].title = news[i].title;
+								$scope.news[i].description = news[i].description;
+								$scope.news[i].image = news[i].image;
+							};
 						},function (news) {
 							console.error(news);
 						});

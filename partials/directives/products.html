@@ -7,13 +7,13 @@
 				</p>
 				<div class="details">
 					<div class="row">
-						<div class="col-sm-7">
+						<div class="col-sm-5">
 							<span class="name">{{product.name}}</span>
 						</div>
-						<div class="col-sm-5">
+						<div class="col-sm-7">
 							<span class="price">{{product.amount}} u.</span>
 							<span class="price">${{product.price}}</span>
-							<img src="img/icons/buy.png" ng-click="addToOrder(product)">
+							<img data-ng-if="!isClosed" src="img/icons/buy.png" ng-click="addToOrder(product)">
 						</div>
 					</div>
 				</div>

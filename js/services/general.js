@@ -102,38 +102,42 @@
 					return timeRange;
 				};
 
+				var _parseConfigs = function (data) {
+					var i, key, value;
+					for (i = data.length - 1; i >= 0; i--) {
+						key = data[i].name;
+						value = data[i].value;
+						if(key == 'minOrderPrice' || key == 'deliveryPrice') {
+							value = isNaN(value) || parseFloat(value) < 0 ? 0 : parseFloat(value);
+						}
+						if(key == 'funesOpen' || key == 'rosarioOpen' || key == 'showPromo') {
+							value = isNaN(value) || parseInt(value) > 0;
+						}
+						_config[key] = value;
+					}
+					for (key in _config.timeRanges) {
+						switch(key) {
+							case 'funesAm':
+								_config.timeRanges.funesAm = _getTimeRange(_config.funesAmTimeFrom, _config.funesAmTimeTo);
+								break;
+							case 'funesPm':
+								_config.timeRanges.funesPm = _getTimeRange(_config.funesPmTimeFrom, _config.funesPmTimeTo);
+								break;
+							case 'rosarioAm':
+								_config.timeRanges.rosarioAm = _getTimeRange(_config.rosarioAmTimeFrom, _config.rosarioAmTimeTo);
+								break;
+							case 'rosarioPm':
+								_config.timeRanges.rosarioPm = _getTimeRange(_config.rosarioPmTimeFrom, _config.rosarioPmTimeTo);
+								break;
+						}
+					}
+				};
+
 				_config.loading = true;
 				General.FetchAll().then(
 					function (data) {
-						var i, key, value;
 						_config.loading = false;
-						for (i = data.length - 1; i >= 0; i--) {
-							key = data[i].name;
-							value = data[i].value;
-							if(key == 'minOrderPrice' || key == 'deliveryPrice') {
-								value = isNaN(value) || parseFloat(value) < 0 ? 0 : parseFloat(value);
-							}
-							if(key == 'funesOpen' || key == 'rosarioOpen' || key == 'showPromo') {
-								value = !!value;
-							}
-							_config[key] = value;
-						}
-						for (key in _config.timeRanges) {
-							switch(key) {
-								case 'funesAm':
-									_config.timeRanges.funesAm = _getTimeRange(_config.funesAmTimeFrom, _config.funesAmTimeTo);
-									break;
-								case 'funesPm':
-									_config.timeRanges.funesPm = _getTimeRange(_config.funesPmTimeFrom, _config.funesPmTimeTo);
-									break;
-								case 'rosarioAm':
-									_config.timeRanges.rosarioAm = _getTimeRange(_config.rosarioAmTimeFrom, _config.rosarioAmTimeTo);
-									break;
-								case 'rosarioPm':
-									_config.timeRanges.rosarioPm = _getTimeRange(_config.rosarioPmTimeFrom, _config.rosarioPmTimeTo);
-									break;
-							}
-						}
+						_parseConfigs(data);
 					}, 
 					function (error) {
 						_config.loading = false;
@@ -156,7 +160,19 @@
 					GetColumns: function() {
 						return _getColumns();
 					},
-					GetConfig: function() {
+					GetConfig: function(goToServer) {
+						if(goToServer) {
+							General.FetchAll().then(
+								function (data) {
+									_config.loading = false;
+									_parseConfigs(data);
+								}, 
+								function (error) {
+									_config.loading = false;
+									console.error(error);
+								}
+							);
+						}
 						return _config;
 					},
 					GetCurrentTimeRange: function (branch) {

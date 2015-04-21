@@ -18,15 +18,17 @@
 				templateUrl: '/partials/directives/order.html',
 				controller: [
 					'$scope',
+					'$timeout',
 					'GlobalService',
 					'GeneralService',
 					'AuthService',
 					'OrderService',
-					function($scope, GlobalService, GeneralService, AuthService, OrderService) {
-						$scope.branch = GlobalService.Branch();
+					function($scope, $timeout, GlS, GeS, AuthService, OrderService) {
+						$scope.branch = GlS.Branch();
 						$scope.user = AuthService.getUser();
 						$scope.myOrder = OrderService.GetOrder();
-						$scope.config = GeneralService.GetConfig();
+						$scope.config = GeS.GetConfig();
+						$scope.isClosed = false;
 						$scope.errors = {
 							timeRange: false
 						};
@@ -59,6 +61,14 @@
 								$scope.errors.timeRange = true;
 							}
 						};
+
+						$timeout(function () {
+							if ($scope.branch === 'rosario' && !$scope.config.rosarioOpen) {
+								$scope.isClosed = true;
+							} else if ($scope.branch === 'funes' && !$scope.config.funesOpen) {
+								$scope.isClosed = true;
+							}
+						}, 300);
 					}
 				]
 			};

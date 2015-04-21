@@ -363,6 +363,33 @@ almost-white: #eeeeee;
 	top: 5%;
 }
 
+.popup-full .panel-warning > .panel-heading {
+	background-color: #ffc938;
+}
+
+.popup-full .panel-warning > .panel-body {
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 900;
+	color: #666;
+}
+
+.popup-full .panel-warning > .panel-body span {
+	text-align: center;
+	display: block;
+	padding-top: 25px;
+	margin: 0 auto;
+}
+
+.popup-full .panel-warning > .panel-body img {
+	text-align: center;
+	display: block;
+	padding-top: 25px;
+	margin: 0 auto;
+	max-width: 120px;
+	width: 80%;
+}
+
 /************ PUBLIC ************/
 
 .public .header {
@@ -1025,6 +1052,11 @@ almost-white: #eeeeee;
 	font: 400 13px 'Montserrat', sans-serif;
 	color: #000;
 	text-transform: uppercase;
+}
+
+.products .order-details .alert-danger {
+	width: 90%;
+	margin: 0 auto;
 }
 
 /************ ADMIN ************/

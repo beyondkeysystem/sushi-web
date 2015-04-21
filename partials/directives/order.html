@@ -1,7 +1,7 @@
 <div class="col-sm-5">
 	<div class="order-details">
 		<h2>TU PEDIDO</h2>
-		<div class="order-box" data-ng-if="user.id">
+		<div class="order-box" data-ng-if="!isClosed && user.id">
 			<p class="user-name">{{user.firstName}} {{user.lastName}}</p>
 			<p class="empty-order" ng-if="!myOrder.count">No hay elementos seleccionados</p>
 			<div class="row product" ng-if="myOrder.count" ng-repeat="product in myOrder.products">
@@ -50,8 +50,9 @@
 				</div>
 			</div>
 		</div>
-		<div class="login-box text-center" data-ng-if="!user.id">
+		<div class="login-box text-center" data-ng-if="!isClosed && !user.id">
 			<a class="btn btn-primary" data-ng-href="#/{{branch}}/login">LOGIN</a>
 		</div>
+		<div class="alert alert-danger text-center" data-ng-if="isClosed">HOY NO ABRIMOS. TE ESPERAMOS MA&Ntilde;ANA!</div>
 	</div>
 </div>
